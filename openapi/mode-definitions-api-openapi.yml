@@ -1,0 +1,353 @@
+swagger: '2.0'
+info:
+  version: 0.0.1
+  title: Mode Account Definitions API
+  description: 'Mode provides a REST API for many common operations, such as:
+
+
+    * Listing spaces and reports
+
+    * Running reports
+
+    * Downloading query results
+
+
+    ## Authentication
+
+
+    For most Mode API calls, the client must supply an API token and secret for
+
+    HTTP basic authentication.
+
+
+    If authentication is required for a given resource, unauthenticated requests
+
+    will result in a `401 Unauthorized` response.
+
+
+    [Create and Manage API Tokens](https://modeanalytics.com/settings/access_tokens)
+
+    '
+  termsOfService: https://mode.com/tos/
+  contact:
+    name: Mode API Team
+    email: support@modeanalytics.com
+  license:
+    name: MIT
+host: modeanalytics.com
+basePath: /api
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/hal+json
+security:
+- accessTokenAuth: []
+tags:
+- name: Definitions
+paths:
+  /{workspace}/definitions:
+    x-summary: Definitions
+    get:
+      operationId: listDefinitions
+      summary: List definitions
+      description: Returns a list of `Definition`s
+      responses:
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '404':
+          description: No default `Library` found
+          schema:
+            $ref: '#/definitions/NotFound'
+        '200':
+          description: '`Definitions` collection response'
+          schema:
+            $ref: '#/definitions/Definitions'
+      parameters:
+      - name: workspace
+        in: path
+        description: '`Workspace` username'
+        required: true
+        type: string
+      - in: query
+        name: filter
+        description: 'Filter `Definition`''s by token. Example: `?filter=by_tokens`'
+        type: string
+      - in: query
+        name: tokens
+        description: Comma separated list of `Definition` tokens
+        type: string
+      tags:
+      - Definitions
+    post:
+      operationId: createDefinition
+      summary: Create a definition
+      description: Creates a `Definition`
+      responses:
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '404':
+          description: '`DataSource` not found'
+          schema:
+            $ref: '#/definitions/NotFound'
+        '200':
+          description: '`Definition` response'
+          schema:
+            $ref: '#/definitions/Definition'
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/BadRequest'
+      parameters:
+      - name: workspace
+        in: path
+        description: '`Workspace` username'
+        required: true
+        type: string
+      tags:
+      - Definitions
+  /{workspace}/definitions/{definition}:
+    x-summary: Definition
+    get:
+      operationId: getDefinition
+      summary: Get a definition
+      description: Returns a representation of `Definition`
+      responses:
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '404':
+          description: '`Definition` not found'
+          schema:
+            $ref: '#/definitions/NotFound'
+        '200':
+          description: '`Definition` response'
+          schema:
+            $ref: '#/definitions/Definition'
+      parameters:
+      - name: workspace
+        in: path
+        description: '`Workspace` username'
+        required: true
+        type: string
+      - name: definition
+        in: path
+        description: '`Definition` token'
+        required: true
+        type: string
+      tags:
+      - Definitions
+    patch:
+      operationId: updateDefinition
+      summary: Update a definition
+      description: Updates a `Definition`
+      responses:
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '404':
+          description: '`Definition` not found'
+          schema:
+            $ref: '#/definitions/NotFound'
+        '200':
+          description: '`Definition` response'
+          schema:
+            $ref: '#/definitions/Definition'
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/BadRequest'
+      parameters:
+      - name: workspace
+        in: path
+        description: '`Workspace` username'
+        required: true
+        type: string
+      - name: definition
+        in: path
+        description: '`Definition` token'
+        required: true
+        type: string
+      tags:
+      - Definitions
+    delete:
+      operationId: deleteDefinition
+      summary: Delete a definition
+      description: Deletes a `Definition`
+      responses:
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '404':
+          description: '`Definition` not found'
+          schema:
+            $ref: '#/definitions/NotFound'
+        '200':
+          description: '`Definition` response'
+          schema:
+            $ref: '#/definitions/Definition'
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/BadRequest'
+      parameters:
+      - name: workspace
+        in: path
+        description: '`Workspace` username'
+        required: true
+        type: string
+      - name: definition
+        in: path
+        description: '`Definition` token'
+        required: true
+        type: string
+      tags:
+      - Definitions
+definitions:
+  Pagination:
+    required:
+    - first_page
+    - last_page
+    - total_pages
+    - total_count
+    properties:
+      first_page:
+        type: string
+      last_page:
+        type: string
+      total_pages:
+        type: integer
+      total_count:
+        type: integer
+  Definitions:
+    properties:
+      pagination:
+        $ref: '#/definitions/Pagination'
+      _links:
+        $ref: '#/definitions/DefinitionsLinks'
+      _embedded:
+        $ref: '#/definitions/DefinitionsEmbeds'
+    required:
+    - _links
+  DefinitionsEmbeds: {}
+  DefinitionsLinks:
+    properties:
+      next_page:
+        $ref: '#/definitions/Link'
+      prev_page:
+        $ref: '#/definitions/Link'
+      self:
+        $ref: '#/definitions/Link'
+    required:
+    - self
+  DefinitionEmbeds: {}
+  Link:
+    required:
+    - href
+    properties:
+      href:
+        type: string
+      templated:
+        type: boolean
+        default: false
+  DefinitionLinks:
+    properties:
+      self:
+        $ref: '#/definitions/Link'
+      last_run:
+        $ref: '#/definitions/Link'
+      last_successful_github_sync:
+        $ref: '#/definitions/Link'
+      web_edit:
+        $ref: '#/definitions/Link'
+      creator:
+        $ref: '#/definitions/Link'
+    required:
+    - self
+    - last_run
+    - last_successful_github_sync
+    - web_edit
+  Unauthorized:
+    required:
+    - id
+    - message
+    properties:
+      id:
+        type: string
+        enum:
+        - unauthorized
+      message:
+        type: string
+  BadRequest:
+    required:
+    - id
+    - message
+    properties:
+      id:
+        type: string
+        enum:
+        - bad_request
+      message:
+        type: string
+  NotFound:
+    required:
+    - id
+    - message
+    properties:
+      id:
+        type: string
+        enum:
+        - not_found
+      message:
+        type: string
+  Definition:
+    properties:
+      id:
+        type: string
+      token:
+        type: string
+      name:
+        type: string
+      description:
+        type: string
+      source:
+        type: string
+      data_source_id:
+        type: string
+      created_at:
+        type: string
+      updated_at:
+        type: string
+      last_successful_sync_at:
+        type: string
+      github_link:
+        type: string
+      last_saved_at:
+        type: string
+      _links:
+        $ref: '#/definitions/DefinitionLinks'
+      _embedded:
+        $ref: '#/definitions/DefinitionEmbeds'
+    required:
+    - _links
+    - id
+    - token
+    - name
+    - description
+    - source
+    - data_source_id
+    - created_at
+    - updated_at
+    - last_successful_sync_at
+    - last_saved_at
+securityDefinitions:
+  accessTokenAuth:
+    type: basic

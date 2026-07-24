@@ -1,0 +1,444 @@
+swagger: '2.0'
+info:
+  version: 0.0.1
+  title: Mode Account API
+  description: 'Mode provides a REST API for many common operations, such as:
+
+
+    * Listing spaces and reports
+
+    * Running reports
+
+    * Downloading query results
+
+
+    ## Authentication
+
+
+    For most Mode API calls, the client must supply an API token and secret for
+
+    HTTP basic authentication.
+
+
+    If authentication is required for a given resource, unauthenticated requests
+
+    will result in a `401 Unauthorized` response.
+
+
+    [Create and Manage API Tokens](https://modeanalytics.com/settings/access_tokens)
+
+    '
+  termsOfService: https://mode.com/tos/
+  contact:
+    name: Mode API Team
+    email: support@modeanalytics.com
+  license:
+    name: MIT
+host: modeanalytics.com
+basePath: /api
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/hal+json
+security:
+- accessTokenAuth: []
+tags:
+- name: Account
+paths:
+  /account:
+    x-summary: User
+    get:
+      operationId: getCurrentUser
+      summary: (Not Supported) Get authorizing user
+      description: Returns a representation of the authorizing `User`
+      responses:
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '200':
+          description: '`User` response'
+          schema:
+            $ref: '#/definitions/Account'
+      tags:
+      - Account
+definitions:
+  SpacesLinks:
+    properties:
+      next_page:
+        $ref: '#/definitions/Link'
+      prev_page:
+        $ref: '#/definitions/Link'
+      self:
+        $ref: '#/definitions/Link'
+    required:
+    - self
+  SpacesEmbeds: {}
+  Pagination:
+    required:
+    - first_page
+    - last_page
+    - total_pages
+    - total_count
+    properties:
+      first_page:
+        type: string
+      last_page:
+        type: string
+      total_pages:
+        type: integer
+      total_count:
+        type: integer
+  Avatar:
+    required:
+    - type
+    properties:
+      type:
+        type: string
+  DataSourcesLinks:
+    properties:
+      next_page:
+        $ref: '#/definitions/Link'
+      prev_page:
+        $ref: '#/definitions/Link'
+      self:
+        $ref: '#/definitions/Link'
+    required:
+    - self
+  Link:
+    required:
+    - href
+    properties:
+      href:
+        type: string
+      templated:
+        type: boolean
+        default: false
+  Unauthorized:
+    required:
+    - id
+    - message
+    properties:
+      id:
+        type: string
+        enum:
+        - unauthorized
+      message:
+        type: string
+  DataSourcesEmbeds: {}
+  AccountLinks:
+    properties:
+      self:
+        $ref: '#/definitions/Link'
+      web:
+        $ref: '#/definitions/Link'
+      web_settings:
+        $ref: '#/definitions/Link'
+      web_google_account:
+        $ref: '#/definitions/Link'
+      web_data_sources_settings:
+        $ref: '#/definitions/Link'
+      web_settings_slack:
+        $ref: '#/definitions/Link'
+      web_public_datasource_home:
+        $ref: '#/definitions/Link'
+      web_spaces:
+        $ref: '#/definitions/Link'
+      web_groups:
+        $ref: '#/definitions/Link'
+      web_new_organization:
+        $ref: '#/definitions/Link'
+      web_membership_events:
+        $ref: '#/definitions/Link'
+      web_member_sessions:
+        $ref: '#/definitions/Link'
+      web_settings_themes:
+        $ref: '#/definitions/Link'
+      web_trial_appointments:
+        $ref: '#/definitions/Link'
+      data_sources:
+        $ref: '#/definitions/Link'
+      data_source:
+        $ref: '#/definitions/Link'
+      admins:
+        $ref: '#/definitions/Link'
+      memberships:
+        $ref: '#/definitions/Link'
+      all_memberships:
+        $ref: '#/definitions/Link'
+      home_web:
+        $ref: '#/definitions/Link'
+      home_starred_web:
+        $ref: '#/definitions/Link'
+      home_explorations_web:
+        $ref: '#/definitions/Link'
+      home_reports_web:
+        $ref: '#/definitions/Link'
+      home_search_web:
+        $ref: '#/definitions/Link'
+      home_discover_web:
+        $ref: '#/definitions/Link'
+      select_data_sources_web:
+        $ref: '#/definitions/Link'
+      data_source_connection_request_web:
+        $ref: '#/definitions/Link'
+      new_invite_web:
+        $ref: '#/definitions/Link'
+      new_upload_web:
+        $ref: '#/definitions/Link'
+      billing_web:
+        $ref: '#/definitions/Link'
+      public_data_sources:
+        $ref: '#/definitions/Link'
+      organizations:
+        $ref: '#/definitions/Link'
+      preference:
+        $ref: '#/definitions/Link'
+      table:
+        $ref: '#/definitions/Link'
+      report:
+        $ref: '#/definitions/Link'
+      reports:
+        $ref: '#/definitions/Link'
+      archived_reports:
+        $ref: '#/definitions/Link'
+      public_reports:
+        $ref: '#/definitions/Link'
+      drafts_reports:
+        $ref: '#/definitions/Link'
+      starred_reports:
+        $ref: '#/definitions/Link'
+      by_ids_reports:
+        $ref: '#/definitions/Link'
+      viewed_reports:
+        $ref: '#/definitions/Link'
+      starred_datasets:
+        $ref: '#/definitions/Link'
+      by_ids_datasets:
+        $ref: '#/definitions/Link'
+      viewed_datasets:
+        $ref: '#/definitions/Link'
+      starred_base_reports:
+        $ref: '#/definitions/Link'
+      by_ids_base_reports:
+        $ref: '#/definitions/Link'
+      viewed_base_reports:
+        $ref: '#/definitions/Link'
+      by_tokens_definitions:
+        $ref: '#/definitions/Link'
+      bridges:
+        $ref: '#/definitions/Link'
+      access_tokens:
+        $ref: '#/definitions/Link'
+      new_report:
+        $ref: '#/definitions/Link'
+      new_report_web:
+        $ref: '#/definitions/Link'
+      validate_table:
+        $ref: '#/definitions/Link'
+      report_views:
+        $ref: '#/definitions/Link'
+      groups:
+        $ref: '#/definitions/Link'
+      group:
+        $ref: '#/definitions/Link'
+      everyone_group:
+        $ref: '#/definitions/Link'
+      users_groups_with_data_source_entitlements:
+        $ref: '#/definitions/Link'
+      spaces:
+        $ref: '#/definitions/Link'
+      space:
+        $ref: '#/definitions/Link'
+      custom_spaces:
+        $ref: '#/definitions/Link'
+      move_to_spaces:
+        $ref: '#/definitions/Link'
+      definitions:
+        $ref: '#/definitions/Link'
+      definition:
+        $ref: '#/definitions/Link'
+      color_palettes:
+        $ref: '#/definitions/Link'
+      all_color_palettes:
+        $ref: '#/definitions/Link'
+      color_palette:
+        $ref: '#/definitions/Link'
+      web_color_palettes_settings:
+        $ref: '#/definitions/Link'
+      validate_space_name:
+        $ref: '#/definitions/Link'
+      validate_definition_name:
+        $ref: '#/definitions/Link'
+      slack_app:
+        $ref: '#/definitions/Link'
+      trial_appointment:
+        $ref: '#/definitions/Link'
+      member_session_timeout:
+        $ref: '#/definitions/Link'
+      easy_identity_providers:
+        $ref: '#/definitions/Link'
+      saml_identity_providers:
+        $ref: '#/definitions/Link'
+      scim_token:
+        $ref: '#/definitions/Link'
+      memberships_lite:
+        $ref: '#/definitions/Link'
+      schedules:
+        $ref: '#/definitions/Link'
+      api_keys:
+        $ref: '#/definitions/Link'
+    required:
+    - self
+    - web
+    - web_public_datasource_home
+    - web_groups
+    - web_new_organization
+    - home_web
+    - home_starred_web
+    - home_explorations_web
+    - home_search_web
+    - new_invite_web
+    - new_upload_web
+    - report
+    - reports
+    - archived_reports
+    - public_reports
+    - drafts_reports
+    - starred_reports
+    - by_ids_reports
+    - viewed_reports
+    - starred_datasets
+    - by_ids_datasets
+    - viewed_datasets
+    - starred_base_reports
+    - by_ids_base_reports
+    - viewed_base_reports
+    - all_color_palettes
+  DataSources:
+    properties:
+      pagination:
+        $ref: '#/definitions/Pagination'
+      data_index_auth_token:
+        type: string
+      _links:
+        $ref: '#/definitions/DataSourcesLinks'
+      _embedded:
+        $ref: '#/definitions/DataSourcesEmbeds'
+    required:
+    - _links
+  Account:
+    properties:
+      username:
+        type: string
+      name:
+        type: string
+      id:
+        type: integer
+      token:
+        type: string
+      email:
+        type: string
+      dataset_size_limit_mb:
+        type: string
+      query_run_size_limit_mb:
+        type: string
+      email_verified:
+        type: boolean
+      avatar:
+        $ref: '#/definitions/Avatar'
+      user:
+        type: boolean
+      thoughtspot_integrated:
+        type: boolean
+      space_count:
+        type: integer
+      data_source_count:
+        type: integer
+      default_data_source_token:
+        type: string
+      organizations_count:
+        type: string
+      trial_state:
+        enum:
+        - pending
+        - active
+        - expired
+        type: string
+      organization_restricted:
+        type: string
+      membership_type:
+        enum:
+        - admin
+        - full
+        type: string
+      payment_method_confirmed:
+        type: boolean
+      private_definition_count:
+        type: integer
+      private_definition_limit:
+        type: integer
+      authorized_domains:
+        type: array
+        items:
+          type: string
+      plan_code:
+        enum:
+        - standard
+        - plus
+        - free
+        type: string
+      seat_limit_reached:
+        type: boolean
+      org_seat_limit_reached:
+        type: boolean
+      python_performance_first_tier:
+        type: boolean
+      admin_data_source_connections_only:
+        type: boolean
+      admin_collection_creation_only:
+        type: boolean
+      scim_enabled:
+        type: string
+      created_at:
+        type: string
+      settings:
+        type: string
+      _links:
+        $ref: '#/definitions/AccountLinks'
+      _embedded:
+        $ref: '#/definitions/AccountEmbeds'
+    required:
+    - _links
+    - username
+    - name
+    - id
+    - token
+    - dataset_size_limit_mb
+    - query_run_size_limit_mb
+    - avatar
+    - user
+    - created_at
+  Spaces:
+    properties:
+      pagination:
+        $ref: '#/definitions/Pagination'
+      _links:
+        $ref: '#/definitions/SpacesLinks'
+      _embedded:
+        $ref: '#/definitions/SpacesEmbeds'
+    required:
+    - _links
+  AccountEmbeds:
+    properties:
+      data_sources:
+        $ref: '#/definitions/DataSources'
+      spaces:
+        $ref: '#/definitions/Spaces'
+      all_spaces:
+        $ref: '#/definitions/Spaces'
+securityDefinitions:
+  accessTokenAuth:
+    type: basic

@@ -1,0 +1,79 @@
+swagger: '2.0'
+info:
+  version: 0.0.1
+  title: Mode Account Verify API
+  description: 'Mode provides a REST API for many common operations, such as:
+
+
+    * Listing spaces and reports
+
+    * Running reports
+
+    * Downloading query results
+
+
+    ## Authentication
+
+
+    For most Mode API calls, the client must supply an API token and secret for
+
+    HTTP basic authentication.
+
+
+    If authentication is required for a given resource, unauthenticated requests
+
+    will result in a `401 Unauthorized` response.
+
+
+    [Create and Manage API Tokens](https://modeanalytics.com/settings/access_tokens)
+
+    '
+  termsOfService: https://mode.com/tos/
+  contact:
+    name: Mode API Team
+    email: support@modeanalytics.com
+  license:
+    name: MIT
+host: modeanalytics.com
+basePath: /api
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/hal+json
+security:
+- accessTokenAuth: []
+tags:
+- name: Verify
+paths:
+  /api/verify:
+    x-summary: User
+    get:
+      operationId: verifyCurrentUser
+      summary: Verify User
+      description: Returns a verification of the authorizing `User`
+      responses:
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '200':
+          description: '`Verify` response'
+      tags:
+      - Verify
+definitions:
+  Unauthorized:
+    required:
+    - id
+    - message
+    properties:
+      id:
+        type: string
+        enum:
+        - unauthorized
+      message:
+        type: string
+securityDefinitions:
+  accessTokenAuth:
+    type: basic

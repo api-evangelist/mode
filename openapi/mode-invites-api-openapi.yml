@@ -1,0 +1,219 @@
+swagger: '2.0'
+info:
+  version: 0.0.1
+  title: Mode Account Invites API
+  description: 'Mode provides a REST API for many common operations, such as:
+
+
+    * Listing spaces and reports
+
+    * Running reports
+
+    * Downloading query results
+
+
+    ## Authentication
+
+
+    For most Mode API calls, the client must supply an API token and secret for
+
+    HTTP basic authentication.
+
+
+    If authentication is required for a given resource, unauthenticated requests
+
+    will result in a `401 Unauthorized` response.
+
+
+    [Create and Manage API Tokens](https://modeanalytics.com/settings/access_tokens)
+
+    '
+  termsOfService: https://mode.com/tos/
+  contact:
+    name: Mode API Team
+    email: support@modeanalytics.com
+  license:
+    name: MIT
+host: modeanalytics.com
+basePath: /api
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/hal+json
+security:
+- accessTokenAuth: []
+tags:
+- name: Invites
+paths:
+  /{workspace}/invites:
+    x-summary: Invite
+    post:
+      operationId: createOrganizationInvite
+      summary: Create an invitation
+      description: Creates a `User` and invites `User` to `Workspace`
+      parameters:
+      - name: parameters
+        in: body
+        schema:
+          $ref: '#/definitions/CreateInviteRequestBody'
+      - name: workspace
+        in: path
+        description: '`Workspace` username'
+        required: true
+        type: string
+      responses:
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '404':
+          description: '`Membership` not found for `Workspace`'
+          schema:
+            $ref: '#/definitions/NotFound'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/Forbidden'
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/BadRequest'
+        '200':
+          description: '`WorkspaceInvite` response'
+          schema:
+            $ref: '#/definitions/Invite'
+      tags:
+      - Invites
+definitions:
+  InviteLinks:
+    properties:
+      inviter:
+        $ref: '#/definitions/Link'
+      invitee:
+        $ref: '#/definitions/Link'
+      web_self_resend:
+        $ref: '#/definitions/Link'
+    required:
+    - inviter
+    - web_self_resend
+  InviteEmbeds: {}
+  Invite:
+    properties:
+      email:
+        type: string
+      message:
+        type: string
+      inviter_id:
+        type: string
+      invitee_id:
+        type: string
+      organization_id:
+        type: string
+      limited:
+        type: string
+      sent_at:
+        type: string
+      resent_at:
+        type: string
+      clicked_at:
+        type: string
+      accepted_at:
+        type: string
+      expires_at:
+        type: string
+      created_at:
+        type: string
+      _links:
+        $ref: '#/definitions/InviteLinks'
+      _embedded:
+        $ref: '#/definitions/InviteEmbeds'
+    required:
+    - _links
+    - email
+    - message
+    - inviter_id
+    - invitee_id
+    - organization_id
+    - limited
+    - expires_at
+    - created_at
+  Forbidden:
+    required:
+    - id
+    - message
+    properties:
+      id:
+        type: string
+        enum:
+        - forbidden
+      message:
+        type: string
+  Link:
+    required:
+    - href
+    properties:
+      href:
+        type: string
+      templated:
+        type: boolean
+        default: false
+  BadRequest:
+    required:
+    - id
+    - message
+    properties:
+      id:
+        type: string
+        enum:
+        - bad_request
+      message:
+        type: string
+  Unauthorized:
+    required:
+    - id
+    - message
+    properties:
+      id:
+        type: string
+        enum:
+        - unauthorized
+      message:
+        type: string
+  CreateInviteRequestBody:
+    required:
+    - invite
+    type: object
+    properties:
+      invite:
+        required:
+        - invitee
+        - message
+        type: object
+        properties:
+          invitee:
+            required:
+            - email
+            type: object
+            properties:
+              email:
+                type: string
+                example: harold.ceramicist@example.com
+          message:
+            type: string
+            example: You are an analyst, Harry!
+  NotFound:
+    required:
+    - id
+    - message
+    properties:
+      id:
+        type: string
+        enum:
+        - not_found
+      message:
+        type: string
+securityDefinitions:
+  accessTokenAuth:
+    type: basic

@@ -1,0 +1,237 @@
+swagger: '2.0'
+info:
+  version: 0.0.1
+  title: Mode Account Memberships API
+  description: 'Mode provides a REST API for many common operations, such as:
+
+
+    * Listing spaces and reports
+
+    * Running reports
+
+    * Downloading query results
+
+
+    ## Authentication
+
+
+    For most Mode API calls, the client must supply an API token and secret for
+
+    HTTP basic authentication.
+
+
+    If authentication is required for a given resource, unauthenticated requests
+
+    will result in a `401 Unauthorized` response.
+
+
+    [Create and Manage API Tokens](https://modeanalytics.com/settings/access_tokens)
+
+    '
+  termsOfService: https://mode.com/tos/
+  contact:
+    name: Mode API Team
+    email: support@modeanalytics.com
+  license:
+    name: MIT
+host: modeanalytics.com
+basePath: /api
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/hal+json
+security:
+- accessTokenAuth: []
+tags:
+- name: Memberships
+paths:
+  /{workspace}/memberships:
+    x-summary: Workspace Memberships
+    get:
+      operationId: listMemberships
+      summary: List memberships
+      description: Returns a list of `Membership`s
+      responses:
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '404':
+          description: '`Workspace` not found'
+          schema:
+            $ref: '#/definitions/NotFound'
+      parameters:
+      - name: workspace
+        in: path
+        description: '`Workspace` username'
+        required: true
+        type: string
+      tags:
+      - Memberships
+  /{workspace}/memberships/{membership}:
+    x-summary: Workspace Membership
+    get:
+      operationId: getMembership
+      summary: Get a membership
+      description: Returns a representation of a `Membership`
+      responses:
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '404':
+          description: '`Membership` not found'
+          schema:
+            $ref: '#/definitions/NotFound'
+        '200':
+          description: '`Membership` response'
+          schema:
+            $ref: '#/definitions/Membership'
+      parameters:
+      - name: workspace
+        in: path
+        description: '`Workspace` username'
+        required: true
+        type: string
+      - name: membership
+        in: path
+        description: '`Membership` token'
+        required: true
+        type: string
+      tags:
+      - Memberships
+    delete:
+      operationId: deleteMembership
+      summary: Delete a membership
+      description: Deletes a `Membership`
+      responses:
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '404':
+          description: '`Membership` not found'
+          schema:
+            $ref: '#/definitions/NotFound'
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/BadRequest'
+        '200':
+          description: '`Membership` response'
+          schema:
+            $ref: '#/definitions/Membership'
+      parameters:
+      - name: workspace
+        in: path
+        description: '`Workspace` username'
+        required: true
+        type: string
+      - name: membership
+        in: path
+        description: '`Membership` token'
+        required: true
+        type: string
+      tags:
+      - Memberships
+definitions:
+  MembershipEmbeds: {}
+  Membership:
+    properties:
+      admin:
+        type: boolean
+      invited:
+        type: boolean
+      state:
+        type: string
+      member_username:
+        type: string
+      member_token:
+        type: string
+      activated_at:
+        type: string
+      managed_by_scim:
+        type: boolean
+      _links:
+        $ref: '#/definitions/MembershipLinks'
+      _embedded:
+        $ref: '#/definitions/MembershipEmbeds'
+    required:
+    - _links
+    - admin
+    - state
+    - member_username
+    - member_token
+    - activated_at
+  MembershipLinks:
+    properties:
+      self:
+        $ref: '#/definitions/Link'
+      web_self:
+        $ref: '#/definitions/Link'
+      web_self_unban:
+        $ref: '#/definitions/Link'
+      web_self_approve:
+        $ref: '#/definitions/Link'
+      organization:
+        $ref: '#/definitions/Link'
+      user:
+        $ref: '#/definitions/Link'
+      web_self_download_profile:
+        $ref: '#/definitions/Link'
+      web_self_confirm_destroy:
+        $ref: '#/definitions/Link'
+      groups:
+        $ref: '#/definitions/Link'
+    required:
+    - self
+    - web_self
+    - organization
+    - groups
+  Link:
+    required:
+    - href
+    properties:
+      href:
+        type: string
+      templated:
+        type: boolean
+        default: false
+  BadRequest:
+    required:
+    - id
+    - message
+    properties:
+      id:
+        type: string
+        enum:
+        - bad_request
+      message:
+        type: string
+  Unauthorized:
+    required:
+    - id
+    - message
+    properties:
+      id:
+        type: string
+        enum:
+        - unauthorized
+      message:
+        type: string
+  NotFound:
+    required:
+    - id
+    - message
+    properties:
+      id:
+        type: string
+        enum:
+        - not_found
+      message:
+        type: string
+securityDefinitions:
+  accessTokenAuth:
+    type: basic

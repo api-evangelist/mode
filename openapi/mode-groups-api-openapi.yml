@@ -1,0 +1,628 @@
+swagger: '2.0'
+info:
+  version: 0.0.1
+  title: Mode Account Groups API
+  description: 'Mode provides a REST API for many common operations, such as:
+
+
+    * Listing spaces and reports
+
+    * Running reports
+
+    * Downloading query results
+
+
+    ## Authentication
+
+
+    For most Mode API calls, the client must supply an API token and secret for
+
+    HTTP basic authentication.
+
+
+    If authentication is required for a given resource, unauthenticated requests
+
+    will result in a `401 Unauthorized` response.
+
+
+    [Create and Manage API Tokens](https://modeanalytics.com/settings/access_tokens)
+
+    '
+  termsOfService: https://mode.com/tos/
+  contact:
+    name: Mode API Team
+    email: support@modeanalytics.com
+  license:
+    name: MIT
+host: modeanalytics.com
+basePath: /api
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/hal+json
+security:
+- accessTokenAuth: []
+tags:
+- name: Groups
+paths:
+  /{workspace}/groups/{group_token}/memberships:
+    x-summary: Group Memberships
+    get:
+      operationId: listGroupMemberships
+      summary: List group memberships
+      description: Get all `Memberships` of a `Group`
+      parameters:
+      - name: workspace
+        in: path
+        description: '`Workspace` username'
+        required: true
+        type: string
+      - name: group_token
+        in: path
+        description: '`UserGroup` token'
+        required: true
+        type: string
+      responses:
+        '404':
+          description: '`Membership` not found for `Workspace`'
+          schema:
+            $ref: '#/definitions/NotFound'
+        '200':
+          description: '`UserGroupMembership` collection response'
+          schema:
+            $ref: '#/definitions/UserGroupMemberships'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/Forbidden'
+      tags:
+      - Groups
+    post:
+      operationId: createGroupMembership
+      summary: Create a group membership
+      description: Create a `Group` `Membership` for a given `User`
+      parameters:
+      - name: parameters
+        in: body
+        schema:
+          $ref: '#/definitions/CreateUserGroupMembershipRequestBody'
+      - name: workspace
+        in: path
+        description: '`Workspace` username'
+        required: true
+        type: string
+      - name: group_token
+        in: path
+        description: '`UserGroup` token'
+        required: true
+        type: string
+      responses:
+        '404':
+          description: '`Membership` not found for `Workspace`'
+          schema:
+            $ref: '#/definitions/NotFound'
+        '200':
+          description: '`UserGroupMembership` response'
+          schema:
+            $ref: '#/definitions/UserGroupMembership'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/Forbidden'
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/BadRequest'
+      tags:
+      - Groups
+  /{workspace}/groups/{group_token}/memberships/{membership_token}:
+    x-summary: Group Membership
+    get:
+      operationId: getGroupMembership
+      summary: Get a group membership
+      description: Get the `Group` `Membership` of a `User`
+      parameters:
+      - name: workspace
+        in: path
+        description: '`Workspace` username'
+        required: true
+        type: string
+      - name: group_token
+        in: path
+        description: '`UserGroup` token'
+        required: true
+        type: string
+      - name: membership_token
+        in: path
+        description: '`UserGroupMembership token'
+        required: true
+        type: string
+      responses:
+        '404':
+          description: '`Membership` not found for `Workspace`'
+          schema:
+            $ref: '#/definitions/NotFound'
+        '200':
+          description: '`UserGroupMembership` response'
+          schema:
+            $ref: '#/definitions/UserGroupMembership'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/Forbidden'
+      tags:
+      - Groups
+    delete:
+      operationId: deleteGroupMembership
+      summary: Delete a group membership
+      description: Remove a `User` from a `Group` by deleting the `Membership`
+      parameters:
+      - name: workspace
+        in: path
+        description: '`Workspace` username'
+        required: true
+        type: string
+      - name: group_token
+        in: path
+        description: '`UserGroup` token'
+        required: true
+        type: string
+      - name: membership_token
+        in: path
+        description: '`UserGroupMembership token'
+        required: true
+        type: string
+      responses:
+        '404':
+          description: '`Membership` not found for `Workspace`'
+          schema:
+            $ref: '#/definitions/NotFound'
+        '200':
+          description: '`UserGroupMembership` response'
+          schema:
+            $ref: '#/definitions/UserGroupMembership'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/Forbidden'
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/BadRequest'
+      tags:
+      - Groups
+  /{workspace}/groups:
+    x-summary: Groups
+    get:
+      operationId: listGroups
+      summary: List groups
+      description: Get all `Group`s for a `Workspace`
+      parameters:
+      - name: workspace
+        in: path
+        description: '`Workspace` username'
+        required: true
+        type: string
+      responses:
+        '404':
+          description: '`Membership` not found for `Workspace`'
+          schema:
+            $ref: '#/definitions/NotFound'
+        '200':
+          description: '`UserGroup` collection response'
+          schema:
+            $ref: '#/definitions/UserGroups'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/Forbidden'
+      tags:
+      - Groups
+    post:
+      operationId: createGroup
+      summary: Create a group
+      description: Create a user `Group` with the provided attributes
+      parameters:
+      - name: parameters
+        in: body
+        schema:
+          $ref: '#/definitions/CreateUserGroupRequestBody'
+      - name: workspace
+        in: path
+        description: '`Workspace` username'
+        required: true
+        type: string
+      responses:
+        '404':
+          description: '`Membership` not found for `Workspace`'
+          schema:
+            $ref: '#/definitions/NotFound'
+        '200':
+          description: '`UserGroup` response'
+          schema:
+            $ref: '#/definitions/UserGroup'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/Forbidden'
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/BadRequest'
+      tags:
+      - Groups
+  /{workspace}/groups/{group_token}:
+    x-summary: Group
+    get:
+      operationId: getGroup
+      summary: Get a group
+      description: Gets a user `Group`
+      parameters:
+      - name: workspace
+        in: path
+        description: '`Workspace` username'
+        required: true
+        type: string
+      - name: group_token
+        in: path
+        description: '`UserGroup` token'
+        required: true
+        type: string
+      responses:
+        '404':
+          description: '`Membership` not found for `Workspace`'
+          schema:
+            $ref: '#/definitions/NotFound'
+        '200':
+          description: '`UserGroup` response'
+          schema:
+            $ref: '#/definitions/UserGroup'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/Forbidden'
+      tags:
+      - Groups
+    delete:
+      operationId: deleteGroup
+      summary: Delete a group
+      description: Deletes a user `Group`
+      parameters:
+      - name: workspace
+        in: path
+        description: '`Workspace` username'
+        required: true
+        type: string
+      - name: group_token
+        in: path
+        description: '`UserGroup` token'
+        required: true
+        type: string
+      responses:
+        '404':
+          description: '`Membership` not found for `Workspace`'
+          schema:
+            $ref: '#/definitions/NotFound'
+        '200':
+          description: '`UserGroup` response'
+          schema:
+            $ref: '#/definitions/UserGroup'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/Forbidden'
+      tags:
+      - Groups
+    patch:
+      operationId: updateGroup
+      summary: Update a group
+      description: Update a user `Group` with the provided attributes
+      parameters:
+      - name: parameters
+        in: body
+        schema:
+          $ref: '#/definitions/UpdateUserGroupRequestBody'
+      - name: workspace
+        in: path
+        description: '`Workspace` username'
+        required: true
+        type: string
+      - name: group_token
+        in: path
+        description: '`UserGroup` token'
+        required: true
+        type: string
+      responses:
+        '404':
+          description: '`Membership` not found for `Workspace`'
+          schema:
+            $ref: '#/definitions/NotFound'
+        '200':
+          description: '`UserGroup` response'
+          schema:
+            $ref: '#/definitions/UserGroup'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/Forbidden'
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/BadRequest'
+      tags:
+      - Groups
+definitions:
+  UserGroupMembershipEmbeds: {}
+  UserGroupEmbeds: {}
+  Link:
+    required:
+    - href
+    properties:
+      href:
+        type: string
+      templated:
+        type: boolean
+        default: false
+  BadRequest:
+    required:
+    - id
+    - message
+    properties:
+      id:
+        type: string
+        enum:
+        - bad_request
+      message:
+        type: string
+  UserGroup:
+    properties:
+      token:
+        type: string
+      group_type:
+        type: string
+      name:
+        type: string
+      description:
+        type: string
+      state:
+        type: string
+      member_count:
+        type: string
+      spaces_count:
+        type: string
+      data_sources_count:
+        type: string
+      managed:
+        type: string
+      _links:
+        $ref: '#/definitions/UserGroupLinks'
+      _embedded:
+        $ref: '#/definitions/UserGroupEmbeds'
+    required:
+    - _links
+    - token
+    - group_type
+    - name
+    - description
+    - state
+    - member_count
+    - spaces_count
+    - data_sources_count
+    - managed
+  Pagination:
+    required:
+    - first_page
+    - last_page
+    - total_pages
+    - total_count
+    properties:
+      first_page:
+        type: string
+      last_page:
+        type: string
+      total_pages:
+        type: integer
+      total_count:
+        type: integer
+  Forbidden:
+    required:
+    - id
+    - message
+    properties:
+      id:
+        type: string
+        enum:
+        - forbidden
+      message:
+        type: string
+  Unauthorized:
+    required:
+    - id
+    - message
+    properties:
+      id:
+        type: string
+        enum:
+        - unauthorized
+      message:
+        type: string
+  UserGroupLinks:
+    properties:
+      self:
+        $ref: '#/definitions/Link'
+      web:
+        $ref: '#/definitions/Link'
+      creator:
+        $ref: '#/definitions/Link'
+      group_memberships:
+        $ref: '#/definitions/Link'
+      membership_by_id:
+        $ref: '#/definitions/Link'
+      memberships_preview:
+        $ref: '#/definitions/Link'
+    required:
+    - self
+    - web
+    - group_memberships
+    - membership_by_id
+    - memberships_preview
+  CreateUserGroupRequestBody:
+    required:
+    - user_group
+    type: object
+    properties:
+      user_group:
+        description: The parameters for the created user group
+        type: object
+        properties:
+          name:
+            description: The name for the new user group
+            type: string
+  CreateUserGroupMembershipRequestBody:
+    required:
+    - membership
+    type: object
+    properties:
+      membership:
+        description: The parameters for the new membership
+        type: object
+        required:
+        - member_token
+        properties:
+          member_token:
+            description: The token of the user to become a member
+            type: string
+  UserGroupMembershipLinks:
+    properties:
+      self:
+        $ref: '#/definitions/Link'
+      creator:
+        $ref: '#/definitions/Link'
+      member:
+        $ref: '#/definitions/Link'
+      user_group:
+        $ref: '#/definitions/Link'
+    required:
+    - self
+    - member
+    - user_group
+  UserGroupsEmbeds: {}
+  UserGroupsLinks:
+    properties:
+      next_page:
+        $ref: '#/definitions/Link'
+      prev_page:
+        $ref: '#/definitions/Link'
+      self:
+        $ref: '#/definitions/Link'
+    required:
+    - self
+  UserGroups:
+    properties:
+      pagination:
+        $ref: '#/definitions/Pagination'
+      _links:
+        $ref: '#/definitions/UserGroupsLinks'
+      _embedded:
+        $ref: '#/definitions/UserGroupsEmbeds'
+    required:
+    - _links
+  NotFound:
+    required:
+    - id
+    - message
+    properties:
+      id:
+        type: string
+        enum:
+        - not_found
+      message:
+        type: string
+  UserGroupMembershipsEmbeds: {}
+  UpdateUserGroupRequestBody:
+    required:
+    - user_group
+    type: object
+    properties:
+      user_group:
+        description: The parameters for the updated user group
+        type: object
+        properties:
+          name:
+            description: The new name for the user group
+            type: string
+  UserGroupMembership:
+    properties:
+      token:
+        type: string
+      member_token:
+        type: string
+      _links:
+        $ref: '#/definitions/UserGroupMembershipLinks'
+      _embedded:
+        $ref: '#/definitions/UserGroupMembershipEmbeds'
+    required:
+    - _links
+    - token
+    - member_token
+  UserGroupMembershipsLinks:
+    properties:
+      next_page:
+        $ref: '#/definitions/Link'
+      prev_page:
+        $ref: '#/definitions/Link'
+      self:
+        $ref: '#/definitions/Link'
+    required:
+    - self
+  UserGroupMemberships:
+    properties:
+      pagination:
+        $ref: '#/definitions/Pagination'
+      _links:
+        $ref: '#/definitions/UserGroupMembershipsLinks'
+      _embedded:
+        $ref: '#/definitions/UserGroupMembershipsEmbeds'
+    required:
+    - _links
+securityDefinitions:
+  accessTokenAuth:
+    type: basic
