@@ -1,0 +1,30 @@
+# Mode
+
+> Mode is a collaborative business intelligence and analytics platform that unites data and business teams around a single analytical workflow — ad hoc SQL, Python/R notebooks, interactive dashboards, self-serve reporting, and custom data apps on top of connected data warehouses. Mode (acquired by ThoughtSpot in 2023) exposes a REST API for programmatic management of workspaces, users, data sources, reports, queries, charts, datasets, definitions, exports, schedules, and subscriptions. Auth is HTTP Basic with an API token + secret; responses are HAL+JSON; access requires a paid Mode Business workspace.
+
+## APIs
+- [Mode API reference](https://mode.com/developer/api-reference/introduction/): REST API, base URL https://app.mode.com/api
+- [Authentication](https://mode.com/developer/api-reference/authentication/): HTTP Basic with workspace/personal API token + secret
+- [Error codes](https://mode.com/developer/api-reference/error-codes/): 400/401/403/404 with { id, message } envelope
+- [API Cookbook](https://mode.com/developer/api-cookbook/introduction/): automation workflow recipes
+
+## Specs
+- [OpenAPI/Swagger 2.0 spec](openapi/mode-openapi-original.yml): 94 operations, HTTP Basic auth, HAL+JSON (source: github.com/mode/api-swagger)
+
+## Artifacts
+- [Authentication profile](authentication/mode-authentication.yml)
+- [Error catalog](errors/mode-problem-types.yml)
+- [API conventions](conventions/mode-conventions.yml)
+- [Lifecycle](lifecycle/mode-lifecycle.yml)
+- [Conformance](conformance/mode-conformance.yml)
+- [Data model / ERD](data-model/mode-data-model.yml)
+- [MCP candidate tools](mcp/mode-mcp.yml)
+- [Agentic access contracts](agentic-access/mode-agentic-access.yml)
+- [Agent skills](skills/_index.yml)
+
+## Docs
+- [Developer Hub](https://mode.com/developer)
+- [Help & Support](https://mode.com/help/)
+- [System status](https://status.modeanalytics.com/)
+- [Pricing / compare plans](https://mode.com/compare-plans/)
+- [GitHub organization](https://github.com/mode)

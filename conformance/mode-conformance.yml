@@ -1,0 +1,26 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/mode-openapi-original.yml
+standards:
+- id: hal-json
+  conforms: true
+  evidence: API produces application/hal+json with _links/_embedded hypermedia members
+- id: oauth2
+  conforms: false
+  evidence: securityDefinitions declares only HTTP Basic (accessTokenAuth), no oauth2
+- id: openid-connect
+  conforms: false
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: errors use a custom { id, message } JSON envelope, not application/problem+json
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: no Sunset/Deprecation header support documented
+- id: pagination
+  conforms: true
+  evidence: page-number pagination via page and per_page query parameters
+- id: idempotency
+  conforms: false
+  evidence: no Idempotency-Key contract in spec or docs
+- id: json-api
+  conforms: false

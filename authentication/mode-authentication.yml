@@ -1,0 +1,32 @@
+generated: '2026-07-20'
+method: searched
+source: openapi/mode-openapi-original.yml
+docs: https://mode.com/developer/api-reference/authentication/
+summary:
+  types:
+  - http
+  http_schemes:
+  - basic
+  notes: >-
+    HTTP Basic authentication. The token (public access key) is used as the username and
+    the secret (private access key, shown only once) as the password; the pair is
+    base64-encoded into an Authorization: Basic <encoded> header. Workspace must be on a
+    paid Mode Business plan to access the API.
+token_types:
+- name: Workspace API token
+  scope: workspace
+  notes: >-
+    Created by workspace admins under Workspace Settings > Privacy & Security > API.
+    Grants admin-level workspace access. Cannot be used with cloning reports or invites
+    endpoints.
+- name: Personal API token
+  scope: user
+  notes: >-
+    Legacy option, no longer creatable but still functional; respects the individual
+    user's permissions within the workspace.
+schemes:
+- name: accessTokenAuth
+  type: http
+  scheme: basic
+  sources:
+  - openapi/mode-openapi-original.yml

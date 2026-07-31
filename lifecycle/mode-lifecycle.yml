@@ -1,0 +1,23 @@
+generated: '2026-07-20'
+method: searched
+source: openapi/mode-openapi-original.yml
+versioning:
+  scheme: uri-path
+  base_path: /api
+  spec_version: 0.0.1
+  docs: https://mode.com/developer/api-reference/introduction/
+  notes: >-
+    Mode's public REST API is served under the /api base path on app.mode.com (legacy host
+    modeanalytics.com). Some routed collections carry an inline version segment (e.g.
+    reports/schedules/v1/bulk_delete). No global dated/header API version is published.
+status_page: https://status.modeanalytics.com/
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: >-
+    No public deprecation policy or RFC 8594 Sunset/Deprecation header support documented.
+    Personal API tokens are described in the auth docs as a deprecated (no-longer-creatable
+    but still functional) credential type.
+deprecated_operations: []
+access:
+  requirement: paid Mode Business workspace plan

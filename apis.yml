@@ -1,8 +1,16 @@
 aid: mode
-name: Mode *
-description: 'Mode * is a company surfaced as a portfolio company of gv and added to the API Evangelist
-  network as a stub for enrichment. Sector: enterprise. This profile is a lead awaiting the enrichment
-  pipeline.'
+name: Mode
+description: >-
+  Mode is a collaborative business intelligence and analytics platform that unites data
+  and business teams around a single analytical workflow. Built by analysts for analysts,
+  Mode combines ad hoc SQL exploration, Python and R notebooks, interactive dashboards,
+  self-serve reporting, and custom data applications on top of connected data warehouses.
+  Mode was acquired by ThoughtSpot in 2023 and positions itself as the intelligence layer
+  for the modern data stack. Mode exposes a REST API (documented at its Developer Hub) for
+  programmatic management of workspaces, users, collections, data sources, reports, queries,
+  charts, datasets, definitions, exports, report schedules, and subscriptions. The API uses
+  HTTP Basic authentication with workspace or personal API tokens and returns HAL+JSON, and
+  is available to workspaces on a paid Mode Business plan.
 url: https://raw.githubusercontent.com/api-evangelist/mode/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -10,15 +18,199 @@ x-backed-by:
 - gv
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
+image: https://avatars.githubusercontent.com/u/5306870?v=4
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
 - Enterprise
-apis: []
+- Business Intelligence
+- Analytics
+- Data
+- Reporting
+- Dashboards
+- SQL
+- Data Stack
+apis:
+- aid: mode:mode-account-api
+  name: Mode Account API
+  description: The Account API from Mode — 1 operation(s) for account.
+  humanURL: https://mode.com/developer/api-reference/introduction/
+  baseURL: https://app.mode.com/api
+  tags:
+  - Account
+  properties:
+  - type: OpenAPI
+    url: openapi/mode-account-api-openapi.yml
+- aid: mode:mode-audit-logs-api
+  name: Mode Audit Logs API
+  description: The Audit Logs API from Mode — 1 operation(s) for audit logs.
+  humanURL: https://mode.com/developer/api-reference/introduction/
+  baseURL: https://app.mode.com/api
+  tags:
+  - Audit Logs
+  properties:
+  - type: OpenAPI
+    url: openapi/mode-audit-logs-api-openapi.yml
+- aid: mode:mode-data-sources-api
+  name: Mode Data Sources API
+  description: The Data Sources API from Mode — 6 operation(s) for data sources.
+  humanURL: https://mode.com/developer/api-reference/introduction/
+  baseURL: https://app.mode.com/api
+  tags:
+  - Data Sources
+  properties:
+  - type: OpenAPI
+    url: openapi/mode-data-sources-api-openapi.yml
+- aid: mode:mode-datasets-api
+  name: Mode Datasets API
+  description: The Datasets API from Mode — 8 operation(s) for datasets.
+  humanURL: https://mode.com/developer/api-reference/introduction/
+  baseURL: https://app.mode.com/api
+  tags:
+  - Datasets
+  properties:
+  - type: OpenAPI
+    url: openapi/mode-datasets-api-openapi.yml
+- aid: mode:mode-definitions-api
+  name: Mode Definitions API
+  description: The Definitions API from Mode — 2 operation(s) for definitions.
+  humanURL: https://mode.com/developer/api-reference/introduction/
+  baseURL: https://app.mode.com/api
+  tags:
+  - Definitions
+  properties:
+  - type: OpenAPI
+    url: openapi/mode-definitions-api-openapi.yml
+- aid: mode:mode-groups-api
+  name: Mode Groups API
+  description: The Groups API from Mode — 4 operation(s) for groups.
+  humanURL: https://mode.com/developer/api-reference/introduction/
+  baseURL: https://app.mode.com/api
+  tags:
+  - Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/mode-groups-api-openapi.yml
+- aid: mode:mode-invites-api
+  name: Mode Invites API
+  description: The Invites API from Mode — 1 operation(s) for invites.
+  humanURL: https://mode.com/developer/api-reference/introduction/
+  baseURL: https://app.mode.com/api
+  tags:
+  - Invites
+  properties:
+  - type: OpenAPI
+    url: openapi/mode-invites-api-openapi.yml
+- aid: mode:mode-memberships-api
+  name: Mode Memberships API
+  description: The Memberships API from Mode — 2 operation(s) for memberships.
+  humanURL: https://mode.com/developer/api-reference/introduction/
+  baseURL: https://app.mode.com/api
+  tags:
+  - Memberships
+  properties:
+  - type: OpenAPI
+    url: openapi/mode-memberships-api-openapi.yml
+- aid: mode:mode-reports-api
+  name: Mode Reports API
+  description: The Reports API from Mode — 27 operation(s) for reports.
+  humanURL: https://mode.com/developer/api-reference/introduction/
+  baseURL: https://app.mode.com/api
+  tags:
+  - Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/mode-reports-api-openapi.yml
+- aid: mode:mode-spaces-api
+  name: Mode Spaces API
+  description: The Spaces API from Mode — 6 operation(s) for spaces.
+  humanURL: https://mode.com/developer/api-reference/introduction/
+  baseURL: https://app.mode.com/api
+  tags:
+  - Spaces
+  properties:
+  - type: OpenAPI
+    url: openapi/mode-spaces-api-openapi.yml
+- aid: mode:mode-verify-api
+  name: Mode Verify API
+  description: The Verify API from Mode — 1 operation(s) for verify.
+  humanURL: https://mode.com/developer/api-reference/introduction/
+  baseURL: https://app.mode.com/api
+  tags:
+  - Verify
+  properties:
+  - type: OpenAPI
+    url: openapi/mode-verify-api-openapi.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 16
+  pass: local-v1
+common:
+- type: Website
+  url: https://mode.com
+- type: DeveloperPortal
+  url: https://mode.com/developer
+- type: Documentation
+  url: https://mode.com/developer/api-reference/introduction/
+- type: APIReference
+  url: https://mode.com/developer/api-reference/introduction/
+- type: GettingStarted
+  url: https://mode.com/developer/api-reference/introduction/
+- type: Support
+  url: https://mode.com/help/
+- type: Blog
+  url: https://mode.com/blog/
+- type: GitHubOrganization
+  url: https://github.com/mode
+- type: StatusPage
+  url: https://status.modeanalytics.com/
+- type: Pricing
+  url: https://mode.com/compare-plans/
+- type: Login
+  url: https://app.mode.com/signin
+- type: TermsOfService
+  url: https://mode.com/tos/
+- type: PrivacyPolicy
+  url: https://mode.com/legal/privacy/
+- type: Authentication
+  url: authentication/mode-authentication.yml
+- type: ErrorCatalog
+  url: errors/mode-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/mode-lifecycle.yml
+- type: Conventions
+  url: conventions/mode-conventions.yml
+- type: Conformance
+  url: conformance/mode-conformance.yml
+- type: DataModel
+  url: data-model/mode-data-model.yml
+- type: MCPServer
+  url: mcp/mode-mcp.yml
+- type: AgenticAccess
+  url: agentic-access/mode-agentic-access.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/mode-llms.txt
+- type: DomainSecurity
+  url: security/mode-domain-security.yml

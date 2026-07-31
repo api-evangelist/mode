@@ -1,0 +1,25 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Mode
+  version: 1.0.0
+extends: openapi/mode-openapi-original.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enrichment:
+      provider: mode
+      pass: local-v1
+      media_type: application/hal+json
+      auth: http-basic
+      pagination: page-number (page, per_page)
+      status_page: https://status.modeanalytics.com/
+      docs: https://mode.com/developer/api-reference/introduction/
+- target: $.info
+  update:
+    x-artifacts:
+      authentication: authentication/mode-authentication.yml
+      errors: errors/mode-problem-types.yml
+      conventions: conventions/mode-conventions.yml
+      lifecycle: lifecycle/mode-lifecycle.yml
+      conformance: conformance/mode-conformance.yml
+      data_model: data-model/mode-data-model.yml

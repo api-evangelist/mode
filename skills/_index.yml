@@ -1,0 +1,19 @@
+generated: '2026-07-20'
+method: generated
+source: openapi/mode-openapi-original.yml
+note: >-
+  Agent Skills generated from the Mode Swagger spec; every operationId is verified present
+  in openapi/mode-openapi-original.yml. No provider-published skills/AGENTS.md were found.
+skills:
+- file: mode-run-report-and-download-results.md
+  name: Run a Mode report and download its results
+  api: openapi/mode-openapi-original.yml
+  operations: [getCurrentUser, getReport, listReportRuns, getReportRun, listQueryRunsForReportRun, getReportRunContent]
+- file: mode-manage-data-sources-and-datasets.md
+  name: Explore Mode data sources and run datasets
+  api: openapi/mode-openapi-original.yml
+  operations: [listDataSources, getDataSource, getDataset, runDataset, listDatasetRuns, getDatasetRun]
+- file: mode-schedule-and-subscribe-report.md
+  name: Schedule a Mode report and manage subscriptions
+  api: openapi/mode-openapi-original.yml
+  operations: [getReport, listReportSchedules, createReportSchedule, getReportSchedule, createSubscriptionForReport, listSubscriptionsForReport]

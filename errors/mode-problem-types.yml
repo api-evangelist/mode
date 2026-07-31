@@ -1,0 +1,46 @@
+generated: '2026-07-20'
+method: searched
+source: openapi/mode-openapi-original.yml
+docs: https://mode.com/developer/api-reference/error-codes/
+format: custom-json
+envelope:
+  content_type: application/hal+json
+  fields:
+  - id       # machine-readable enum identifier (e.g. "not_found")
+  - message  # human-readable detail
+  note: >-
+    Mode does not use RFC 9457 problem+json. Every error response is a JSON object with a
+    required string `id` (an enum matching the error class) and a required string
+    `message`. Standard HTTP status codes are used: 2xx success, 4xx client error.
+problems:
+- status: 400
+  id: bad_request
+  title: Bad Request
+  detail: >-
+    The request was malformed — improper query parameters, or a request body that is
+    unusually structured or contains unsupported inputs.
+- status: 401
+  id: unauthorized
+  title: Unauthorized
+  detail: >-
+    The request lacks valid authorization credentials for a protected resource or
+    endpoint (missing or invalid API token/secret).
+- status: 403
+  id: forbidden
+  title: Forbidden
+  detail: >-
+    The authorization supplied is not privileged enough to access the requested resource
+    or endpoint.
+- status: 404
+  id: not_found
+  title: Not Found
+  detail: >-
+    A required resource could not be located — either the targeted resource or a
+    dependency needed to fulfil the request.
+observed_statuses:
+- '200'
+- '202'
+- '400'
+- '401'
+- '403'
+- '404'

@@ -1,0 +1,294 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: openapi/mode-openapi-original.yml
+note: >-
+  No official hosted/remote Mode MCP server was found. This is a DERIVED candidate tool
+  list, one tool per OpenAPI operation, that a generated MCP server (e.g. via an OpenAPI
+  MCP bridge) could expose. Not an authoritative Mode product.
+server:
+  name: mode
+  transport: http
+tools:
+- name: getCurrentUser
+  description: '(Not Supported) Get authorizing user'
+  source_operation: openapi/mode-openapi-original.yml#getCurrentUser
+- name: listChartsInQuery
+  description: 'List Charts for a Query'
+  source_operation: openapi/mode-openapi-original.yml#listChartsInQuery
+- name: getChart
+  description: 'Get a chart'
+  source_operation: openapi/mode-openapi-original.yml#getChart
+- name: getDatasetFields
+  description: 'Get fields for a Dataset'
+  source_operation: openapi/mode-openapi-original.yml#getDatasetFields
+- name: getDatasetFieldDescriptions
+  description: 'Get field descriptions for a Dataset'
+  source_operation: openapi/mode-openapi-original.yml#getDatasetFieldDescriptions
+- name: createDatasetFieldDescriptions
+  description: 'Create a field description for a Dataset'
+  source_operation: openapi/mode-openapi-original.yml#createDatasetFieldDescriptions
+- name: updateDatasetFieldDescription
+  description: 'Update a field description for a Dataset'
+  source_operation: openapi/mode-openapi-original.yml#updateDatasetFieldDescription
+- name: deleteDatasetFieldDescription
+  description: 'Delete a field description for a Dataset'
+  source_operation: openapi/mode-openapi-original.yml#deleteDatasetFieldDescription
+- name: listDatasetsInSpace
+  description: 'List Datasets for a space'
+  source_operation: openapi/mode-openapi-original.yml#listDatasetsInSpace
+- name: listDatasetsUsingDataSource
+  description: 'List Datasets using a data source'
+  source_operation: openapi/mode-openapi-original.yml#listDatasetsUsingDataSource
+- name: updateDataset
+  description: 'Update a Dataset'
+  source_operation: openapi/mode-openapi-original.yml#updateDataset
+- name: getDataset
+  description: 'Get a Dataset'
+  source_operation: openapi/mode-openapi-original.yml#getDataset
+- name: deleteDataset
+  description: 'Delete a Dataset'
+  source_operation: openapi/mode-openapi-original.yml#deleteDataset
+- name: getDatasetReports
+  description: 'List Reports using a Dataset'
+  source_operation: openapi/mode-openapi-original.yml#getDatasetReports
+- name: runDataset
+  description: 'Create a Dataset run'
+  source_operation: openapi/mode-openapi-original.yml#runDataset
+- name: listDatasetRuns
+  description: 'List Dataset runs'
+  source_operation: openapi/mode-openapi-original.yml#listDatasetRuns
+- name: createDataSourceSchemaUpdate
+  description: 'Update data source schema'
+  source_operation: openapi/mode-openapi-original.yml#createDataSourceSchemaUpdate
+- name: listDataSources
+  description: 'List data sources'
+  source_operation: openapi/mode-openapi-original.yml#listDataSources
+- name: getDataSource
+  description: 'Get a data source'
+  source_operation: openapi/mode-openapi-original.yml#getDataSource
+- name: updateDataSource
+  description: 'Update a data source'
+  source_operation: openapi/mode-openapi-original.yml#updateDataSource
+- name: purgeForDataSource
+  description: 'Purge report results'
+  source_operation: openapi/mode-openapi-original.yml#purgeForDataSource
+- name: getAuditLogs
+  description: 'Retrieve audit logs'
+  source_operation: openapi/mode-openapi-original.yml#getAuditLogs
+- name: listDefinitions
+  description: 'List definitions'
+  source_operation: openapi/mode-openapi-original.yml#listDefinitions
+- name: createDefinition
+  description: 'Create a definition'
+  source_operation: openapi/mode-openapi-original.yml#createDefinition
+- name: getDefinition
+  description: 'Get a definition'
+  source_operation: openapi/mode-openapi-original.yml#getDefinition
+- name: updateDefinition
+  description: 'Update a definition'
+  source_operation: openapi/mode-openapi-original.yml#updateDefinition
+- name: deleteDefinition
+  description: 'Delete a definition'
+  source_operation: openapi/mode-openapi-original.yml#deleteDefinition
+- name: createOrganizationInvite
+  description: 'Create an invitation'
+  source_operation: openapi/mode-openapi-original.yml#createOrganizationInvite
+- name: listMemberships
+  description: 'List memberships'
+  source_operation: openapi/mode-openapi-original.yml#listMemberships
+- name: getMembership
+  description: 'Get a membership'
+  source_operation: openapi/mode-openapi-original.yml#getMembership
+- name: deleteMembership
+  description: 'Delete a membership'
+  source_operation: openapi/mode-openapi-original.yml#deleteMembership
+- name: listQueriesInReport
+  description: 'List queries'
+  source_operation: openapi/mode-openapi-original.yml#listQueriesInReport
+- name: createQueryInReport
+  description: 'Create a query'
+  source_operation: openapi/mode-openapi-original.yml#createQueryInReport
+- name: getQueryInReport
+  description: 'Get a query'
+  source_operation: openapi/mode-openapi-original.yml#getQueryInReport
+- name: updateQueryInReport
+  description: 'Update a query'
+  source_operation: openapi/mode-openapi-original.yml#updateQueryInReport
+- name: deleteQueryInReport
+  description: 'Delete a query'
+  source_operation: openapi/mode-openapi-original.yml#deleteQueryInReport
+- name: listQueryRunsForReportRun
+  description: 'List query runs'
+  source_operation: openapi/mode-openapi-original.yml#listQueryRunsForReportRun
+- name: getQueryRunForReportRun
+  description: 'Get a query run'
+  source_operation: openapi/mode-openapi-original.yml#getQueryRunForReportRun
+- name: getQueryRunContent
+  description: 'Get query results'
+  source_operation: openapi/mode-openapi-original.yml#getQueryRunContent
+- name: listReportFilters
+  description: 'List report filters'
+  source_operation: openapi/mode-openapi-original.yml#listReportFilters
+- name: createReportFilter
+  description: 'Create a report filter'
+  source_operation: openapi/mode-openapi-original.yml#createReportFilter
+- name: getReportFilter
+  description: 'Get a report filter'
+  source_operation: openapi/mode-openapi-original.yml#getReportFilter
+- name: updateReportFilter
+  description: 'Update a report filter'
+  source_operation: openapi/mode-openapi-original.yml#updateReportFilter
+- name: deleteReportFilter
+  description: 'Delete a report filter'
+  source_operation: openapi/mode-openapi-original.yml#deleteReportFilter
+- name: getReportRunExport
+  description: 'Get PDF of a report run'
+  source_operation: openapi/mode-openapi-original.yml#getReportRunExport
+- name: getReportRunDuplicate
+  description: 'Get report run duplication status'
+  source_operation: openapi/mode-openapi-original.yml#getReportRunDuplicate
+- name: duplicateReportRun
+  description: 'Duplicate a report run'
+  source_operation: openapi/mode-openapi-original.yml#duplicateReportRun
+- name: listReportsInSpace
+  description: 'List reports for a space'
+  source_operation: openapi/mode-openapi-original.yml#listReportsInSpace
+- name: listReportsUsingDataSource
+  description: 'List reports using a data source'
+  source_operation: openapi/mode-openapi-original.yml#listReportsUsingDataSource
+- name: updateReport
+  description: 'Update a report'
+  source_operation: openapi/mode-openapi-original.yml#updateReport
+- name: getReport
+  description: 'Get a report'
+  source_operation: openapi/mode-openapi-original.yml#getReport
+- name: deleteReport
+  description: 'Delete a report'
+  source_operation: openapi/mode-openapi-original.yml#deleteReport
+- name: archiveReport
+  description: 'Archive a report'
+  source_operation: openapi/mode-openapi-original.yml#archiveReport
+- name: unarchiveReport
+  description: 'Unarchive a report'
+  source_operation: openapi/mode-openapi-original.yml#unarchiveReport
+- name: purgeAllReports
+  description: 'Purge all report results'
+  source_operation: openapi/mode-openapi-original.yml#purgeAllReports
+- name: listReportSchedules
+  description: 'List schedules for a report'
+  source_operation: openapi/mode-openapi-original.yml#listReportSchedules
+- name: createReportSchedule
+  description: 'Create a report schedule'
+  source_operation: openapi/mode-openapi-original.yml#createReportSchedule
+- name: listDatasetSchedules
+  description: 'List schedules for a dataset'
+  source_operation: openapi/mode-openapi-original.yml#listDatasetSchedules
+- name: getReportSchedule
+  description: 'Get a report schedule'
+  source_operation: openapi/mode-openapi-original.yml#getReportSchedule
+- name: updateReportSchedule
+  description: 'Update a report schedule'
+  source_operation: openapi/mode-openapi-original.yml#updateReportSchedule
+- name: deleteReportSchedule
+  description: 'Delete a report schedule'
+  source_operation: openapi/mode-openapi-original.yml#deleteReportSchedule
+- name: bulkDeleteReportSchedule
+  description: 'Delete of multiple report schedule'
+  source_operation: openapi/mode-openapi-original.yml#bulkDeleteReportSchedule
+- name: listSubscriptionsForReport
+  description: 'List subscriptions'
+  source_operation: openapi/mode-openapi-original.yml#listSubscriptionsForReport
+- name: createSubscriptionForReport
+  description: 'Create subscription'
+  source_operation: openapi/mode-openapi-original.yml#createSubscriptionForReport
+- name: getSubscriptionForReport
+  description: 'Get subscription'
+  source_operation: openapi/mode-openapi-original.yml#getSubscriptionForReport
+- name: updateSubscriptionForReport
+  description: 'Update subscription'
+  source_operation: openapi/mode-openapi-original.yml#updateSubscriptionForReport
+- name: deleteSubscriptionForReport
+  description: 'Delete subscription'
+  source_operation: openapi/mode-openapi-original.yml#deleteSubscriptionForReport
+- name: listSubscriptionsForReportSchedule
+  description: 'List schedule subscriptions'
+  source_operation: openapi/mode-openapi-original.yml#listSubscriptionsForReportSchedule
+- name: verifyCurrentUser
+  description: 'Verify User'
+  source_operation: openapi/mode-openapi-original.yml#verifyCurrentUser
+- name: listReportRuns
+  description: 'List report runs'
+  source_operation: openapi/mode-openapi-original.yml#listReportRuns
+- name: refreshDataset
+  description: 'Refresh a Dataset in a report'
+  source_operation: openapi/mode-openapi-original.yml#refreshDataset
+- name: getReportRun
+  description: 'Get a report run'
+  source_operation: openapi/mode-openapi-original.yml#getReportRun
+- name: getDatasetRun
+  description: 'Get a Dataset run'
+  source_operation: openapi/mode-openapi-original.yml#getDatasetRun
+- name: cloneReportRun
+  description: 'Clone a report run'
+  source_operation: openapi/mode-openapi-original.yml#cloneReportRun
+- name: listFormFields
+  description: 'List form fields'
+  source_operation: openapi/mode-openapi-original.yml#listFormFields
+- name: getReportRunContent
+  description: 'Get report results'
+  source_operation: openapi/mode-openapi-original.yml#getReportRunContent
+- name: createSpaceMemberships
+  description: 'Create a space membership'
+  source_operation: openapi/mode-openapi-original.yml#createSpaceMemberships
+- name: listSpaceMemberships
+  description: 'List space memberships'
+  source_operation: openapi/mode-openapi-original.yml#listSpaceMemberships
+- name: getSpaceMembership
+  description: 'Get a space membership'
+  source_operation: openapi/mode-openapi-original.yml#getSpaceMembership
+- name: deleteSpaceMembership
+  description: 'Delete a space membership'
+  source_operation: openapi/mode-openapi-original.yml#deleteSpaceMembership
+- name: listCollections
+  description: 'List Collections'
+  source_operation: openapi/mode-openapi-original.yml#listCollections
+- name: createCollection
+  description: 'Create a Collection'
+  source_operation: openapi/mode-openapi-original.yml#createCollection
+- name: getCollection
+  description: 'Get a Collection'
+  source_operation: openapi/mode-openapi-original.yml#getCollection
+- name: deleteCollection
+  description: 'Delete a Collection'
+  source_operation: openapi/mode-openapi-original.yml#deleteCollection
+- name: updateCollection
+  description: 'Update a Collection'
+  source_operation: openapi/mode-openapi-original.yml#updateCollection
+- name: listGroupMemberships
+  description: 'List group memberships'
+  source_operation: openapi/mode-openapi-original.yml#listGroupMemberships
+- name: createGroupMembership
+  description: 'Create a group membership'
+  source_operation: openapi/mode-openapi-original.yml#createGroupMembership
+- name: getGroupMembership
+  description: 'Get a group membership'
+  source_operation: openapi/mode-openapi-original.yml#getGroupMembership
+- name: deleteGroupMembership
+  description: 'Delete a group membership'
+  source_operation: openapi/mode-openapi-original.yml#deleteGroupMembership
+- name: listGroups
+  description: 'List groups'
+  source_operation: openapi/mode-openapi-original.yml#listGroups
+- name: createGroup
+  description: 'Create a group'
+  source_operation: openapi/mode-openapi-original.yml#createGroup
+- name: getGroup
+  description: 'Get a group'
+  source_operation: openapi/mode-openapi-original.yml#getGroup
+- name: deleteGroup
+  description: 'Delete a group'
+  source_operation: openapi/mode-openapi-original.yml#deleteGroup
+- name: updateGroup
+  description: 'Update a group'
+  source_operation: openapi/mode-openapi-original.yml#updateGroup

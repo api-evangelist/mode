@@ -1,0 +1,47 @@
+generated: '2026-07-20'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: mode.com
+  https: true
+  tls_version: TLSv1.2
+  cert_expires: Jan  9 20:00:18 2027 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: app.mode.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Mar 12 19:00:20 2027 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: modeanalytics.com
+  https: true
+  tls_version: TLSv1.2
+  cert_expires: Jan  9 20:00:18 2027 GMT
+  hsts: true
+  hsts_max_age: 31536000
+domains:
+- domain: mode.com
+  dnssec: false
+  caa:
+  - 0 issue "letsencrypt.org"
+  - 0 issue "sectigo.com"
+  - 0 issuewild "amazon.com"
+  - 0 issuewild "cloudflare.com"
+  - 0 issuewild "digicert.com"
+  - 0 issuewild "globalsign.com"
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
+- domain: modeanalytics.com
+  dnssec: false
+  caa:
+  - 0 issue "globalsign.com"
+  - 0 issue "godaddy.com"
+  - 0 issue "letsencrypt.org"
+  - 0 issue "pki.goog"
+  - 0 issue "sectigo.com"
+  - 0 issuewild "amazon.com"
+  spf: true
+  dmarc: true
+  dmarc_policy: reject

@@ -1,0 +1,97 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/mode-openapi-original.yml
+note: >-
+  Entity graph derived from the Mode Swagger path hierarchy and HAL+JSON _embedded/_links
+  structures (147 definitions). Resources are addressed under a workspace/account and nest
+  through spaces, reports, queries, charts, datasets, and data sources.
+entities:
+- name: Workspace
+  aka: [account, organization]
+  description: Top-level tenant; all resources are scoped to a workspace.
+  relationships:
+  - {kind: has_many, target: Space, via: spaces}
+  - {kind: has_many, target: DataSource, via: data_sources}
+  - {kind: has_many, target: Membership, via: memberships}
+  - {kind: has_many, target: Group, via: groups}
+  - {kind: has_many, target: Collection, via: collections}
+  - {kind: has_many, target: Definition, via: definitions}
+  - {kind: has_many, target: AuditLog, via: audit_logs}
+  - {kind: has_many, target: Invite, via: invites}
+- name: User
+  description: A Mode user; current user retrievable at /account.
+  relationships:
+  - {kind: has_many, target: Membership, via: memberships}
+- name: Space
+  aka: [collection]
+  description: A container (space/collection) that groups reports and datasets.
+  relationships:
+  - {kind: belongs_to, target: Workspace, via: account}
+  - {kind: has_many, target: Report, via: reports}
+  - {kind: has_many, target: Dataset, via: datasets}
+- name: DataSource
+  description: A connected database/warehouse the workspace queries against.
+  relationships:
+  - {kind: belongs_to, target: Workspace, via: workspace}
+  - {kind: has_many, target: Dataset, via: datasets}
+  - {kind: has_many, target: Report, via: reports}
+- name: Report
+  description: An analytical report combining queries, charts, and notebooks.
+  relationships:
+  - {kind: belongs_to, target: Space, via: space}
+  - {kind: has_many, target: Query, via: queries}
+  - {kind: has_many, target: ReportRun, via: runs}
+  - {kind: has_many, target: ReportFilter, via: filters}
+  - {kind: has_many, target: ReportSchedule, via: schedules}
+  - {kind: has_many, target: Subscription, via: subscriptions}
+- name: Query
+  description: A SQL query within a report.
+  relationships:
+  - {kind: belongs_to, target: Report, via: report}
+  - {kind: has_many, target: Chart, via: charts}
+- name: Chart
+  description: A visualization built on a query.
+  relationships:
+  - {kind: belongs_to, target: Query, via: query}
+- name: ReportRun
+  description: An execution instance of a report.
+  relationships:
+  - {kind: belongs_to, target: Report, via: report}
+  - {kind: has_many, target: QueryRun, via: query_runs}
+- name: QueryRun
+  description: An execution instance of a query within a report run; yields result content.
+  relationships:
+  - {kind: belongs_to, target: ReportRun, via: run}
+- name: Dataset
+  description: A reusable dataset that reports can build on.
+  relationships:
+  - {kind: belongs_to, target: Space, via: space}
+  - {kind: has_many, target: DatasetField, via: fields}
+  - {kind: has_many, target: DatasetRun, via: runs}
+  - {kind: has_many, target: Report, via: reports}
+- name: Definition
+  description: A reusable SQL definition/snippet at the workspace level.
+  relationships:
+  - {kind: belongs_to, target: Workspace, via: workspace}
+- name: ReportSchedule
+  description: A schedule that runs a report and drives subscriptions.
+  relationships:
+  - {kind: belongs_to, target: Report, via: report}
+  - {kind: has_many, target: Subscription, via: subscriptions}
+- name: Subscription
+  description: A delivery subscription for a report or schedule.
+  relationships:
+  - {kind: belongs_to, target: Report, via: report}
+- name: Membership
+  description: A user's membership in a workspace or space.
+  relationships:
+  - {kind: belongs_to, target: Workspace, via: workspace}
+  - {kind: belongs_to, target: User, via: user}
+- name: Group
+  description: A user group for permissions.
+  relationships:
+  - {kind: belongs_to, target: Workspace, via: workspace}
+- name: AuditLog
+  description: Workspace audit log entries.
+  relationships:
+  - {kind: belongs_to, target: Workspace, via: workspace}

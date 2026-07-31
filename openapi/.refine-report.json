@@ -1,0 +1,42 @@
+{
+  "provider": "mode",
+  "sources": [
+    "mode-account-api-openapi.yml",
+    "mode-audit-logs-api-openapi.yml",
+    "mode-data-sources-api-openapi.yml",
+    "mode-datasets-api-openapi.yml",
+    "mode-definitions-api-openapi.yml",
+    "mode-groups-api-openapi.yml",
+    "mode-invites-api-openapi.yml",
+    "mode-memberships-api-openapi.yml",
+    "mode-reports-api-openapi.yml",
+    "mode-spaces-api-openapi.yml",
+    "mode-verify-api-openapi.yml"
+  ],
+  "outputs": [
+    "mode-account-api-openapi.yml",
+    "mode-audit-logs-api-openapi.yml",
+    "mode-data-sources-api-openapi.yml",
+    "mode-datasets-api-openapi.yml",
+    "mode-definitions-api-openapi.yml",
+    "mode-groups-api-openapi.yml",
+    "mode-invites-api-openapi.yml",
+    "mode-memberships-api-openapi.yml",
+    "mode-reports-api-openapi.yml",
+    "mode-spaces-api-openapi.yml",
+    "mode-verify-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [
+    "mode-data-sources-api-openapi.yml: dangling $ref: #/definitions/Datasets",
+    "mode-datasets-api-openapi.yml: dangling $ref: #/definitions/DatasetFieldDescription",
+    "mode-datasets-api-openapi.yml: dangling $ref: #/definitions/DatasetFieldDescriptions",
+    "mode-datasets-api-openapi.yml: dangling $ref: #/definitions/DatasetFields",
+    "mode-datasets-api-openapi.yml: dangling $ref: #/definitions/DatasetSchedules",
+    "mode-reports-api-openapi.yml: dangling $ref: #/definitions/ReportRunDuplicate",
+    "mode-spaces-api-openapi.yml: dangling $ref: #/definitions/Datasets"
+  ],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

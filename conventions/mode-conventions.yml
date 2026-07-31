@@ -1,0 +1,40 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/mode-openapi-original.yml
+docs: https://mode.com/developer/api-reference/introduction/
+authentication:
+  style: http-basic
+  detail: API token (username) + secret (password), base64 in Authorization header.
+  ref: authentication/mode-authentication.yml
+media_types:
+  request: application/json
+  response: application/hal+json
+  note: >-
+    Responses are HAL+JSON (Hypertext Application Language) — resources carry _links and
+    _embedded members for hypermedia navigation.
+pagination:
+  style: page-number
+  params:
+  - page
+  - per_page
+  note: Page-number pagination via page and per_page query parameters on list endpoints.
+idempotency:
+  supported: false
+  note: No Idempotency-Key header or idempotency contract is documented or present in the spec.
+request_tracing:
+  request_id_header: null
+versioning:
+  style: uri-path
+  ref: lifecycle/mode-lifecycle.yml
+error_envelope:
+  shape: '{ id, message }'
+  content_type: application/hal+json
+  ref: errors/mode-problem-types.yml
+rate_limiting:
+  documented: false
+  note: No rate-limit headers or published limits found in the docs or spec.
+http_methods:
+- GET
+- POST
+- PATCH
+- DELETE
