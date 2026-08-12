@@ -166,6 +166,8 @@ x-enrichment:
   artifacts_added: 16
   pass: local-v1
 common:
+- type: Overlay
+  url: overlays/mode-openapi-overlay.yaml
 - type: Website
   url: https://mode.com
 - type: DeveloperPortal
