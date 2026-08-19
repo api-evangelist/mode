@@ -1,0 +1,1284 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mode Account Reports API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Charts for a Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:account/reports/:report/queries/:query/charts",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "path",
+                "description": "`Query` token"
+              }
+            ]
+          },
+          "docs": "Returns all `Chart`s for a `Query`"
+        },
+        {
+          "info": {
+            "name": "Get a chart",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:account/reports/:report/queries/:query/charts/:chart",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "path",
+                "description": "`Query` token"
+              },
+              {
+                "name": "chart",
+                "value": "",
+                "type": "path",
+                "description": "`Chart` token"
+              }
+            ]
+          },
+          "docs": "Returns a representation of a single `Chart`"
+        },
+        {
+          "info": {
+            "name": "List queries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:account/reports/:report/queries",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              }
+            ]
+          },
+          "docs": "Returns all `Queries` in a `Report`"
+        },
+        {
+          "info": {
+            "name": "Create a query",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:account/reports/:report/queries",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              }
+            ]
+          },
+          "docs": "Creates a `Query` in a `Report`"
+        },
+        {
+          "info": {
+            "name": "Get a query",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:account/reports/:report/queries/:query",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "path",
+                "description": "`Query` token"
+              }
+            ]
+          },
+          "docs": "Returns a `Query` in a `Report`"
+        },
+        {
+          "info": {
+            "name": "Update a query",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:account/reports/:report/queries/:query",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "path",
+                "description": "`Query` token"
+              }
+            ]
+          },
+          "docs": "Updates a `Query` in a `Report`"
+        },
+        {
+          "info": {
+            "name": "Delete a query",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:account/reports/:report/queries/:query",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "path",
+                "description": "`Query` token"
+              }
+            ]
+          },
+          "docs": "Deletes a `Query` in a `Report`"
+        },
+        {
+          "info": {
+            "name": "List query runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:account/reports/:report/runs/:run/query_runs",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              },
+              {
+                "name": "run",
+                "value": "",
+                "type": "path",
+                "description": "`ReportRun` token"
+              }
+            ]
+          },
+          "docs": "Returns all `QueryRun`s for a single `ReportRun`"
+        },
+        {
+          "info": {
+            "name": "Get a query run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:account/reports/:report/runs/:run/query_runs/:query_run",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              },
+              {
+                "name": "run",
+                "value": "",
+                "type": "path",
+                "description": "`ReportRun` token"
+              },
+              {
+                "name": "query_run",
+                "value": "",
+                "type": "path",
+                "description": "`Query Run` token"
+              }
+            ]
+          },
+          "docs": "Returns a `QueryRun` for a single `ReportRun`"
+        },
+        {
+          "info": {
+            "name": "Get query results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:account/reports/:report/runs/:run/query_runs/:query_run/results/content(.csv, .json)",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              },
+              {
+                "name": "run",
+                "value": "",
+                "type": "path",
+                "description": "`ReportRun` token"
+              },
+              {
+                "name": "query_run",
+                "value": "",
+                "type": "path",
+                "description": "`Query Run` token"
+              }
+            ]
+          },
+          "docs": "Gets the content of a query run in the requested format (csv or json)"
+        },
+        {
+          "info": {
+            "name": "List report filters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:account/reports/:report/filters",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              }
+            ]
+          },
+          "docs": "Returns all `ReportFilter`s for a single `Report`"
+        },
+        {
+          "info": {
+            "name": "Create a report filter",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:account/reports/:report/filters",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              }
+            ]
+          },
+          "docs": "Creates a `ReportFilter`"
+        },
+        {
+          "info": {
+            "name": "Get a report filter",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:account/reports/:report/filters/:filter",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "path",
+                "description": "`ReportFilter` token"
+              }
+            ]
+          },
+          "docs": "Gets a `ReportFilter`"
+        },
+        {
+          "info": {
+            "name": "Update a report filter",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:account/reports/:report/filters/:filter",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "path",
+                "description": "`ReportFilter` token"
+              }
+            ]
+          },
+          "docs": "Updates a `ReportFilter`"
+        },
+        {
+          "info": {
+            "name": "Delete a report filter",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:account/reports/:report/filters/:filter",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "path",
+                "description": "`ReportFilter` token"
+              }
+            ]
+          },
+          "docs": "Deletes a `ReportFilter`"
+        },
+        {
+          "info": {
+            "name": "Get PDF of a report run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:account/reports/:report/exports/runs/:run/pdf/download",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              },
+              {
+                "name": "run",
+                "value": "",
+                "type": "path",
+                "description": "`ReportRun` token"
+              }
+            ]
+          },
+          "docs": "Gets exported pdf of the report run"
+        },
+        {
+          "info": {
+            "name": "Get report run duplication status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:account/reports/:report/runs/:run/duplicates/:duplicate",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              },
+              {
+                "name": "run",
+                "value": "",
+                "type": "path",
+                "description": "`ReportRun` token"
+              },
+              {
+                "name": "duplicate",
+                "value": "",
+                "type": "path",
+                "description": "`ReportRunDuplicate` token"
+              }
+            ]
+          },
+          "docs": "Returns a representation of a single `ReportRunDuplicate`"
+        },
+        {
+          "info": {
+            "name": "Duplicate a report run",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:account/reports/:report/runs/:run/duplicates",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              },
+              {
+                "name": "run",
+                "value": "",
+                "type": "path",
+                "description": "`ReportRun` token"
+              },
+              {
+                "name": "collection_id",
+                "value": "",
+                "type": "query",
+                "description": "The token of a collection. Example: collection_id=875a93v22b93"
+              }
+            ]
+          },
+          "docs": "Returns a representation of the enqueued `ReportRunDuplicate`"
+        },
+        {
+          "info": {
+            "name": "Get a report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:account/reports/:report",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              }
+            ]
+          },
+          "docs": "Returns a representation of a single `Report`"
+        },
+        {
+          "info": {
+            "name": "Update a report",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:account/reports/:report",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              }
+            ]
+          },
+          "docs": "Updates a single `report` with the provided attributes"
+        },
+        {
+          "info": {
+            "name": "Delete a report",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:account/reports/:report",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              }
+            ]
+          },
+          "docs": "Deletes a single `Report`"
+        },
+        {
+          "info": {
+            "name": "Archive a report",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:account/reports/:report/archive",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              }
+            ]
+          },
+          "docs": "Archives a single `Report`"
+        },
+        {
+          "info": {
+            "name": "Unarchive a report",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:account/reports/:report/unarchive",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              }
+            ]
+          },
+          "docs": "Unarchives a single `Report`"
+        },
+        {
+          "info": {
+            "name": "Purge all report results",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:account/reports/purge",
+            "params": [
+              {
+                "name": "time",
+                "value": "",
+                "type": "query",
+                "description": "All records older than the date (\"YYYY-MM-DD\") which should be purged."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "Purge records up to and including the end date (\"YYYY-MM-DD\"). Purging a large number of reports can result in error, so use the `end_time` to break up the purging into smaller requests."
+              },
+              {
+                "name": "in_progress",
+                "value": "",
+                "type": "query",
+                "description": "Includes reports that are already in the process of purging. Defaults to `true`."
+              },
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              }
+            ]
+          },
+          "docs": "Removes all report results for an organization"
+        },
+        {
+          "info": {
+            "name": "List schedules for a report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:workspace/reports/:report/schedules",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "`Workspace` username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              }
+            ]
+          },
+          "docs": "Returns all `Schedule`s for a `Report`"
+        },
+        {
+          "info": {
+            "name": "Create a report schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:workspace/reports/:report/schedules",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "`Workspace` username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              }
+            ]
+          },
+          "docs": "Creates a `Report` `Schedule`"
+        },
+        {
+          "info": {
+            "name": "Get a report schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:workspace/reports/:report/schedules/:schedule",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "`Workspace` username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              },
+              {
+                "name": "schedule",
+                "value": "",
+                "type": "path",
+                "description": "`Schedule` token"
+              }
+            ]
+          },
+          "docs": "Returns a `Report`'s `Schedule`"
+        },
+        {
+          "info": {
+            "name": "Update a report schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:workspace/reports/:report/schedules/:schedule",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "`Workspace` username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              },
+              {
+                "name": "schedule",
+                "value": "",
+                "type": "path",
+                "description": "`Schedule` token"
+              }
+            ]
+          },
+          "docs": "Updates a `Report`'s `Schedule`"
+        },
+        {
+          "info": {
+            "name": "Delete a report schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:workspace/reports/:report/schedules/:schedule",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "`Workspace` username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              },
+              {
+                "name": "schedule",
+                "value": "",
+                "type": "path",
+                "description": "`Schedule` token"
+              }
+            ]
+          },
+          "docs": "Deletes a `Report`'s `Schedule`"
+        },
+        {
+          "info": {
+            "name": "Delete of multiple report schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:workspace/reports/schedules/v1/bulk_delete",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "`Workspace` username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              },
+              {
+                "name": "schedule",
+                "value": "",
+                "type": "path",
+                "description": "`Schedule` token"
+              }
+            ]
+          },
+          "docs": "Deletes multiple `Report`'s `Schedule`"
+        },
+        {
+          "info": {
+            "name": "List subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:account/reports/:report/subscriptions",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              }
+            ]
+          },
+          "docs": "Returns all `Subscriptions` for a `Report`"
+        },
+        {
+          "info": {
+            "name": "Create subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:account/reports/:report/subscriptions",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              }
+            ]
+          },
+          "docs": "Creates and returns a `Subscription` for a `Report`"
+        },
+        {
+          "info": {
+            "name": "Get subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:account/reports/:report/subscriptions/:subscription",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              },
+              {
+                "name": "subscription",
+                "value": "",
+                "type": "path",
+                "description": "`ReportSubscription` token"
+              }
+            ]
+          },
+          "docs": "Returns a `Subscription` for a `Report`"
+        },
+        {
+          "info": {
+            "name": "Update subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:account/reports/:report/subscriptions/:subscription",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              },
+              {
+                "name": "subscription",
+                "value": "",
+                "type": "path",
+                "description": "`ReportSubscription` token"
+              }
+            ]
+          },
+          "docs": "Updates and returns a `Subscription` for a `Report`"
+        },
+        {
+          "info": {
+            "name": "Delete subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:account/reports/:report/subscriptions/:subscription",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              },
+              {
+                "name": "subscription",
+                "value": "",
+                "type": "path",
+                "description": "`ReportSubscription` token"
+              }
+            ]
+          },
+          "docs": "Deletes a `Subscription` for a `Report`"
+        },
+        {
+          "info": {
+            "name": "List schedule subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:account/reports/:report/schedules/:schedule/subscriptions",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              },
+              {
+                "name": "schedule",
+                "value": "",
+                "type": "path",
+                "description": "`Schedule` token"
+              }
+            ]
+          },
+          "docs": "Returns all `subscriptions` for a `Report` `Schedule`"
+        },
+        {
+          "info": {
+            "name": "List report runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:account/reports/:report/runs",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Returns a filtered list of `Run`s for a `Report` filtered by whether their `created_at` or `updated_at` timestamps are `gt` (greater than) or `lt` (less than) the datetime passed in ISO8601 format. Example: `?filter=updated_at.lt.2019-10-23T06:23:01Z` returns all `Runs` in a space created before that date."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "With the `order` param, returns all `ReportRun`s for a `Report` ordered by their `created_at` or `updated_at` timestamps"
+              },
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query",
+                "description": "With the `order_by` param, returns all `ReportRun`s for a `Report` ordered in `asc` or `desc` order"
+              }
+            ]
+          },
+          "docs": "Returns a list of `ReportRun`s for a `Report`"
+        },
+        {
+          "info": {
+            "name": "Refresh a Dataset in a report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:account/reports/:report/runs",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              }
+            ]
+          },
+          "docs": "Pulls in the latest run available in Mode for the `Dataset` in a specified report and does not re-run the `Dataset`"
+        },
+        {
+          "info": {
+            "name": "Get a report run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:account/reports/:report/runs/:run",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              },
+              {
+                "name": "run",
+                "value": "",
+                "type": "path",
+                "description": "`ReportRun` token"
+              }
+            ]
+          },
+          "docs": "Returns a representation of a single `ReportRun`"
+        },
+        {
+          "info": {
+            "name": "Clone a report run",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:account/reports/:report/runs/:run/clone",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              },
+              {
+                "name": "run",
+                "value": "",
+                "type": "path",
+                "description": "`ReportRun` token"
+              }
+            ]
+          },
+          "docs": "Returns a representation of the cloned `ReportRun`"
+        },
+        {
+          "info": {
+            "name": "List form fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:account/reports/:report/runs/:run/options",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              },
+              {
+                "name": "run",
+                "value": "",
+                "type": "path",
+                "description": "`ReportRun` token"
+              }
+            ]
+          },
+          "docs": "Returns a list of Form Fields for a `ReportRun`"
+        },
+        {
+          "info": {
+            "name": "Get report results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:account/reports/:report/runs/:run/results/content(.csv, .json)",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "report",
+                "value": "",
+                "type": "path",
+                "description": "`Report` token"
+              },
+              {
+                "name": "run",
+                "value": "",
+                "type": "path",
+                "description": "`ReportRun` token"
+              }
+            ]
+          },
+          "docs": "Gets the content of a report run in the requested format (csv or json)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

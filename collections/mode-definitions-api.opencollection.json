@@ -1,0 +1,143 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mode Account Definitions API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Definitions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:workspace/definitions",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "`Workspace` username"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter `Definition`'s by token. Example: `?filter=by_tokens`"
+              },
+              {
+                "name": "tokens",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of `Definition` tokens"
+              }
+            ]
+          },
+          "docs": "Returns a list of `Definition`s"
+        },
+        {
+          "info": {
+            "name": "Create a definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:workspace/definitions",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "`Workspace` username"
+              }
+            ]
+          },
+          "docs": "Creates a `Definition`"
+        },
+        {
+          "info": {
+            "name": "Get a definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:workspace/definitions/:definition",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "`Workspace` username"
+              },
+              {
+                "name": "definition",
+                "value": "",
+                "type": "path",
+                "description": "`Definition` token"
+              }
+            ]
+          },
+          "docs": "Returns a representation of `Definition`"
+        },
+        {
+          "info": {
+            "name": "Update a definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:workspace/definitions/:definition",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "`Workspace` username"
+              },
+              {
+                "name": "definition",
+                "value": "",
+                "type": "path",
+                "description": "`Definition` token"
+              }
+            ]
+          },
+          "docs": "Updates a `Definition`"
+        },
+        {
+          "info": {
+            "name": "Delete a definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:workspace/definitions/:definition",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "`Workspace` username"
+              },
+              {
+                "name": "definition",
+                "value": "",
+                "type": "path",
+                "description": "`Definition` token"
+              }
+            ]
+          },
+          "docs": "Deletes a `Definition`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

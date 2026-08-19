@@ -1,0 +1,97 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mode Account Audit Logs API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Audit Logs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve audit logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:workspace/audit_logs",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "`Workspace` username"
+              },
+              {
+                "name": "start_timestamp",
+                "value": "",
+                "type": "query",
+                "description": "The start of the time range for audit logs (ISO 8601 format)."
+              },
+              {
+                "name": "end_timestamp",
+                "value": "",
+                "type": "query",
+                "description": "The end of the time range for audit logs (ISO 8601 format)."
+              },
+              {
+                "name": "action",
+                "value": "",
+                "type": "query",
+                "description": "The type of action performed."
+              },
+              {
+                "name": "entity_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the entity to filter logs."
+              },
+              {
+                "name": "entity_type",
+                "value": "",
+                "type": "query",
+                "description": "The type/category of the entity to filter logs."
+              },
+              {
+                "name": "entity_name",
+                "value": "",
+                "type": "query",
+                "description": "The name of the entity affected by the action."
+              },
+              {
+                "name": "username",
+                "value": "",
+                "type": "query",
+                "description": "The username of the user performing the action."
+              },
+              {
+                "name": "ip",
+                "value": "",
+                "type": "query",
+                "description": "The IP address of the client device that initiated the action."
+              },
+              {
+                "name": "event_source",
+                "value": "",
+                "type": "query",
+                "description": "The source of the event to filter logs."
+              },
+              {
+                "name": "next_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for fetching logs of the next page."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of audit log events for the given workspace."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,347 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mode Account Spaces API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Spaces",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Datasets for a space",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:account/spaces/:space/datasets",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "space",
+                "value": "",
+                "type": "path",
+                "description": "`Space` token"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Returns a filtered list of `Dataset`s in a `Space` filtered by whether their `created_at` or `updated_at` timestamps are `gt` (greater than) or `lt` (less than) the datetime passed in ISO8601 format. Example: `?filter=created_at.gt.2019-10-23T06:23:01Z` returns all `Datasets` in a space created after that date."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "With the `order` param, returns all `Dataset`s in a `Space` ordered in `asc` or `desc` order. Example: `?order=asc&order_by=created_at`"
+              },
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query",
+                "description": "With the `order_by` param, returns all `Dataset`s in a `Space` ordered by their `created_at` or `updated_at` timestamps. Example: `?order_by=created_at&order=asc`"
+              }
+            ]
+          },
+          "docs": "Returns all `Dataset`s in a `Space`"
+        },
+        {
+          "info": {
+            "name": "List reports for a space",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:account/spaces/:space/reports",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "space",
+                "value": "",
+                "type": "path",
+                "description": "`Space` token"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Returns a filtered list of `Report`s in a `Space` filtered by whether their `created_at` or `updated_at` timestamps are `gt` (greater than) or `lt` (less than) the datetime passed in ISO8601 format. Example: `?filter=created_at.gt.2019-10-23T06:23:01Z` returns all `Reports` in a space created after that date."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "With the `order` param, returns all `Report`s in a `Space` ordered in `asc` or `desc` order. Example: `?order=asc&order_by=created_at`"
+              },
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query",
+                "description": "With the `order_by` param, returns all `Report`s in a `Space` ordered by their `created_at` or `updated_at` timestamps. Example: `?order_by=created_at&order=asc`"
+              }
+            ]
+          },
+          "docs": "Returns all `Report`s in a `Space`"
+        },
+        {
+          "info": {
+            "name": "List space memberships",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:account/spaces/:space/memberships",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "space",
+                "value": "",
+                "type": "path",
+                "description": "`Space` token"
+              }
+            ]
+          },
+          "docs": "Returns all `Memberships` for a `Space`"
+        },
+        {
+          "info": {
+            "name": "Create a space membership",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:account/spaces/:space/memberships",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "space",
+                "value": "",
+                "type": "path",
+                "description": "`Space` token"
+              }
+            ]
+          },
+          "docs": "Returns all `Memberships` for a `Space`"
+        },
+        {
+          "info": {
+            "name": "Get a space membership",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:account/spaces/:space/memberships/:space_membership",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "space",
+                "value": "",
+                "type": "path",
+                "description": "`Space` token"
+              },
+              {
+                "name": "space_membership",
+                "value": "",
+                "type": "path",
+                "description": "`Space Membership` token"
+              }
+            ]
+          },
+          "docs": "Returns a single `Membership` for a `Space`"
+        },
+        {
+          "info": {
+            "name": "Delete a space membership",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:account/spaces/:space/memberships/:space_membership",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "space",
+                "value": "",
+                "type": "path",
+                "description": "`Space` token"
+              },
+              {
+                "name": "space_membership",
+                "value": "",
+                "type": "path",
+                "description": "`Space Membership` token"
+              }
+            ]
+          },
+          "docs": "Delets a single `Membership` for a `Space`"
+        },
+        {
+          "info": {
+            "name": "List Collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:workspace/spaces",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Returns a filtered list of `Collection`s. Valid options include `all`. The default returns a list of `Collection`'s that do not include other user's personal collections. Example: `?filter=all` returns all `Collections` including personal collections."
+              },
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "`Workspace` username"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "path",
+                "description": "Page of results"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "path",
+                "description": "Results per page"
+              }
+            ]
+          },
+          "docs": "Returns a representation of `Collection`s in a `Workspace` visible to the authenticated `User`"
+        },
+        {
+          "info": {
+            "name": "Create a Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:workspace/spaces",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "`Workspace` username"
+              }
+            ]
+          },
+          "docs": "Creates a `Collection`"
+        },
+        {
+          "info": {
+            "name": "Get a Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:workspace/spaces/:space",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "`Workspace` username"
+              },
+              {
+                "name": "space",
+                "value": "",
+                "type": "path",
+                "description": "`Space` token"
+              }
+            ]
+          },
+          "docs": "Returns a representation of a single `Collection`"
+        },
+        {
+          "info": {
+            "name": "Update a Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:workspace/spaces/:space",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "`Workspace` username"
+              },
+              {
+                "name": "space",
+                "value": "",
+                "type": "path",
+                "description": "`Space` token"
+              }
+            ]
+          },
+          "docs": "Updates a `Collection`"
+        },
+        {
+          "info": {
+            "name": "Delete a Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:workspace/spaces/:space",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "`Workspace` username"
+              },
+              {
+                "name": "space",
+                "value": "",
+                "type": "path",
+                "description": "`Space` token"
+              }
+            ]
+          },
+          "docs": "Deletes a single `Collection`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

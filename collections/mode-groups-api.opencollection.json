@@ -1,0 +1,243 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mode Account Groups API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List group memberships",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:workspace/groups/:group_token/memberships",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "`Workspace` username"
+              },
+              {
+                "name": "group_token",
+                "value": "",
+                "type": "path",
+                "description": "`UserGroup` token"
+              }
+            ]
+          },
+          "docs": "Get all `Memberships` of a `Group`"
+        },
+        {
+          "info": {
+            "name": "Create a group membership",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:workspace/groups/:group_token/memberships",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "`Workspace` username"
+              },
+              {
+                "name": "group_token",
+                "value": "",
+                "type": "path",
+                "description": "`UserGroup` token"
+              }
+            ]
+          },
+          "docs": "Create a `Group` `Membership` for a given `User`"
+        },
+        {
+          "info": {
+            "name": "Get a group membership",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:workspace/groups/:group_token/memberships/:membership_token",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "`Workspace` username"
+              },
+              {
+                "name": "group_token",
+                "value": "",
+                "type": "path",
+                "description": "`UserGroup` token"
+              },
+              {
+                "name": "membership_token",
+                "value": "",
+                "type": "path",
+                "description": "`UserGroupMembership token"
+              }
+            ]
+          },
+          "docs": "Get the `Group` `Membership` of a `User`"
+        },
+        {
+          "info": {
+            "name": "Delete a group membership",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:workspace/groups/:group_token/memberships/:membership_token",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "`Workspace` username"
+              },
+              {
+                "name": "group_token",
+                "value": "",
+                "type": "path",
+                "description": "`UserGroup` token"
+              },
+              {
+                "name": "membership_token",
+                "value": "",
+                "type": "path",
+                "description": "`UserGroupMembership token"
+              }
+            ]
+          },
+          "docs": "Remove a `User` from a `Group` by deleting the `Membership`"
+        },
+        {
+          "info": {
+            "name": "List groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:workspace/groups",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "`Workspace` username"
+              }
+            ]
+          },
+          "docs": "Get all `Group`s for a `Workspace`"
+        },
+        {
+          "info": {
+            "name": "Create a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:workspace/groups",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "`Workspace` username"
+              }
+            ]
+          },
+          "docs": "Create a user `Group` with the provided attributes"
+        },
+        {
+          "info": {
+            "name": "Get a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:workspace/groups/:group_token",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "`Workspace` username"
+              },
+              {
+                "name": "group_token",
+                "value": "",
+                "type": "path",
+                "description": "`UserGroup` token"
+              }
+            ]
+          },
+          "docs": "Gets a user `Group`"
+        },
+        {
+          "info": {
+            "name": "Update a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:workspace/groups/:group_token",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "`Workspace` username"
+              },
+              {
+                "name": "group_token",
+                "value": "",
+                "type": "path",
+                "description": "`UserGroup` token"
+              }
+            ]
+          },
+          "docs": "Update a user `Group` with the provided attributes"
+        },
+        {
+          "info": {
+            "name": "Delete a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:workspace/groups/:group_token",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "`Workspace` username"
+              },
+              {
+                "name": "group_token",
+                "value": "",
+                "type": "path",
+                "description": "`UserGroup` token"
+              }
+            ]
+          },
+          "docs": "Deletes a user `Group`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

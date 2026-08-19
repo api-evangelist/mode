@@ -1,0 +1,1996 @@
+{
+  "item": [
+    {
+      "id": "1c64b423-3b4d-4adb-a6db-b7bfd4480fdd",
+      "name": "Data Sources",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "91d038db-5d04-4f6a-a572-9023aca5ea53",
+          "name": "List Datasets using a data source",
+          "request": {
+            "name": "List Datasets using a data source",
+            "description": {
+              "content": "Returns all `Dataset`s using a `DataSource`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":account",
+                "data_sources",
+                ":data_source",
+                "datasets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Returns a filtered list of `Dataset`s in a `Space` filtered by whether their `created_at` or `updated_at` timestamps are `gt` (greater than) or `lt` (less than) the datetime passed in ISO8601 format. Example: `?filter=created_at.gt.2019-10-23T06:23:01Z` returns all `Datasets` in a space created after that date."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "With the `order` param, returns all `Dataset`s in a `Space` ordered in `asc` or `desc` order. Example: `?order=asc&order_by=created_at`"
+                },
+                {
+                  "disabled": false,
+                  "key": "order_by",
+                  "value": "<string>",
+                  "description": "With the `order_by` param, returns all `Dataset`s in a `Space` ordered by their `created_at` or `updated_at` timestamps. Example: `?order_by=created_at&order=asc`"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account",
+                  "description": "(Required) `Account` (`Workspace` or `User`) username"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "data_source",
+                  "description": "(Required) `DataSource` token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "62409abd-b23f-40ab-a9d4-618889904cad",
+              "name": "`Dataset` collection response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "data_sources",
+                    ":data_source",
+                    "datasets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) `Account` (`Workspace` or `User`) username"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "data_source",
+                      "description": "(Required) `DataSource` token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1cc8bedd-a6ce-4f43-b35c-ad1c7b6fb1bb",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "data_sources",
+                    ":data_source",
+                    "datasets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) `Account` (`Workspace` or `User`) username"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "data_source",
+                      "description": "(Required) `DataSource` token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"id\": \"unauthorized\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5acc771-cc62-4bdf-8dd1-504316f9bcf9",
+              "name": "`Dataset` not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "data_sources",
+                    ":data_source",
+                    "datasets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) `Account` (`Workspace` or `User`) username"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "data_source",
+                      "description": "(Required) `DataSource` token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"id\": \"not_found\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "94316537-9091-4f24-aafc-8d14cd839eb0",
+          "name": "Update data source schema",
+          "request": {
+            "name": "Update data source schema",
+            "description": {
+              "content": "Creates and queues a `schema update` for a `data source`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":account",
+                "data_sources",
+                ":data_source",
+                "schema_updates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account",
+                  "description": "(Required) `Account` (`Workspace` or `User`) username"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "data_source",
+                  "description": "(Required) `DataSource` token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0354dc1c-2f90-49ee-a6d7-fedc99f79046",
+              "name": "`DataSourceSchemaUpdate` response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "data_sources",
+                    ":data_source",
+                    "schema_updates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) `Account` (`Workspace` or `User`) username"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "data_source",
+                      "description": "(Required) `DataSource` token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"templated\": false\n    }\n  },\n  \"id\": \"string\",\n  \"token\": \"string\",\n  \"state\": \"string\",\n  \"content_length\": \"string\",\n  \"number_of_schemas\": \"string\",\n  \"number_of_tables\": \"string\",\n  \"last_succesful_refresh_at\": \"string\",\n  \"webapp_uri\": \"string\",\n  \"_embedded\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e83b7a2-a8be-4bff-9090-4d07672a8088",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "data_sources",
+                    ":data_source",
+                    "schema_updates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) `Account` (`Workspace` or `User`) username"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "data_source",
+                      "description": "(Required) `DataSource` token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"id\": \"bad_request\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aff6f731-61e0-4df4-86b4-049d71e5f5cc",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "data_sources",
+                    ":data_source",
+                    "schema_updates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) `Account` (`Workspace` or `User`) username"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "data_source",
+                      "description": "(Required) `DataSource` token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"id\": \"unauthorized\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "53fb2a6f-1263-4867-bf62-d3be2c7d27d1",
+              "name": "`DataSource` not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "data_sources",
+                    ":data_source",
+                    "schema_updates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) `Account` (`Workspace` or `User`) username"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "data_source",
+                      "description": "(Required) `DataSource` token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"id\": \"not_found\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "36710104-ae47-496d-9290-42b39f3723a9",
+          "name": "List data sources",
+          "request": {
+            "name": "List data sources",
+            "description": {
+              "content": "Returns all `DataSource`s owned by a `Workspace`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":workspace",
+                "data_sources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) `Workspace` username"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a5d7ac63-b1ad-46ad-86f8-e701d933ca53",
+              "name": "`DataSource` collection response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":workspace",
+                    "data_sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) `Workspace` username"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"next_page\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"prev_page\": {\n      \"href\": \"string\",\n      \"templated\": false\n    }\n  },\n  \"pagination\": {\n    \"first_page\": \"string\",\n    \"last_page\": \"string\",\n    \"total_pages\": 1816,\n    \"total_count\": 393\n  },\n  \"data_index_auth_token\": \"string\",\n  \"_embedded\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ba128f29-d035-47fc-abb8-00982360ab16",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":workspace",
+                    "data_sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) `Workspace` username"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"id\": \"unauthorized\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e242b67-e355-46d2-b5a9-6333b926c2f9",
+              "name": "`Workspace` not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":workspace",
+                    "data_sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) `Workspace` username"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"id\": \"not_found\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c00b3182-cf59-44f6-9e90-8bf9ab9a91da",
+          "name": "Get a data source",
+          "request": {
+            "name": "Get a data source",
+            "description": {
+              "content": "Returns a single `DataSource`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":workspace",
+                "data_sources",
+                ":data_source"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) `Workspace` username"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "data_source",
+                  "description": "(Required) `DataSource` token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d9294770-4226-424c-9ef6-6441887338a3",
+              "name": "`DataSource` response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":workspace",
+                    "data_sources",
+                    ":data_source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) `Workspace` username"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "data_source",
+                      "description": "(Required) `DataSource` token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"creator\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"account\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"web\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"web_home\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"permissions\": {\n      \"href\": \"string\",\n      \"templated\": false\n    }\n  },\n  \"id\": 5853,\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"token\": \"string\",\n  \"adapter\": \"jdbc:clickhouse\",\n  \"created_at\": \"string\",\n  \"updated_at\": \"string\",\n  \"has_expensive_schema_updates\": true,\n  \"public\": false,\n  \"asleep\": false,\n  \"queryable\": true,\n  \"soft_deleted\": false,\n  \"display_name\": \"string\",\n  \"database\": \"string\",\n  \"host\": \"string\",\n  \"port\": \"string\",\n  \"ssl\": false,\n  \"username\": \"string\",\n  \"provider\": \"string\",\n  \"vendor\": \"string\",\n  \"ldap\": false,\n  \"warehouse\": \"string\",\n  \"bridged\": false,\n  \"adapter_version\": \"string\",\n  \"custom_attributes\": {\n    \"standard_sql\": true\n  },\n  \"account_id\": 5548,\n  \"account_username\": \"string\",\n  \"organization_token\": \"string\",\n  \"organization_plan_code\": \"string\",\n  \"ssl_trusted_cert\": \"string\",\n  \"default_access_level\": \"string\",\n  \"_embedded\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d936a34c-2fdd-4617-a22f-b9d186f59594",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":workspace",
+                    "data_sources",
+                    ":data_source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) `Workspace` username"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "data_source",
+                      "description": "(Required) `DataSource` token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"id\": \"unauthorized\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ef7b4250-84be-4982-8fda-45d562e05bc2",
+              "name": "`DataSource` not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":workspace",
+                    "data_sources",
+                    ":data_source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) `Workspace` username"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "data_source",
+                      "description": "(Required) `DataSource` token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"id\": \"not_found\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b448375f-5370-43e1-9e08-311aac3979a0",
+          "name": "Update a data source",
+          "request": {
+            "name": "Update a data source",
+            "description": {
+              "content": "Updates a `DataSource`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":workspace",
+                "data_sources",
+                ":data_source"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) `Workspace` username"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "data_source",
+                  "description": "(Required) `DataSource` token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data_source\": {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"password\": \"<string>\",\n    \"custom_attributes\": {\n      \"connection_string\": \"<string>\"\n    },\n    \"certificate\": \"<binary>\",\n    \"key\": \"<binary>\",\n    \"wallet\": \"<binary>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8e052b5c-6e17-451d-9005-ab5719f3039e",
+              "name": "`DataSource` response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":workspace",
+                    "data_sources",
+                    ":data_source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) `Workspace` username"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "data_source",
+                      "description": "(Required) `DataSource` token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data_source\": {\n    \"name\": \"Redshift Database\",\n    \"description\": \"Marketing data\",\n    \"password\": \"redshift_db_pw\",\n    \"custom_attributes\": {\n      \"connection_string\": \"<string>\"\n    },\n    \"certificate\": \"<binary>\",\n    \"key\": \"<binary>\",\n    \"wallet\": \"<binary>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"creator\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"account\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"web\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"web_home\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"permissions\": {\n      \"href\": \"string\",\n      \"templated\": false\n    }\n  },\n  \"id\": 5853,\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"token\": \"string\",\n  \"adapter\": \"jdbc:clickhouse\",\n  \"created_at\": \"string\",\n  \"updated_at\": \"string\",\n  \"has_expensive_schema_updates\": true,\n  \"public\": false,\n  \"asleep\": false,\n  \"queryable\": true,\n  \"soft_deleted\": false,\n  \"display_name\": \"string\",\n  \"database\": \"string\",\n  \"host\": \"string\",\n  \"port\": \"string\",\n  \"ssl\": false,\n  \"username\": \"string\",\n  \"provider\": \"string\",\n  \"vendor\": \"string\",\n  \"ldap\": false,\n  \"warehouse\": \"string\",\n  \"bridged\": false,\n  \"adapter_version\": \"string\",\n  \"custom_attributes\": {\n    \"standard_sql\": true\n  },\n  \"account_id\": 5548,\n  \"account_username\": \"string\",\n  \"organization_token\": \"string\",\n  \"organization_plan_code\": \"string\",\n  \"ssl_trusted_cert\": \"string\",\n  \"default_access_level\": \"string\",\n  \"_embedded\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "60024acf-c851-4e70-81e3-0614ff992248",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":workspace",
+                    "data_sources",
+                    ":data_source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) `Workspace` username"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "data_source",
+                      "description": "(Required) `DataSource` token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data_source\": {\n    \"name\": \"Redshift Database\",\n    \"description\": \"Marketing data\",\n    \"password\": \"redshift_db_pw\",\n    \"custom_attributes\": {\n      \"connection_string\": \"<string>\"\n    },\n    \"certificate\": \"<binary>\",\n    \"key\": \"<binary>\",\n    \"wallet\": \"<binary>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"id\": \"bad_request\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "13c821e2-a49c-4451-9875-469b1e656358",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":workspace",
+                    "data_sources",
+                    ":data_source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) `Workspace` username"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "data_source",
+                      "description": "(Required) `DataSource` token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data_source\": {\n    \"name\": \"Redshift Database\",\n    \"description\": \"Marketing data\",\n    \"password\": \"redshift_db_pw\",\n    \"custom_attributes\": {\n      \"connection_string\": \"<string>\"\n    },\n    \"certificate\": \"<binary>\",\n    \"key\": \"<binary>\",\n    \"wallet\": \"<binary>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"id\": \"unauthorized\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ffabbbda-9330-4bbd-b925-e184894f396c",
+              "name": "`DataSource` not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":workspace",
+                    "data_sources",
+                    ":data_source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) `Workspace` username"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "data_source",
+                      "description": "(Required) `DataSource` token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data_source\": {\n    \"name\": \"Redshift Database\",\n    \"description\": \"Marketing data\",\n    \"password\": \"redshift_db_pw\",\n    \"custom_attributes\": {\n      \"connection_string\": \"<string>\"\n    },\n    \"certificate\": \"<binary>\",\n    \"key\": \"<binary>\",\n    \"wallet\": \"<binary>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"id\": \"not_found\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6d445eb2-56b6-4bd2-a488-9b389e24aedf",
+          "name": "Purge report results",
+          "request": {
+            "name": "Purge report results",
+            "description": {
+              "content": "Removes all report results that use a data source",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":workspace",
+                "data_sources",
+                ":data_source",
+                "purge"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workspace",
+                  "description": "(Required) `Workspace` username"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "data_source",
+                  "description": "(Required) `DataSource` token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "97e4a3fe-f5ae-47d8-b047-ec5e30eae2aa",
+              "name": "Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":workspace",
+                    "data_sources",
+                    ":data_source",
+                    "purge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) `Workspace` username"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "data_source",
+                      "description": "(Required) `DataSource` token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ec25267a-6de1-4106-a039-182f0f0bca3c",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":workspace",
+                    "data_sources",
+                    ":data_source",
+                    "purge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) `Workspace` username"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "data_source",
+                      "description": "(Required) `DataSource` token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"id\": \"bad_request\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "57d11e24-dc39-4516-8dc2-c1f417508b36",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":workspace",
+                    "data_sources",
+                    ":data_source",
+                    "purge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) `Workspace` username"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "data_source",
+                      "description": "(Required) `DataSource` token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"id\": \"unauthorized\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dacb343c-3c88-4233-b5be-8849d51e559d",
+              "name": "`DataSource` not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":workspace",
+                    "data_sources",
+                    ":data_source",
+                    "purge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workspace",
+                      "description": "(Required) `Workspace` username"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "data_source",
+                      "description": "(Required) `DataSource` token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"id\": \"not_found\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a979b47b-400a-450d-9201-a664b6a858ac",
+          "name": "List reports using a data source",
+          "request": {
+            "name": "List reports using a data source",
+            "description": {
+              "content": "Returns all `Report`s using a `DataSource`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":account",
+                "data_sources",
+                ":data_source",
+                "reports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Returns a filtered list of `Report`s in a `Space` filtered by whether their `created_at` or `updated_at` timestamps are `gt` (greater than) or `lt` (less than) the datetime passed in ISO8601 format. Example: `?filter=created_at.gt.2019-10-23T06:23:01Z` returns all `Reports` in a space created after that date."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "With the `order` param, returns all `Report`s in a `Space` ordered in `asc` or `desc` order. Example: `?order=asc&order_by=created_at`"
+                },
+                {
+                  "disabled": false,
+                  "key": "order_by",
+                  "value": "<string>",
+                  "description": "With the `order_by` param, returns all `Report`s in a `Space` ordered by their `created_at` or `updated_at` timestamps. Example: `?order_by=created_at&order=asc`"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account",
+                  "description": "(Required) `Account` (`Workspace` or `User`) username"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "data_source",
+                  "description": "(Required) `DataSource` token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7d0897f5-b7ee-4ad7-ad47-f15ee2b77e80",
+              "name": "`Report` collection response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "data_sources",
+                    ":data_source",
+                    "reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) `Account` (`Workspace` or `User`) username"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "data_source",
+                      "description": "(Required) `DataSource` token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"next_page\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"prev_page\": {\n      \"href\": \"string\",\n      \"templated\": false\n    }\n  },\n  \"pagination\": {\n    \"first_page\": \"string\",\n    \"last_page\": \"string\",\n    \"total_pages\": 6516,\n    \"total_count\": 6892\n  },\n  \"_embedded\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a0e24be9-0d40-4272-bd4f-48d14b2fc155",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "data_sources",
+                    ":data_source",
+                    "reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) `Account` (`Workspace` or `User`) username"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "data_source",
+                      "description": "(Required) `DataSource` token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"id\": \"unauthorized\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "116cd054-b06a-4d02-b75d-278a8372cacc",
+              "name": "`Report` not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":account",
+                    "data_sources",
+                    ":data_source",
+                    "reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) `Account` (`Workspace` or `User`) username"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "data_source",
+                      "description": "(Required) `DataSource` token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"id\": \"not_found\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://modeanalytics.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6f9222a1-c119-4770-bfe6-164ba5e00d36",
+    "name": "Mode Account Data Sources API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Mode provides a REST API for many common operations, such as:\n\n* Listing spaces and reports\n* Running reports\n* Downloading query results\n\n## Authentication\n\nFor most Mode API calls, the client must supply an API token and secret for\nHTTP basic authentication.\n\nIf authentication is required for a given resource, unauthenticated requests\nwill result in a `401 Unauthorized` response.\n\n[Create and Manage API Tokens](https://modeanalytics.com/settings/access_tokens)\n\n\nContact Support:\n Name: Mode API Team\n Email: support@modeanalytics.com",
+      "type": "text/plain"
+    }
+  }
+}

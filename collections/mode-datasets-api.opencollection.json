@@ -1,0 +1,379 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mode Account Datasets API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Datasets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get fields for a Dataset",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:account/datasets/:dataset/fields",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "path",
+                "description": "`Dataset` token"
+              }
+            ]
+          },
+          "docs": "Returns a list of the latest fields for a `Dataset`"
+        },
+        {
+          "info": {
+            "name": "Get field descriptions for a Dataset",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:account/datasets/:dataset/field_descriptions",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "path",
+                "description": "`Dataset` token"
+              }
+            ]
+          },
+          "docs": "Returns a list of field descriptions for a `Dataset`"
+        },
+        {
+          "info": {
+            "name": "Create a field description for a Dataset",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:account/datasets/:dataset/field_descriptions",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "path",
+                "description": "`Dataset` token"
+              }
+            ]
+          },
+          "docs": "Create a field description for a `Dataset` with the provided parameters"
+        },
+        {
+          "info": {
+            "name": "Update a field description for a Dataset",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:account/datasets/:dataset/field_descriptions/:field_description",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "path",
+                "description": "`Dataset` token"
+              },
+              {
+                "name": "field description",
+                "value": "",
+                "type": "path",
+                "description": "`DatasetFieldDescription` token"
+              }
+            ]
+          },
+          "docs": "Updates a field description for a `Dataset` with the provided parameters"
+        },
+        {
+          "info": {
+            "name": "Delete a field description for a Dataset",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:account/datasets/:dataset/field_descriptions/:field_description",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "path",
+                "description": "`Dataset` token"
+              },
+              {
+                "name": "field description",
+                "value": "",
+                "type": "path",
+                "description": "`DatasetFieldDescription` token"
+              }
+            ]
+          },
+          "docs": "Deletes a field description for a `Dataset`"
+        },
+        {
+          "info": {
+            "name": "Get a Dataset",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:account/datasets/:dataset",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "path",
+                "description": "`Dataset` token"
+              }
+            ]
+          },
+          "docs": "Returns a representation of a single `Dataset`"
+        },
+        {
+          "info": {
+            "name": "Update a Dataset",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:account/datasets/:dataset",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "path",
+                "description": "`Dataset` token"
+              }
+            ]
+          },
+          "docs": "Updates a single `Dataset` with the provided attributes"
+        },
+        {
+          "info": {
+            "name": "Delete a Dataset",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:account/datasets/:dataset",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "path",
+                "description": "`Dataset` token"
+              }
+            ]
+          },
+          "docs": "Deletes a single `Dataset`"
+        },
+        {
+          "info": {
+            "name": "List Reports using a Dataset",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:account/datasets/:dataset/reports",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "path",
+                "description": "`Dataset` token"
+              }
+            ]
+          },
+          "docs": "Returns a list of reports that have imported the `Dataset`"
+        },
+        {
+          "info": {
+            "name": "List Dataset runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:account/datasets/:dataset/runs",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "path",
+                "description": "`Dataset` token"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Returns a filtered list of `Run`s for a `Dataset` filtered by whether their `created_at` or `updated_at` timestamps are `gt` (greater than) or `lt` (less than) the datetime passed in ISO8601 format. Example: `?filter=updated_at.lt.2019-10-23T06:23:01Z` returns all `Runs` in a space created before that date."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "With the `order` param, returns all `DatasetRun`s for a `Dataset` ordered by their `created_at` or `updated_at` timestamps"
+              },
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query",
+                "description": "With the `order_by` param, returns all `DatasetRun`s for a `Dataset` ordered in `asc` or `desc` order"
+              }
+            ]
+          },
+          "docs": "Returns a list of `DatasetRun`s for a `Dataset`"
+        },
+        {
+          "info": {
+            "name": "Create a Dataset run",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:account/datasets/:dataset/runs",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "path",
+                "description": "`Dataset` token"
+              }
+            ]
+          },
+          "docs": "Runs a single `Dataset` and returns a representation of the resulting `DatasetRun`"
+        },
+        {
+          "info": {
+            "name": "List schedules for a dataset",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:workspace/datasets/:dataset/schedules",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "`Workspace` username"
+              },
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "path",
+                "description": "`Dataset` token"
+              }
+            ]
+          },
+          "docs": "Returns all `Schedule`s for a `Dataset`"
+        },
+        {
+          "info": {
+            "name": "Get a Dataset run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:account/datasets/:dataset/runs/:run",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "path",
+                "description": "`Dataset` token"
+              },
+              {
+                "name": "run",
+                "value": "",
+                "type": "path",
+                "description": "`DatasetRun` token"
+              }
+            ]
+          },
+          "docs": "Returns a representation of a single `DatasetRun`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

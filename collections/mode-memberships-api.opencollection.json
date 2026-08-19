@@ -1,0 +1,87 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mode Account Memberships API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Memberships",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List memberships",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:workspace/memberships",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "`Workspace` username"
+              }
+            ]
+          },
+          "docs": "Returns a list of `Membership`s"
+        },
+        {
+          "info": {
+            "name": "Get a membership",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:workspace/memberships/:membership",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "`Workspace` username"
+              },
+              {
+                "name": "membership",
+                "value": "",
+                "type": "path",
+                "description": "`Membership` token"
+              }
+            ]
+          },
+          "docs": "Returns a representation of a `Membership`"
+        },
+        {
+          "info": {
+            "name": "Delete a membership",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:workspace/memberships/:membership",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "`Workspace` username"
+              },
+              {
+                "name": "membership",
+                "value": "",
+                "type": "path",
+                "description": "`Membership` token"
+              }
+            ]
+          },
+          "docs": "Deletes a `Membership`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

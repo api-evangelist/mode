@@ -1,0 +1,166 @@
+{
+  "item": [
+    {
+      "id": "acb64488-ce52-4318-8e20-6a7c069b158d",
+      "name": "Account",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "98b26558-4c82-4bc4-9876-c080c3ee0ed7",
+          "name": "(Not Supported) Get authorizing user",
+          "request": {
+            "name": "(Not Supported) Get authorizing user",
+            "description": {
+              "content": "Returns a representation of the authorizing `User`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "account"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "efc996da-fde0-42cd-8a6a-a379d913dff3",
+              "name": "`User` response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"web\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"web_public_datasource_home\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"web_groups\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"web_new_organization\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"home_web\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"home_starred_web\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"home_explorations_web\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"home_search_web\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"new_invite_web\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"new_upload_web\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"report\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"reports\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"archived_reports\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"public_reports\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"drafts_reports\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"starred_reports\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"by_ids_reports\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"viewed_reports\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"starred_datasets\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"by_ids_datasets\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"viewed_datasets\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"starred_base_reports\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"by_ids_base_reports\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"viewed_base_reports\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"all_color_palettes\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"web_settings\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"web_google_account\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"web_data_sources_settings\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"web_settings_slack\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"web_spaces\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"web_membership_events\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"web_member_sessions\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"web_settings_themes\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"web_trial_appointments\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"data_sources\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"data_source\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"admins\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"memberships\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"all_memberships\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"home_reports_web\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"home_discover_web\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"select_data_sources_web\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"data_source_connection_request_web\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"billing_web\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"public_data_sources\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"organizations\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"preference\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"table\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"by_tokens_definitions\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"bridges\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"access_tokens\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"new_report\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"new_report_web\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"validate_table\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"report_views\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"groups\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"group\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"everyone_group\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"users_groups_with_data_source_entitlements\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"spaces\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"space\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"custom_spaces\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"move_to_spaces\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"definitions\": {\n      \"required\": [\n        \"href\"\n      ],\n      \"type\": \"object\",\n      \"properties\": {\n        \"href\": {\n          \"type\": \"string\"\n        },\n        \"templated\": {\n          \"type\": \"boolean\",\n          \"default\": false\n        }\n      }\n    },\n    \"definition\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"color_palettes\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"color_palette\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"web_color_palettes_settings\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"validate_space_name\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"validate_definition_name\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"slack_app\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"trial_appointment\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"member_session_timeout\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"easy_identity_providers\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"saml_identity_providers\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"scim_token\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"memberships_lite\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"schedules\": {\n      \"href\": \"string\",\n      \"templated\": false\n    },\n    \"api_keys\": {\n      \"href\": \"string\",\n      \"templated\": false\n    }\n  },\n  \"username\": \"string\",\n  \"name\": \"string\",\n  \"id\": 291,\n  \"token\": \"string\",\n  \"dataset_size_limit_mb\": \"string\",\n  \"query_run_size_limit_mb\": \"string\",\n  \"avatar\": {\n    \"type\": \"string\"\n  },\n  \"user\": false,\n  \"created_at\": \"string\",\n  \"email\": \"string\",\n  \"email_verified\": false,\n  \"thoughtspot_integrated\": false,\n  \"space_count\": 545,\n  \"data_source_count\": 734,\n  \"default_data_source_token\": \"string\",\n  \"organizations_count\": \"string\",\n  \"trial_state\": \"expired\",\n  \"organization_restricted\": \"string\",\n  \"membership_type\": \"admin\",\n  \"payment_method_confirmed\": false,\n  \"private_definition_count\": 9779,\n  \"private_definition_limit\": 305,\n  \"authorized_domains\": [\n    \"string\",\n    \"string\"\n  ],\n  \"plan_code\": \"free\",\n  \"seat_limit_reached\": false,\n  \"org_seat_limit_reached\": true,\n  \"python_performance_first_tier\": true,\n  \"admin_data_source_connections_only\": false,\n  \"admin_collection_creation_only\": true,\n  \"scim_enabled\": \"string\",\n  \"settings\": \"string\",\n  \"_embedded\": {\n    \"data_sources\": {\n      \"_links\": {\n        \"self\": {\n          \"href\": \"string\",\n          \"templated\": false\n        },\n        \"next_page\": {\n          \"href\": \"string\",\n          \"templated\": false\n        },\n        \"prev_page\": {\n          \"href\": \"string\",\n          \"templated\": false\n        }\n      },\n      \"pagination\": {\n        \"first_page\": \"string\",\n        \"last_page\": \"string\",\n        \"total_pages\": 743,\n        \"total_count\": 7293\n      },\n      \"data_index_auth_token\": \"string\",\n      \"_embedded\": {}\n    },\n    \"spaces\": {\n      \"_links\": {\n        \"self\": {\n          \"href\": \"string\",\n          \"templated\": false\n        },\n        \"next_page\": {\n          \"href\": \"string\",\n          \"templated\": false\n        },\n        \"prev_page\": {\n          \"href\": \"string\",\n          \"templated\": false\n        }\n      },\n      \"pagination\": {\n        \"first_page\": \"string\",\n        \"last_page\": \"string\",\n        \"total_pages\": 4881,\n        \"total_count\": 7019\n      },\n      \"_embedded\": {}\n    },\n    \"all_spaces\": {\n      \"_links\": {\n        \"self\": {\n          \"href\": \"string\",\n          \"templated\": false\n        },\n        \"next_page\": {\n          \"href\": \"string\",\n          \"templated\": false\n        },\n        \"prev_page\": {\n          \"href\": \"string\",\n          \"templated\": false\n        }\n      },\n      \"pagination\": {\n        \"first_page\": \"string\",\n        \"last_page\": \"string\",\n        \"total_pages\": 8461,\n        \"total_count\": 5706\n      },\n      \"_embedded\": {}\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0b1de4b8-8647-4fef-bec2-174f19563967",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"id\": \"unauthorized\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://modeanalytics.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7c93fb0a-1d5e-4a79-8251-314cb79c97d3",
+    "name": "Mode Account API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Mode provides a REST API for many common operations, such as:\n\n* Listing spaces and reports\n* Running reports\n* Downloading query results\n\n## Authentication\n\nFor most Mode API calls, the client must supply an API token and secret for\nHTTP basic authentication.\n\nIf authentication is required for a given resource, unauthenticated requests\nwill result in a `401 Unauthorized` response.\n\n[Create and Manage API Tokens](https://modeanalytics.com/settings/access_tokens)\n\n\nContact Support:\n Name: Mode API Team\n Email: support@modeanalytics.com",
+      "type": "text/plain"
+    }
+  }
+}

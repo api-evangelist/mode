@@ -1,0 +1,223 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mode Account Data Sources API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data Sources",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Datasets using a data source",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:account/data_sources/:data_source/datasets",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "path",
+                "description": "`DataSource` token"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Returns a filtered list of `Dataset`s in a `Space` filtered by whether their `created_at` or `updated_at` timestamps are `gt` (greater than) or `lt` (less than) the datetime passed in ISO8601 format. Example: `?filter=created_at.gt.2019-10-23T06:23:01Z` returns all `Datasets` in a space created after that date."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "With the `order` param, returns all `Dataset`s in a `Space` ordered in `asc` or `desc` order. Example: `?order=asc&order_by=created_at`"
+              },
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query",
+                "description": "With the `order_by` param, returns all `Dataset`s in a `Space` ordered by their `created_at` or `updated_at` timestamps. Example: `?order_by=created_at&order=asc`"
+              }
+            ]
+          },
+          "docs": "Returns all `Dataset`s using a `DataSource`"
+        },
+        {
+          "info": {
+            "name": "Update data source schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:account/data_sources/:data_source/schema_updates",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "path",
+                "description": "`DataSource` token"
+              }
+            ]
+          },
+          "docs": "Creates and queues a `schema update` for a `data source`"
+        },
+        {
+          "info": {
+            "name": "List data sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:workspace/data_sources",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "`Workspace` username"
+              }
+            ]
+          },
+          "docs": "Returns all `DataSource`s owned by a `Workspace`"
+        },
+        {
+          "info": {
+            "name": "Get a data source",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:workspace/data_sources/:data_source",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "`Workspace` username"
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "path",
+                "description": "`DataSource` token"
+              }
+            ]
+          },
+          "docs": "Returns a single `DataSource`"
+        },
+        {
+          "info": {
+            "name": "Update a data source",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:workspace/data_sources/:data_source",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "`Workspace` username"
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "path",
+                "description": "`DataSource` token"
+              }
+            ]
+          },
+          "docs": "Updates a `DataSource`"
+        },
+        {
+          "info": {
+            "name": "Purge report results",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:workspace/data_sources/:data_source/purge",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "`Workspace` username"
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "path",
+                "description": "`DataSource` token"
+              }
+            ]
+          },
+          "docs": "Removes all report results that use a data source"
+        },
+        {
+          "info": {
+            "name": "List reports using a data source",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:account/data_sources/:data_source/reports",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "`Account` (`Workspace` or `User`) username"
+              },
+              {
+                "name": "data_source",
+                "value": "",
+                "type": "path",
+                "description": "`DataSource` token"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Returns a filtered list of `Report`s in a `Space` filtered by whether their `created_at` or `updated_at` timestamps are `gt` (greater than) or `lt` (less than) the datetime passed in ISO8601 format. Example: `?filter=created_at.gt.2019-10-23T06:23:01Z` returns all `Reports` in a space created after that date."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "With the `order` param, returns all `Report`s in a `Space` ordered in `asc` or `desc` order. Example: `?order=asc&order_by=created_at`"
+              },
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query",
+                "description": "With the `order_by` param, returns all `Report`s in a `Space` ordered by their `created_at` or `updated_at` timestamps. Example: `?order_by=created_at&order=asc`"
+              }
+            ]
+          },
+          "docs": "Returns all `Report`s using a `DataSource`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

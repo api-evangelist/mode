@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mode Account Invites API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Invites",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an invitation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:workspace/invites",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path",
+                "description": "`Workspace` username"
+              }
+            ]
+          },
+          "docs": "Creates a `User` and invites `User` to `Workspace`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
