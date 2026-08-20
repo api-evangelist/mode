@@ -101,6 +101,8 @@ apis:
   humanURL: https://mode.com/developer/api-reference/introduction/
   baseURL: https://app.mode.com/api
   tags:
+  - Group
+  tags_raw:
   - Groups
   properties:
   - type: OpenAPI
