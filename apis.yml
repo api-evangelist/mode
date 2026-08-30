@@ -180,6 +180,11 @@ x-enrichment:
   artifacts_added: 16
   pass: local-v1
 common:
+- type: ParentCompany
+  url: https://apis.io/providers/thoughtspot/
+  name: ThoughtSpot
+  x-relationship: acquired
+  x-evidence: "Mode was acquired by ThoughtSpot in 2023 and positions itself as the intelligence layer for the modern data stack."
 - type: Overlay
   url: overlays/mode-openapi-overlay.yaml
 - type: Website
