@@ -136,6 +136,8 @@ apis:
   humanURL: https://mode.com/developer/api-reference/introduction/
   baseURL: https://app.mode.com/api
   tags:
+  - Membership
+  tags_raw:
   - Memberships
   properties:
   - type: OpenAPI
@@ -156,6 +158,8 @@ apis:
   humanURL: https://mode.com/developer/api-reference/introduction/
   baseURL: https://app.mode.com/api
   tags:
+  - Space
+  tags_raw:
   - Spaces
   properties:
   - type: OpenAPI
