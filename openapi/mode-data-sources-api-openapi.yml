@@ -1,7 +1,7 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
   version: 0.0.1
-  title: Mode Account Data Sources API
+  title: Mode Data Sources API
   description: 'Mode provides a REST API for many common operations, such as:
 
 
@@ -25,23 +25,15 @@ info:
     will result in a `401 Unauthorized` response.
 
 
-    [Create and Manage API Tokens](https://modeanalytics.com/settings/access_tokens)
-
-    '
+    Create and Manage API Tokens'
   termsOfService: https://mode.com/tos/
   contact:
     name: Mode API Team
     email: support@modeanalytics.com
   license:
     name: MIT
-host: modeanalytics.com
-basePath: /api
-schemes:
-- https
-consumes:
-- application/json
-produces:
-- application/hal+json
+servers:
+- url: https://modeanalytics.com/api
 security:
 - accessTokenAuth: []
 tags:
@@ -56,42 +48,53 @@ paths:
       responses:
         '401':
           description: Unauthorized
-          schema:
-            $ref: '#/definitions/Unauthorized'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
         '404':
           description: '`Dataset` not found'
-          schema:
-            $ref: '#/definitions/NotFound'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
         '200':
           description: '`Dataset` collection response'
-          schema:
-            $ref: '#/definitions/Datasets'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Datasets'
       parameters:
       - name: account
         in: path
         description: '`Account` (`Workspace` or `User`) username'
         required: true
-        type: string
+        schema:
+          type: string
       - name: data_source
         in: path
         description: '`DataSource` token'
         required: true
-        type: string
+        schema:
+          type: string
       - name: filter
         in: query
         description: 'Returns a filtered list of `Dataset`s in a `Space` filtered by whether their `created_at` or `updated_at` timestamps are `gt` (greater than) or `lt` (less than) the datetime passed in ISO8601 format. Example: `?filter=created_at.gt.2019-10-23T06:23:01Z` returns all `Datasets` in a space created after that date.'
         required: false
-        type: string
+        schema:
+          type: string
       - name: order
         in: query
         description: 'With the `order` param, returns all `Dataset`s in a `Space` ordered in `asc` or `desc` order. Example: `?order=asc&order_by=created_at`'
         required: false
-        type: string
+        schema:
+          type: string
       - name: order_by
         in: query
         description: 'With the `order_by` param, returns all `Dataset`s in a `Space` ordered by their `created_at` or `updated_at` timestamps. Example: `?order_by=created_at&order=asc`'
         required: false
-        type: string
+        schema:
+          type: string
       tags:
       - Data Sources
   /{account}/data_sources/{data_source}/schema_updates:
@@ -103,31 +106,41 @@ paths:
       responses:
         '401':
           description: Unauthorized
-          schema:
-            $ref: '#/definitions/Unauthorized'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
         '400':
           description: Bad request
-          schema:
-            $ref: '#/definitions/BadRequest'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
         '404':
           description: '`DataSource` not found'
-          schema:
-            $ref: '#/definitions/NotFound'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
         '200':
           description: '`DataSourceSchemaUpdate` response'
-          schema:
-            $ref: '#/definitions/DataSourceSchemaUpdate'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/DataSourceSchemaUpdate'
       parameters:
       - name: account
         in: path
         description: '`Account` (`Workspace` or `User`) username'
         required: true
-        type: string
+        schema:
+          type: string
       - name: data_source
         in: path
         description: '`DataSource` token'
         required: true
-        type: string
+        schema:
+          type: string
       tags:
       - Data Sources
   /{workspace}/data_sources:
@@ -139,22 +152,29 @@ paths:
       responses:
         '401':
           description: Unauthorized
-          schema:
-            $ref: '#/definitions/Unauthorized'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
         '404':
           description: '`Workspace` not found'
-          schema:
-            $ref: '#/definitions/NotFound'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
         '200':
           description: '`DataSource` collection response'
-          schema:
-            $ref: '#/definitions/DataSources'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/DataSources'
       parameters:
       - name: workspace
         in: path
         description: '`Workspace` username'
         required: true
-        type: string
+        schema:
+          type: string
       tags:
       - Data Sources
   /{workspace}/data_sources/{data_source}:
@@ -166,27 +186,35 @@ paths:
       responses:
         '401':
           description: Unauthorized
-          schema:
-            $ref: '#/definitions/Unauthorized'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
         '404':
           description: '`DataSource` not found'
-          schema:
-            $ref: '#/definitions/NotFound'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
         '200':
           description: '`DataSource` response'
-          schema:
-            $ref: '#/definitions/DataSource'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/DataSource'
       parameters:
       - name: workspace
         in: path
         description: '`Workspace` username'
         required: true
-        type: string
+        schema:
+          type: string
       - name: data_source
         in: path
         description: '`DataSource` token'
         required: true
-        type: string
+        schema:
+          type: string
       tags:
       - Data Sources
     patch:
@@ -194,37 +222,48 @@ paths:
       summary: Update a data source
       description: Updates a `DataSource`
       parameters:
-      - name: parameters
-        in: body
-        schema:
-          $ref: '#/definitions/UpdateDataSourceRequestBody'
       - name: workspace
         in: path
         description: '`Workspace` username'
         required: true
-        type: string
+        schema:
+          type: string
       - name: data_source
         in: path
         description: '`DataSource` token'
         required: true
-        type: string
+        schema:
+          type: string
       responses:
         '401':
           description: Unauthorized
-          schema:
-            $ref: '#/definitions/Unauthorized'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
         '400':
           description: Bad request
-          schema:
-            $ref: '#/definitions/BadRequest'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
         '404':
           description: '`DataSource` not found'
-          schema:
-            $ref: '#/definitions/NotFound'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
         '200':
           description: '`DataSource` response'
-          schema:
-            $ref: '#/definitions/DataSource'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/DataSource'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDataSourceRequestBody'
       tags:
       - Data Sources
   /{workspace}/data_sources/{data_source}/purge:
@@ -236,30 +275,40 @@ paths:
       responses:
         '401':
           description: Unauthorized
-          schema:
-            $ref: '#/definitions/Unauthorized'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
         '400':
           description: Bad request
-          schema:
-            $ref: '#/definitions/BadRequest'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
         '404':
           description: '`DataSource` not found'
-          schema:
-            $ref: '#/definitions/NotFound'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
         '202':
           description: Accepted
-          schema: {}
+          content:
+            application/hal+json:
+              schema: {}
       parameters:
       - name: workspace
         in: path
         description: '`Workspace` username'
         required: true
-        type: string
+        schema:
+          type: string
       - name: data_source
         in: path
         description: '`DataSource` token'
         required: true
-        type: string
+        schema:
+          type: string
       tags:
       - Data Sources
   /{account}/data_sources/{data_source}/reports:
@@ -271,363 +320,379 @@ paths:
       responses:
         '401':
           description: Unauthorized
-          schema:
-            $ref: '#/definitions/Unauthorized'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
         '404':
           description: '`Report` not found'
-          schema:
-            $ref: '#/definitions/NotFound'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
         '200':
           description: '`Report` collection response'
-          schema:
-            $ref: '#/definitions/Reports'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Reports'
       parameters:
       - name: account
         in: path
         description: '`Account` (`Workspace` or `User`) username'
         required: true
-        type: string
+        schema:
+          type: string
       - name: data_source
         in: path
         description: '`DataSource` token'
         required: true
-        type: string
+        schema:
+          type: string
       - name: filter
         in: query
         description: 'Returns a filtered list of `Report`s in a `Space` filtered by whether their `created_at` or `updated_at` timestamps are `gt` (greater than) or `lt` (less than) the datetime passed in ISO8601 format. Example: `?filter=created_at.gt.2019-10-23T06:23:01Z` returns all `Reports` in a space created after that date.'
         required: false
-        type: string
+        schema:
+          type: string
       - name: order
         in: query
         description: 'With the `order` param, returns all `Report`s in a `Space` ordered in `asc` or `desc` order. Example: `?order=asc&order_by=created_at`'
         required: false
-        type: string
+        schema:
+          type: string
       - name: order_by
         in: query
         description: 'With the `order_by` param, returns all `Report`s in a `Space` ordered by their `created_at` or `updated_at` timestamps. Example: `?order_by=created_at&order=asc`'
         required: false
-        type: string
+        schema:
+          type: string
       tags:
       - Data Sources
-definitions:
-  UpdateDataSourceRequestBody:
-    required:
-    - data_source
-    type: object
-    properties:
-      data_source:
-        type: object
-        description: The parameters of the data source to update
-        properties:
-          name:
-            type: string
-            description: Name of the `data source`
-            example: Redshift Database
-          description:
-            type: string
-            description: Description of the `data source`
-            example: Marketing data
-          password:
-            type: string
-            description: Password for the `data source`
-            example: redshift_db_pw
-          custom_attributes:
-            type: object
-            description: For Oracle Autonomous Database connected via bridge, pass the connection string as a custom attribute
-            properties:
-              connection_string:
-                type: string
-          certificate:
-            type: file
-          key:
-            type: file
-          wallet:
-            type: file
-  Reports:
-    properties:
-      pagination:
-        $ref: '#/definitions/Pagination'
-      _links:
-        $ref: '#/definitions/ReportsLinks'
-      _embedded:
-        $ref: '#/definitions/ReportsEmbeds'
-    required:
-    - _links
-  DataSourcesLinks:
-    properties:
-      next_page:
-        $ref: '#/definitions/Link'
-      prev_page:
-        $ref: '#/definitions/Link'
-      self:
-        $ref: '#/definitions/Link'
-    required:
-    - self
-  Link:
-    required:
-    - href
-    properties:
-      href:
-        type: string
-      templated:
-        type: boolean
-        default: false
-  BadRequest:
-    required:
-    - id
-    - message
-    properties:
-      id:
-        type: string
-        enum:
-        - bad_request
-      message:
-        type: string
-  DataSourcesEmbeds: {}
-  DataSourceSchemaUpdateEmbeds: {}
-  Pagination:
-    required:
-    - first_page
-    - last_page
-    - total_pages
-    - total_count
-    properties:
-      first_page:
-        type: string
-      last_page:
-        type: string
-      total_pages:
-        type: integer
-      total_count:
-        type: integer
-  Unauthorized:
-    required:
-    - id
-    - message
-    properties:
-      id:
-        type: string
-        enum:
-        - unauthorized
-      message:
-        type: string
-  ReportsEmbeds: {}
-  DataSources:
-    properties:
-      pagination:
-        $ref: '#/definitions/Pagination'
-      data_index_auth_token:
-        type: string
-      _links:
-        $ref: '#/definitions/DataSourcesLinks'
-      _embedded:
-        $ref: '#/definitions/DataSourcesEmbeds'
-    required:
-    - _links
-  NotFound:
-    required:
-    - id
-    - message
-    properties:
-      id:
-        type: string
-        enum:
-        - not_found
-      message:
-        type: string
-  DataSourceLinks:
-    properties:
-      self:
-        $ref: '#/definitions/Link'
-      creator:
-        $ref: '#/definitions/Link'
-      account:
-        $ref: '#/definitions/Link'
-      permissions:
-        $ref: '#/definitions/Link'
-      web:
-        $ref: '#/definitions/Link'
-      web_home:
-        $ref: '#/definitions/Link'
-    required:
-    - self
-    - creator
-    - account
-    - web
-    - web_home
-  DataSourceSchemaUpdateLinks:
-    properties:
-      self:
-        $ref: '#/definitions/Link'
-    required:
-    - self
-  ReportsLinks:
-    properties:
-      next_page:
-        $ref: '#/definitions/Link'
-      prev_page:
-        $ref: '#/definitions/Link'
-      self:
-        $ref: '#/definitions/Link'
-    required:
-    - self
-  DataSourceEmbeds: {}
-  DataSourceSchemaUpdate:
-    properties:
-      id:
-        type: string
-      token:
-        type: string
-      state:
-        type: string
-      content_length:
-        type: string
-      number_of_schemas:
-        type: string
-      number_of_tables:
-        type: string
-      last_succesful_refresh_at:
-        type: string
-      webapp_uri:
-        type: string
-      _links:
-        $ref: '#/definitions/DataSourceSchemaUpdateLinks'
-      _embedded:
-        $ref: '#/definitions/DataSourceSchemaUpdateEmbeds'
-    required:
-    - _links
-    - id
-    - token
-    - state
-    - content_length
-    - number_of_schemas
-    - number_of_tables
-  DataSource:
-    properties:
-      id:
-        type: integer
-      name:
-        type: string
-      description:
-        type: string
-      token:
-        type: string
-      adapter:
-        enum:
-        - jdbc:athena
-        - jdbc:bigquery
-        - jdbc:databricks
-        - jdbc:dbtmetrics
-        - jdbc:denodo
-        - jdbc:druid
-        - jdbc:hive
-        - jdbc:impala
-        - jdbc:mysql
-        - jdbc:oracle
-        - jdbc:oracleadb
-        - jdbc:postgresql
-        - jdbc:trino
-        - jdbc:presto
-        - jdbc:clickhouse
-        - jdbc:redshift
-        - jdbc:snowflake
-        - jdbc:spark
-        - jdbc:sqlserver
-        - jdbc:treasuredata
-        - jdbc:vertica
-        - jdbc:salesforce
-        - jdbc:dbtsemanticlayer
-        - jdbc:looker
-        - jdbc:arrowflightsql
-        - jdbc:modedatasets
-        type: string
-      created_at:
-        type: string
-      updated_at:
-        type: string
-      has_expensive_schema_updates:
-        type: boolean
-      public:
-        type: boolean
-      asleep:
-        type: boolean
-      queryable:
-        type: boolean
-      soft_deleted:
-        type: boolean
-      display_name:
-        type: string
-      account_id:
-        type: integer
-      account_username:
-        type: string
-      organization_token:
-        type: string
-      organization_plan_code:
-        type: string
-      database:
-        type: string
-      host:
-        type: string
-      port:
-        type: string
-      ssl:
-        type: boolean
-      username:
-        type: string
-      provider:
-        type: string
-      vendor:
-        type: string
-      ldap:
-        type: boolean
-      warehouse:
-        type: string
-      bridged:
-        type: boolean
-      adapter_version:
-        type: string
-      custom_attributes:
-        $ref: '#/definitions/DataSourceCustomAttributes'
-      ssl_trusted_cert:
-        type: string
-      default_access_level:
-        type: string
-      _links:
-        $ref: '#/definitions/DataSourceLinks'
-      _embedded:
-        $ref: '#/definitions/DataSourceEmbeds'
-    required:
-    - _links
-    - id
-    - name
-    - description
-    - token
-    - adapter
-    - created_at
-    - updated_at
-    - has_expensive_schema_updates
-    - public
-    - asleep
-    - queryable
-    - soft_deleted
-    - display_name
-    - database
-    - host
-    - port
-    - ssl
-    - username
-    - provider
-    - vendor
-    - ldap
-    - warehouse
-    - bridged
-    - adapter_version
-    - custom_attributes
-  DataSourceCustomAttributes:
-    properties:
-      standard_sql:
-        type: boolean
-securityDefinitions:
-  accessTokenAuth:
-    type: basic
+components:
+  schemas:
+    DataSources:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        data_index_auth_token:
+          type: string
+        _links:
+          $ref: '#/components/schemas/DataSourcesLinks'
+        _embedded:
+          $ref: '#/components/schemas/DataSourcesEmbeds'
+      required:
+      - _links
+    DataSourceCustomAttributes:
+      properties:
+        standard_sql:
+          type: boolean
+    ReportsLinks:
+      properties:
+        next_page:
+          $ref: '#/components/schemas/Link'
+        prev_page:
+          $ref: '#/components/schemas/Link'
+        self:
+          $ref: '#/components/schemas/Link'
+      required:
+      - self
+    DataSourceEmbeds: {}
+    DataSourcesLinks:
+      properties:
+        next_page:
+          $ref: '#/components/schemas/Link'
+        prev_page:
+          $ref: '#/components/schemas/Link'
+        self:
+          $ref: '#/components/schemas/Link'
+      required:
+      - self
+    UpdateDataSourceRequestBody:
+      required:
+      - data_source
+      type: object
+      properties:
+        data_source:
+          type: object
+          description: The parameters of the data source to update
+          properties:
+            name:
+              type: string
+              description: Name of the `data source`
+              example: Redshift Database
+            description:
+              type: string
+              description: Description of the `data source`
+              example: Marketing data
+            password:
+              type: string
+              description: Password for the `data source`
+              example: redshift_db_pw
+            custom_attributes:
+              type: object
+              description: For Oracle Autonomous Database connected via bridge, pass the connection string as a custom attribute
+              properties:
+                connection_string:
+                  type: string
+            certificate:
+              type: string
+              format: binary
+            key:
+              type: string
+              format: binary
+            wallet:
+              type: string
+              format: binary
+    DataSourceLinks:
+      properties:
+        self:
+          $ref: '#/components/schemas/Link'
+        creator:
+          $ref: '#/components/schemas/Link'
+        account:
+          $ref: '#/components/schemas/Link'
+        permissions:
+          $ref: '#/components/schemas/Link'
+        web:
+          $ref: '#/components/schemas/Link'
+        web_home:
+          $ref: '#/components/schemas/Link'
+      required:
+      - self
+      - creator
+      - account
+      - web
+      - web_home
+    NotFound:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - not_found
+        message:
+          type: string
+    DataSourceSchemaUpdateEmbeds: {}
+    Link:
+      required:
+      - href
+      properties:
+        href:
+          type: string
+        templated:
+          type: boolean
+          default: false
+    Unauthorized:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - unauthorized
+        message:
+          type: string
+    Pagination:
+      required:
+      - first_page
+      - last_page
+      - total_pages
+      - total_count
+      properties:
+        first_page:
+          type: string
+        last_page:
+          type: string
+        total_pages:
+          type: integer
+        total_count:
+          type: integer
+    ReportsEmbeds: {}
+    DataSourceSchemaUpdateLinks:
+      properties:
+        self:
+          $ref: '#/components/schemas/Link'
+      required:
+      - self
+    BadRequest:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - bad_request
+        message:
+          type: string
+    DataSourceSchemaUpdate:
+      properties:
+        id:
+          type: string
+        token:
+          type: string
+        state:
+          type: string
+        content_length:
+          type: string
+        number_of_schemas:
+          type: string
+        number_of_tables:
+          type: string
+        last_succesful_refresh_at:
+          type: string
+        webapp_uri:
+          type: string
+        _links:
+          $ref: '#/components/schemas/DataSourceSchemaUpdateLinks'
+        _embedded:
+          $ref: '#/components/schemas/DataSourceSchemaUpdateEmbeds'
+      required:
+      - _links
+      - id
+      - token
+      - state
+      - content_length
+      - number_of_schemas
+      - number_of_tables
+    DataSource:
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        token:
+          type: string
+        adapter:
+          enum:
+          - jdbc:athena
+          - jdbc:bigquery
+          - jdbc:databricks
+          - jdbc:dbtmetrics
+          - jdbc:denodo
+          - jdbc:druid
+          - jdbc:hive
+          - jdbc:impala
+          - jdbc:mysql
+          - jdbc:oracle
+          - jdbc:oracleadb
+          - jdbc:postgresql
+          - jdbc:trino
+          - jdbc:presto
+          - jdbc:clickhouse
+          - jdbc:redshift
+          - jdbc:snowflake
+          - jdbc:spark
+          - jdbc:sqlserver
+          - jdbc:treasuredata
+          - jdbc:vertica
+          - jdbc:salesforce
+          - jdbc:dbtsemanticlayer
+          - jdbc:looker
+          - jdbc:arrowflightsql
+          - jdbc:modedatasets
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        has_expensive_schema_updates:
+          type: boolean
+        public:
+          type: boolean
+        asleep:
+          type: boolean
+        queryable:
+          type: boolean
+        soft_deleted:
+          type: boolean
+        display_name:
+          type: string
+        account_id:
+          type: integer
+        account_username:
+          type: string
+        organization_token:
+          type: string
+        organization_plan_code:
+          type: string
+        database:
+          type: string
+        host:
+          type: string
+        port:
+          type: string
+        ssl:
+          type: boolean
+        username:
+          type: string
+        provider:
+          type: string
+        vendor:
+          type: string
+        ldap:
+          type: boolean
+        warehouse:
+          type: string
+        bridged:
+          type: boolean
+        adapter_version:
+          type: string
+        custom_attributes:
+          $ref: '#/components/schemas/DataSourceCustomAttributes'
+        ssl_trusted_cert:
+          type: string
+        default_access_level:
+          type: string
+        _links:
+          $ref: '#/components/schemas/DataSourceLinks'
+        _embedded:
+          $ref: '#/components/schemas/DataSourceEmbeds'
+      required:
+      - _links
+      - id
+      - name
+      - description
+      - token
+      - adapter
+      - created_at
+      - updated_at
+      - has_expensive_schema_updates
+      - public
+      - asleep
+      - queryable
+      - soft_deleted
+      - display_name
+      - database
+      - host
+      - port
+      - ssl
+      - username
+      - provider
+      - vendor
+      - ldap
+      - warehouse
+      - bridged
+      - adapter_version
+      - custom_attributes
+    Reports:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        _links:
+          $ref: '#/components/schemas/ReportsLinks'
+        _embedded:
+          $ref: '#/components/schemas/ReportsEmbeds'
+      required:
+      - _links
+    DataSourcesEmbeds: {}
+  securitySchemes:
+    accessTokenAuth:
+      type: http
+      scheme: basic

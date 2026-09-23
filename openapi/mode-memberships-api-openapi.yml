@@ -1,7 +1,7 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
   version: 0.0.1
-  title: Mode Account Memberships API
+  title: Mode Memberships API
   description: 'Mode provides a REST API for many common operations, such as:
 
 
@@ -25,23 +25,15 @@ info:
     will result in a `401 Unauthorized` response.
 
 
-    [Create and Manage API Tokens](https://modeanalytics.com/settings/access_tokens)
-
-    '
+    Create and Manage API Tokens'
   termsOfService: https://mode.com/tos/
   contact:
     name: Mode API Team
     email: support@modeanalytics.com
   license:
     name: MIT
-host: modeanalytics.com
-basePath: /api
-schemes:
-- https
-consumes:
-- application/json
-produces:
-- application/hal+json
+servers:
+- url: https://modeanalytics.com/api
 security:
 - accessTokenAuth: []
 tags:
@@ -56,18 +48,23 @@ paths:
       responses:
         '401':
           description: Unauthorized
-          schema:
-            $ref: '#/definitions/Unauthorized'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
         '404':
           description: '`Workspace` not found'
-          schema:
-            $ref: '#/definitions/NotFound'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
       parameters:
       - name: workspace
         in: path
         description: '`Workspace` username'
         required: true
-        type: string
+        schema:
+          type: string
       tags:
       - Memberships
   /{workspace}/memberships/{membership}:
@@ -79,27 +76,35 @@ paths:
       responses:
         '401':
           description: Unauthorized
-          schema:
-            $ref: '#/definitions/Unauthorized'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
         '404':
           description: '`Membership` not found'
-          schema:
-            $ref: '#/definitions/NotFound'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
         '200':
           description: '`Membership` response'
-          schema:
-            $ref: '#/definitions/Membership'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Membership'
       parameters:
       - name: workspace
         in: path
         description: '`Workspace` username'
         required: true
-        type: string
+        schema:
+          type: string
       - name: membership
         in: path
         description: '`Membership` token'
         required: true
-        type: string
+        schema:
+          type: string
       tags:
       - Memberships
     delete:
@@ -109,129 +114,141 @@ paths:
       responses:
         '401':
           description: Unauthorized
-          schema:
-            $ref: '#/definitions/Unauthorized'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
         '404':
           description: '`Membership` not found'
-          schema:
-            $ref: '#/definitions/NotFound'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
         '400':
           description: Bad request
-          schema:
-            $ref: '#/definitions/BadRequest'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
         '200':
           description: '`Membership` response'
-          schema:
-            $ref: '#/definitions/Membership'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Membership'
       parameters:
       - name: workspace
         in: path
         description: '`Workspace` username'
         required: true
-        type: string
+        schema:
+          type: string
       - name: membership
         in: path
         description: '`Membership` token'
         required: true
-        type: string
+        schema:
+          type: string
       tags:
       - Memberships
-definitions:
-  MembershipEmbeds: {}
-  Membership:
-    properties:
-      admin:
-        type: boolean
-      invited:
-        type: boolean
-      state:
-        type: string
-      member_username:
-        type: string
-      member_token:
-        type: string
-      activated_at:
-        type: string
-      managed_by_scim:
-        type: boolean
-      _links:
-        $ref: '#/definitions/MembershipLinks'
-      _embedded:
-        $ref: '#/definitions/MembershipEmbeds'
-    required:
-    - _links
-    - admin
-    - state
-    - member_username
-    - member_token
-    - activated_at
-  MembershipLinks:
-    properties:
-      self:
-        $ref: '#/definitions/Link'
-      web_self:
-        $ref: '#/definitions/Link'
-      web_self_unban:
-        $ref: '#/definitions/Link'
-      web_self_approve:
-        $ref: '#/definitions/Link'
-      organization:
-        $ref: '#/definitions/Link'
-      user:
-        $ref: '#/definitions/Link'
-      web_self_download_profile:
-        $ref: '#/definitions/Link'
-      web_self_confirm_destroy:
-        $ref: '#/definitions/Link'
-      groups:
-        $ref: '#/definitions/Link'
-    required:
-    - self
-    - web_self
-    - organization
-    - groups
-  Link:
-    required:
-    - href
-    properties:
-      href:
-        type: string
-      templated:
-        type: boolean
-        default: false
-  BadRequest:
-    required:
-    - id
-    - message
-    properties:
-      id:
-        type: string
-        enum:
-        - bad_request
-      message:
-        type: string
-  Unauthorized:
-    required:
-    - id
-    - message
-    properties:
-      id:
-        type: string
-        enum:
-        - unauthorized
-      message:
-        type: string
-  NotFound:
-    required:
-    - id
-    - message
-    properties:
-      id:
-        type: string
-        enum:
-        - not_found
-      message:
-        type: string
-securityDefinitions:
-  accessTokenAuth:
-    type: basic
+components:
+  schemas:
+    NotFound:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - not_found
+        message:
+          type: string
+    Membership:
+      properties:
+        admin:
+          type: boolean
+        invited:
+          type: boolean
+        state:
+          type: string
+        member_username:
+          type: string
+        member_token:
+          type: string
+        activated_at:
+          type: string
+        managed_by_scim:
+          type: boolean
+        _links:
+          $ref: '#/components/schemas/MembershipLinks'
+        _embedded:
+          $ref: '#/components/schemas/MembershipEmbeds'
+      required:
+      - _links
+      - admin
+      - state
+      - member_username
+      - member_token
+      - activated_at
+    Link:
+      required:
+      - href
+      properties:
+        href:
+          type: string
+        templated:
+          type: boolean
+          default: false
+    BadRequest:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - bad_request
+        message:
+          type: string
+    MembershipEmbeds: {}
+    Unauthorized:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - unauthorized
+        message:
+          type: string
+    MembershipLinks:
+      properties:
+        self:
+          $ref: '#/components/schemas/Link'
+        web_self:
+          $ref: '#/components/schemas/Link'
+        web_self_unban:
+          $ref: '#/components/schemas/Link'
+        web_self_approve:
+          $ref: '#/components/schemas/Link'
+        organization:
+          $ref: '#/components/schemas/Link'
+        user:
+          $ref: '#/components/schemas/Link'
+        web_self_download_profile:
+          $ref: '#/components/schemas/Link'
+        web_self_confirm_destroy:
+          $ref: '#/components/schemas/Link'
+        groups:
+          $ref: '#/components/schemas/Link'
+      required:
+      - self
+      - web_self
+      - organization
+      - groups
+  securitySchemes:
+    accessTokenAuth:
+      type: http
+      scheme: basic

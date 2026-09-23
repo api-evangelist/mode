@@ -1,7 +1,7 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
   version: 0.0.1
-  title: Mode Account Audit Logs API
+  title: Mode Audit Logs API
   description: 'Mode provides a REST API for many common operations, such as:
 
 
@@ -25,23 +25,15 @@ info:
     will result in a `401 Unauthorized` response.
 
 
-    [Create and Manage API Tokens](https://modeanalytics.com/settings/access_tokens)
-
-    '
+    Create and Manage API Tokens'
   termsOfService: https://mode.com/tos/
   contact:
     name: Mode API Team
     email: support@modeanalytics.com
   license:
     name: MIT
-host: modeanalytics.com
-basePath: /api
-schemes:
-- https
-consumes:
-- application/json
-produces:
-- application/hal+json
+servers:
+- url: https://modeanalytics.com/api
 security:
 - accessTokenAuth: []
 tags:
@@ -58,170 +50,191 @@ paths:
         in: path
         required: true
         description: '`Workspace` username'
-        type: string
+        schema:
+          type: string
       - name: start_timestamp
         in: query
         required: true
-        type: string
         description: The start of the time range for audit logs (ISO 8601 format).
+        schema:
+          type: string
       - name: end_timestamp
         in: query
         required: true
-        type: string
         description: The end of the time range for audit logs (ISO 8601 format).
+        schema:
+          type: string
       - name: action
         in: query
         required: false
-        type: string
         description: The type of action performed.
+        schema:
+          type: string
       - name: entity_id
         in: query
         required: false
-        type: string
         description: The ID of the entity to filter logs.
+        schema:
+          type: string
       - name: entity_type
         in: query
         required: false
-        type: string
         description: The type/category of the entity to filter logs.
+        schema:
+          type: string
       - name: entity_name
         in: query
         required: false
-        type: string
         description: The name of the entity affected by the action.
+        schema:
+          type: string
       - name: username
         in: query
         required: false
-        type: string
         description: The username of the user performing the action.
+        schema:
+          type: string
       - name: ip
         in: query
         required: false
-        type: string
         description: The IP address of the client device that initiated the action.
+        schema:
+          type: string
       - name: event_source
         in: query
         required: false
-        type: string
         description: The source of the event to filter logs.
+        schema:
+          type: string
       - name: next_token
         in: query
         required: false
-        type: string
         description: Token for fetching logs of the next page.
+        schema:
+          type: string
       responses:
         '200':
           description: A list of audit logs matching the given filters.
-          schema:
-            $ref: '#/definitions/AuditLog'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/AuditLog'
         '400':
           description: Bad request
-          schema:
-            $ref: '#/definitions/BadRequest'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
         '401':
           description: Unauthorized
-          schema:
-            $ref: '#/definitions/Unauthorized'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
         '403':
           description: Forbidden
-          schema:
-            $ref: '#/definitions/Forbidden'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Forbidden'
       tags:
       - Audit Logs
-definitions:
-  Forbidden:
-    required:
-    - id
-    - message
-    properties:
-      id:
-        type: string
-        enum:
-        - forbidden
-      message:
-        type: string
-  Unauthorized:
-    required:
-    - id
-    - message
-    properties:
-      id:
-        type: string
-        enum:
-        - unauthorized
-      message:
-        type: string
-  BadRequest:
-    required:
-    - id
-    - message
-    properties:
-      id:
-        type: string
-        enum:
-        - bad_request
-      message:
-        type: string
-  AuditLog:
-    type: object
-    description: Represents a single audit log event.
-    properties:
-      id:
-        type: string
-        description: Unique ID for the audit event
-        example: ae026c8c-3c13-45a3-9b36-5a16d42937db
-      action:
-        type: string
-        description: Action being audited
-        example: connection_group_added_with_role
-      description:
-        type: string
-        description: One-liner describing the audit event
-        example: group added to connection
-      context:
-        type: object
-        description: Additional metadata associated with the audit event
-        properties:
-          correlation_id:
-            type: string
-            example: 1f521917-5e07-4094-ae08-1b6254a2a6c8
-      actor:
-        type: object
-        description: Information about the user or system that triggered the event
-        properties:
-          ip:
-            type: string
-            example: 157.52.123.41
-          user_agent:
-            type: string
-            example: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36
-          user_id:
-            type: string
-            example: b903c024ac72
-          username:
-            type: string
-            example: sample_user_name
-      entity:
-        type: object
-        description: The primary entity affected in the action performed
-        properties:
-          entity_name:
-            type: string
-            example: Sample workspace name
-          entity_type:
-            type: string
-            example: workspace_connection
-          entity_id:
-            type: string
-            example: a45aaf31658b
-      timestamp:
-        type: string
-        format: date-time
-        description: Event timestamp
-        example: '2025-02-18T10:47:37.000000Z'
-      workspace_username:
-        type: string
-        example: sampleworkspaceusername
-securityDefinitions:
-  accessTokenAuth:
-    type: basic
+components:
+  schemas:
+    BadRequest:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - bad_request
+        message:
+          type: string
+    AuditLog:
+      type: object
+      description: Represents a single audit log event.
+      properties:
+        id:
+          type: string
+          description: Unique ID for the audit event
+          example: ae026c8c-3c13-45a3-9b36-5a16d42937db
+        action:
+          type: string
+          description: Action being audited
+          example: connection_group_added_with_role
+        description:
+          type: string
+          description: One-liner describing the audit event
+          example: group added to connection
+        context:
+          type: object
+          description: Additional metadata associated with the audit event
+          properties:
+            correlation_id:
+              type: string
+              example: 1f521917-5e07-4094-ae08-1b6254a2a6c8
+        actor:
+          type: object
+          description: Information about the user or system that triggered the event
+          properties:
+            ip:
+              type: string
+              example: 157.52.123.41
+            user_agent:
+              type: string
+              example: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36
+            user_id:
+              type: string
+              example: b903c024ac72
+            username:
+              type: string
+              example: sample_user_name
+        entity:
+          type: object
+          description: The primary entity affected in the action performed
+          properties:
+            entity_name:
+              type: string
+              example: Sample workspace name
+            entity_type:
+              type: string
+              example: workspace_connection
+            entity_id:
+              type: string
+              example: a45aaf31658b
+        timestamp:
+          type: string
+          format: date-time
+          description: Event timestamp
+          example: '2025-02-18T10:47:37.000000Z'
+        workspace_username:
+          type: string
+          example: sampleworkspaceusername
+    Unauthorized:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - unauthorized
+        message:
+          type: string
+    Forbidden:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - forbidden
+        message:
+          type: string
+  securitySchemes:
+    accessTokenAuth:
+      type: http
+      scheme: basic

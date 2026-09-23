@@ -1,4 +1,4 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
   version: 0.0.1
   title: Mode Account API
@@ -25,23 +25,15 @@ info:
     will result in a `401 Unauthorized` response.
 
 
-    [Create and Manage API Tokens](https://modeanalytics.com/settings/access_tokens)
-
-    '
+    Create and Manage API Tokens'
   termsOfService: https://mode.com/tos/
   contact:
     name: Mode API Team
     email: support@modeanalytics.com
   license:
     name: MIT
-host: modeanalytics.com
-basePath: /api
-schemes:
-- https
-consumes:
-- application/json
-produces:
-- application/hal+json
+servers:
+- url: https://modeanalytics.com/api
 security:
 - accessTokenAuth: []
 tags:
@@ -56,389 +48,395 @@ paths:
       responses:
         '401':
           description: Unauthorized
-          schema:
-            $ref: '#/definitions/Unauthorized'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
         '200':
           description: '`User` response'
-          schema:
-            $ref: '#/definitions/Account'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Account'
       tags:
       - Account
-definitions:
-  SpacesLinks:
-    properties:
-      next_page:
-        $ref: '#/definitions/Link'
-      prev_page:
-        $ref: '#/definitions/Link'
-      self:
-        $ref: '#/definitions/Link'
-    required:
-    - self
-  SpacesEmbeds: {}
-  Pagination:
-    required:
-    - first_page
-    - last_page
-    - total_pages
-    - total_count
-    properties:
-      first_page:
-        type: string
-      last_page:
-        type: string
-      total_pages:
-        type: integer
-      total_count:
-        type: integer
-  Avatar:
-    required:
-    - type
-    properties:
-      type:
-        type: string
-  DataSourcesLinks:
-    properties:
-      next_page:
-        $ref: '#/definitions/Link'
-      prev_page:
-        $ref: '#/definitions/Link'
-      self:
-        $ref: '#/definitions/Link'
-    required:
-    - self
-  Link:
-    required:
-    - href
-    properties:
-      href:
-        type: string
-      templated:
-        type: boolean
-        default: false
-  Unauthorized:
-    required:
-    - id
-    - message
-    properties:
-      id:
-        type: string
-        enum:
-        - unauthorized
-      message:
-        type: string
-  DataSourcesEmbeds: {}
-  AccountLinks:
-    properties:
-      self:
-        $ref: '#/definitions/Link'
-      web:
-        $ref: '#/definitions/Link'
-      web_settings:
-        $ref: '#/definitions/Link'
-      web_google_account:
-        $ref: '#/definitions/Link'
-      web_data_sources_settings:
-        $ref: '#/definitions/Link'
-      web_settings_slack:
-        $ref: '#/definitions/Link'
-      web_public_datasource_home:
-        $ref: '#/definitions/Link'
-      web_spaces:
-        $ref: '#/definitions/Link'
-      web_groups:
-        $ref: '#/definitions/Link'
-      web_new_organization:
-        $ref: '#/definitions/Link'
-      web_membership_events:
-        $ref: '#/definitions/Link'
-      web_member_sessions:
-        $ref: '#/definitions/Link'
-      web_settings_themes:
-        $ref: '#/definitions/Link'
-      web_trial_appointments:
-        $ref: '#/definitions/Link'
-      data_sources:
-        $ref: '#/definitions/Link'
-      data_source:
-        $ref: '#/definitions/Link'
-      admins:
-        $ref: '#/definitions/Link'
-      memberships:
-        $ref: '#/definitions/Link'
-      all_memberships:
-        $ref: '#/definitions/Link'
-      home_web:
-        $ref: '#/definitions/Link'
-      home_starred_web:
-        $ref: '#/definitions/Link'
-      home_explorations_web:
-        $ref: '#/definitions/Link'
-      home_reports_web:
-        $ref: '#/definitions/Link'
-      home_search_web:
-        $ref: '#/definitions/Link'
-      home_discover_web:
-        $ref: '#/definitions/Link'
-      select_data_sources_web:
-        $ref: '#/definitions/Link'
-      data_source_connection_request_web:
-        $ref: '#/definitions/Link'
-      new_invite_web:
-        $ref: '#/definitions/Link'
-      new_upload_web:
-        $ref: '#/definitions/Link'
-      billing_web:
-        $ref: '#/definitions/Link'
-      public_data_sources:
-        $ref: '#/definitions/Link'
-      organizations:
-        $ref: '#/definitions/Link'
-      preference:
-        $ref: '#/definitions/Link'
-      table:
-        $ref: '#/definitions/Link'
-      report:
-        $ref: '#/definitions/Link'
-      reports:
-        $ref: '#/definitions/Link'
-      archived_reports:
-        $ref: '#/definitions/Link'
-      public_reports:
-        $ref: '#/definitions/Link'
-      drafts_reports:
-        $ref: '#/definitions/Link'
-      starred_reports:
-        $ref: '#/definitions/Link'
-      by_ids_reports:
-        $ref: '#/definitions/Link'
-      viewed_reports:
-        $ref: '#/definitions/Link'
-      starred_datasets:
-        $ref: '#/definitions/Link'
-      by_ids_datasets:
-        $ref: '#/definitions/Link'
-      viewed_datasets:
-        $ref: '#/definitions/Link'
-      starred_base_reports:
-        $ref: '#/definitions/Link'
-      by_ids_base_reports:
-        $ref: '#/definitions/Link'
-      viewed_base_reports:
-        $ref: '#/definitions/Link'
-      by_tokens_definitions:
-        $ref: '#/definitions/Link'
-      bridges:
-        $ref: '#/definitions/Link'
-      access_tokens:
-        $ref: '#/definitions/Link'
-      new_report:
-        $ref: '#/definitions/Link'
-      new_report_web:
-        $ref: '#/definitions/Link'
-      validate_table:
-        $ref: '#/definitions/Link'
-      report_views:
-        $ref: '#/definitions/Link'
-      groups:
-        $ref: '#/definitions/Link'
-      group:
-        $ref: '#/definitions/Link'
-      everyone_group:
-        $ref: '#/definitions/Link'
-      users_groups_with_data_source_entitlements:
-        $ref: '#/definitions/Link'
-      spaces:
-        $ref: '#/definitions/Link'
-      space:
-        $ref: '#/definitions/Link'
-      custom_spaces:
-        $ref: '#/definitions/Link'
-      move_to_spaces:
-        $ref: '#/definitions/Link'
-      definitions:
-        $ref: '#/definitions/Link'
-      definition:
-        $ref: '#/definitions/Link'
-      color_palettes:
-        $ref: '#/definitions/Link'
-      all_color_palettes:
-        $ref: '#/definitions/Link'
-      color_palette:
-        $ref: '#/definitions/Link'
-      web_color_palettes_settings:
-        $ref: '#/definitions/Link'
-      validate_space_name:
-        $ref: '#/definitions/Link'
-      validate_definition_name:
-        $ref: '#/definitions/Link'
-      slack_app:
-        $ref: '#/definitions/Link'
-      trial_appointment:
-        $ref: '#/definitions/Link'
-      member_session_timeout:
-        $ref: '#/definitions/Link'
-      easy_identity_providers:
-        $ref: '#/definitions/Link'
-      saml_identity_providers:
-        $ref: '#/definitions/Link'
-      scim_token:
-        $ref: '#/definitions/Link'
-      memberships_lite:
-        $ref: '#/definitions/Link'
-      schedules:
-        $ref: '#/definitions/Link'
-      api_keys:
-        $ref: '#/definitions/Link'
-    required:
-    - self
-    - web
-    - web_public_datasource_home
-    - web_groups
-    - web_new_organization
-    - home_web
-    - home_starred_web
-    - home_explorations_web
-    - home_search_web
-    - new_invite_web
-    - new_upload_web
-    - report
-    - reports
-    - archived_reports
-    - public_reports
-    - drafts_reports
-    - starred_reports
-    - by_ids_reports
-    - viewed_reports
-    - starred_datasets
-    - by_ids_datasets
-    - viewed_datasets
-    - starred_base_reports
-    - by_ids_base_reports
-    - viewed_base_reports
-    - all_color_palettes
-  DataSources:
-    properties:
-      pagination:
-        $ref: '#/definitions/Pagination'
-      data_index_auth_token:
-        type: string
-      _links:
-        $ref: '#/definitions/DataSourcesLinks'
-      _embedded:
-        $ref: '#/definitions/DataSourcesEmbeds'
-    required:
-    - _links
-  Account:
-    properties:
-      username:
-        type: string
-      name:
-        type: string
-      id:
-        type: integer
-      token:
-        type: string
-      email:
-        type: string
-      dataset_size_limit_mb:
-        type: string
-      query_run_size_limit_mb:
-        type: string
-      email_verified:
-        type: boolean
-      avatar:
-        $ref: '#/definitions/Avatar'
-      user:
-        type: boolean
-      thoughtspot_integrated:
-        type: boolean
-      space_count:
-        type: integer
-      data_source_count:
-        type: integer
-      default_data_source_token:
-        type: string
-      organizations_count:
-        type: string
-      trial_state:
-        enum:
-        - pending
-        - active
-        - expired
-        type: string
-      organization_restricted:
-        type: string
-      membership_type:
-        enum:
-        - admin
-        - full
-        type: string
-      payment_method_confirmed:
-        type: boolean
-      private_definition_count:
-        type: integer
-      private_definition_limit:
-        type: integer
-      authorized_domains:
-        type: array
-        items:
+components:
+  schemas:
+    DataSources:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        data_index_auth_token:
           type: string
-      plan_code:
-        enum:
-        - standard
-        - plus
-        - free
-        type: string
-      seat_limit_reached:
-        type: boolean
-      org_seat_limit_reached:
-        type: boolean
-      python_performance_first_tier:
-        type: boolean
-      admin_data_source_connections_only:
-        type: boolean
-      admin_collection_creation_only:
-        type: boolean
-      scim_enabled:
-        type: string
-      created_at:
-        type: string
-      settings:
-        type: string
-      _links:
-        $ref: '#/definitions/AccountLinks'
-      _embedded:
-        $ref: '#/definitions/AccountEmbeds'
-    required:
-    - _links
-    - username
-    - name
-    - id
-    - token
-    - dataset_size_limit_mb
-    - query_run_size_limit_mb
-    - avatar
-    - user
-    - created_at
-  Spaces:
-    properties:
-      pagination:
-        $ref: '#/definitions/Pagination'
-      _links:
-        $ref: '#/definitions/SpacesLinks'
-      _embedded:
-        $ref: '#/definitions/SpacesEmbeds'
-    required:
-    - _links
-  AccountEmbeds:
-    properties:
-      data_sources:
-        $ref: '#/definitions/DataSources'
-      spaces:
-        $ref: '#/definitions/Spaces'
-      all_spaces:
-        $ref: '#/definitions/Spaces'
-securityDefinitions:
-  accessTokenAuth:
-    type: basic
+        _links:
+          $ref: '#/components/schemas/DataSourcesLinks'
+        _embedded:
+          $ref: '#/components/schemas/DataSourcesEmbeds'
+      required:
+      - _links
+    AccountLinks:
+      properties:
+        self:
+          $ref: '#/components/schemas/Link'
+        web:
+          $ref: '#/components/schemas/Link'
+        web_settings:
+          $ref: '#/components/schemas/Link'
+        web_google_account:
+          $ref: '#/components/schemas/Link'
+        web_data_sources_settings:
+          $ref: '#/components/schemas/Link'
+        web_settings_slack:
+          $ref: '#/components/schemas/Link'
+        web_public_datasource_home:
+          $ref: '#/components/schemas/Link'
+        web_spaces:
+          $ref: '#/components/schemas/Link'
+        web_groups:
+          $ref: '#/components/schemas/Link'
+        web_new_organization:
+          $ref: '#/components/schemas/Link'
+        web_membership_events:
+          $ref: '#/components/schemas/Link'
+        web_member_sessions:
+          $ref: '#/components/schemas/Link'
+        web_settings_themes:
+          $ref: '#/components/schemas/Link'
+        web_trial_appointments:
+          $ref: '#/components/schemas/Link'
+        data_sources:
+          $ref: '#/components/schemas/Link'
+        data_source:
+          $ref: '#/components/schemas/Link'
+        admins:
+          $ref: '#/components/schemas/Link'
+        memberships:
+          $ref: '#/components/schemas/Link'
+        all_memberships:
+          $ref: '#/components/schemas/Link'
+        home_web:
+          $ref: '#/components/schemas/Link'
+        home_starred_web:
+          $ref: '#/components/schemas/Link'
+        home_explorations_web:
+          $ref: '#/components/schemas/Link'
+        home_reports_web:
+          $ref: '#/components/schemas/Link'
+        home_search_web:
+          $ref: '#/components/schemas/Link'
+        home_discover_web:
+          $ref: '#/components/schemas/Link'
+        select_data_sources_web:
+          $ref: '#/components/schemas/Link'
+        data_source_connection_request_web:
+          $ref: '#/components/schemas/Link'
+        new_invite_web:
+          $ref: '#/components/schemas/Link'
+        new_upload_web:
+          $ref: '#/components/schemas/Link'
+        billing_web:
+          $ref: '#/components/schemas/Link'
+        public_data_sources:
+          $ref: '#/components/schemas/Link'
+        organizations:
+          $ref: '#/components/schemas/Link'
+        preference:
+          $ref: '#/components/schemas/Link'
+        table:
+          $ref: '#/components/schemas/Link'
+        report:
+          $ref: '#/components/schemas/Link'
+        reports:
+          $ref: '#/components/schemas/Link'
+        archived_reports:
+          $ref: '#/components/schemas/Link'
+        public_reports:
+          $ref: '#/components/schemas/Link'
+        drafts_reports:
+          $ref: '#/components/schemas/Link'
+        starred_reports:
+          $ref: '#/components/schemas/Link'
+        by_ids_reports:
+          $ref: '#/components/schemas/Link'
+        viewed_reports:
+          $ref: '#/components/schemas/Link'
+        starred_datasets:
+          $ref: '#/components/schemas/Link'
+        by_ids_datasets:
+          $ref: '#/components/schemas/Link'
+        viewed_datasets:
+          $ref: '#/components/schemas/Link'
+        starred_base_reports:
+          $ref: '#/components/schemas/Link'
+        by_ids_base_reports:
+          $ref: '#/components/schemas/Link'
+        viewed_base_reports:
+          $ref: '#/components/schemas/Link'
+        by_tokens_definitions:
+          $ref: '#/components/schemas/Link'
+        bridges:
+          $ref: '#/components/schemas/Link'
+        access_tokens:
+          $ref: '#/components/schemas/Link'
+        new_report:
+          $ref: '#/components/schemas/Link'
+        new_report_web:
+          $ref: '#/components/schemas/Link'
+        validate_table:
+          $ref: '#/components/schemas/Link'
+        report_views:
+          $ref: '#/components/schemas/Link'
+        groups:
+          $ref: '#/components/schemas/Link'
+        group:
+          $ref: '#/components/schemas/Link'
+        everyone_group:
+          $ref: '#/components/schemas/Link'
+        users_groups_with_data_source_entitlements:
+          $ref: '#/components/schemas/Link'
+        spaces:
+          $ref: '#/components/schemas/Link'
+        space:
+          $ref: '#/components/schemas/Link'
+        custom_spaces:
+          $ref: '#/components/schemas/Link'
+        move_to_spaces:
+          $ref: '#/components/schemas/Link'
+        definitions:
+          $ref: '#/components/schemas/Link'
+        definition:
+          $ref: '#/components/schemas/Link'
+        color_palettes:
+          $ref: '#/components/schemas/Link'
+        all_color_palettes:
+          $ref: '#/components/schemas/Link'
+        color_palette:
+          $ref: '#/components/schemas/Link'
+        web_color_palettes_settings:
+          $ref: '#/components/schemas/Link'
+        validate_space_name:
+          $ref: '#/components/schemas/Link'
+        validate_definition_name:
+          $ref: '#/components/schemas/Link'
+        slack_app:
+          $ref: '#/components/schemas/Link'
+        trial_appointment:
+          $ref: '#/components/schemas/Link'
+        member_session_timeout:
+          $ref: '#/components/schemas/Link'
+        easy_identity_providers:
+          $ref: '#/components/schemas/Link'
+        saml_identity_providers:
+          $ref: '#/components/schemas/Link'
+        scim_token:
+          $ref: '#/components/schemas/Link'
+        memberships_lite:
+          $ref: '#/components/schemas/Link'
+        schedules:
+          $ref: '#/components/schemas/Link'
+        api_keys:
+          $ref: '#/components/schemas/Link'
+      required:
+      - self
+      - web
+      - web_public_datasource_home
+      - web_groups
+      - web_new_organization
+      - home_web
+      - home_starred_web
+      - home_explorations_web
+      - home_search_web
+      - new_invite_web
+      - new_upload_web
+      - report
+      - reports
+      - archived_reports
+      - public_reports
+      - drafts_reports
+      - starred_reports
+      - by_ids_reports
+      - viewed_reports
+      - starred_datasets
+      - by_ids_datasets
+      - viewed_datasets
+      - starred_base_reports
+      - by_ids_base_reports
+      - viewed_base_reports
+      - all_color_palettes
+    SpacesEmbeds: {}
+    Link:
+      required:
+      - href
+      properties:
+        href:
+          type: string
+        templated:
+          type: boolean
+          default: false
+    SpacesLinks:
+      properties:
+        next_page:
+          $ref: '#/components/schemas/Link'
+        prev_page:
+          $ref: '#/components/schemas/Link'
+        self:
+          $ref: '#/components/schemas/Link'
+      required:
+      - self
+    Unauthorized:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - unauthorized
+        message:
+          type: string
+    Account:
+      properties:
+        username:
+          type: string
+        name:
+          type: string
+        id:
+          type: integer
+        token:
+          type: string
+        email:
+          type: string
+        dataset_size_limit_mb:
+          type: string
+        query_run_size_limit_mb:
+          type: string
+        email_verified:
+          type: boolean
+        avatar:
+          $ref: '#/components/schemas/Avatar'
+        user:
+          type: boolean
+        thoughtspot_integrated:
+          type: boolean
+        space_count:
+          type: integer
+        data_source_count:
+          type: integer
+        default_data_source_token:
+          type: string
+        organizations_count:
+          type: string
+        trial_state:
+          enum:
+          - pending
+          - active
+          - expired
+          type: string
+        organization_restricted:
+          type: string
+        membership_type:
+          enum:
+          - admin
+          - full
+          type: string
+        payment_method_confirmed:
+          type: boolean
+        private_definition_count:
+          type: integer
+        private_definition_limit:
+          type: integer
+        authorized_domains:
+          type: array
+          items:
+            type: string
+        plan_code:
+          enum:
+          - standard
+          - plus
+          - free
+          type: string
+        seat_limit_reached:
+          type: boolean
+        org_seat_limit_reached:
+          type: boolean
+        python_performance_first_tier:
+          type: boolean
+        admin_data_source_connections_only:
+          type: boolean
+        admin_collection_creation_only:
+          type: boolean
+        scim_enabled:
+          type: string
+        created_at:
+          type: string
+        settings:
+          type: string
+        _links:
+          $ref: '#/components/schemas/AccountLinks'
+        _embedded:
+          $ref: '#/components/schemas/AccountEmbeds'
+      required:
+      - _links
+      - username
+      - name
+      - id
+      - token
+      - dataset_size_limit_mb
+      - query_run_size_limit_mb
+      - avatar
+      - user
+      - created_at
+    DataSourcesLinks:
+      properties:
+        next_page:
+          $ref: '#/components/schemas/Link'
+        prev_page:
+          $ref: '#/components/schemas/Link'
+        self:
+          $ref: '#/components/schemas/Link'
+      required:
+      - self
+    Pagination:
+      required:
+      - first_page
+      - last_page
+      - total_pages
+      - total_count
+      properties:
+        first_page:
+          type: string
+        last_page:
+          type: string
+        total_pages:
+          type: integer
+        total_count:
+          type: integer
+    Avatar:
+      required:
+      - type
+      properties:
+        type:
+          type: string
+    AccountEmbeds:
+      properties:
+        data_sources:
+          $ref: '#/components/schemas/DataSources'
+        spaces:
+          $ref: '#/components/schemas/Spaces'
+        all_spaces:
+          $ref: '#/components/schemas/Spaces'
+    Spaces:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        _links:
+          $ref: '#/components/schemas/SpacesLinks'
+        _embedded:
+          $ref: '#/components/schemas/SpacesEmbeds'
+      required:
+      - _links
+    DataSourcesEmbeds: {}
+  securitySchemes:
+    accessTokenAuth:
+      type: http
+      scheme: basic
