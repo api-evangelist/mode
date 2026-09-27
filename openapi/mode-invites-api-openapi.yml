@@ -92,28 +92,17 @@ paths:
       - Invites
 components:
   schemas:
-    NotFound:
-      required:
-      - id
-      - message
+    InviteLinks:
       properties:
-        id:
-          type: string
-          enum:
-          - not_found
-        message:
-          type: string
-    Forbidden:
+        inviter:
+          $ref: '#/components/schemas/Link'
+        invitee:
+          $ref: '#/components/schemas/Link'
+        web_self_resend:
+          $ref: '#/components/schemas/Link'
       required:
-      - id
-      - message
-      properties:
-        id:
-          type: string
-          enum:
-          - forbidden
-        message:
-          type: string
+      - inviter
+      - web_self_resend
     CreateInviteRequestBody:
       required:
       - invite
@@ -136,17 +125,29 @@ components:
             message:
               type: string
               example: You are an analyst, Harry!
-    InviteLinks:
-      properties:
-        inviter:
-          $ref: '#/components/schemas/Link'
-        invitee:
-          $ref: '#/components/schemas/Link'
-        web_self_resend:
-          $ref: '#/components/schemas/Link'
+    Forbidden:
       required:
-      - inviter
-      - web_self_resend
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - forbidden
+        message:
+          type: string
+    Unauthorized:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - unauthorized
+        message:
+          type: string
+    InviteEmbeds: {}
     Link:
       required:
       - href
@@ -167,7 +168,7 @@ components:
           - bad_request
         message:
           type: string
-    Unauthorized:
+    NotFound:
       required:
       - id
       - message
@@ -175,7 +176,7 @@ components:
         id:
           type: string
           enum:
-          - unauthorized
+          - not_found
         message:
           type: string
     Invite:
@@ -218,7 +219,6 @@ components:
       - limited
       - expires_at
       - created_at
-    InviteEmbeds: {}
   securitySchemes:
     accessTokenAuth:
       type: http

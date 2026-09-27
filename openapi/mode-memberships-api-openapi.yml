@@ -153,17 +153,6 @@ paths:
       - Memberships
 components:
   schemas:
-    NotFound:
-      required:
-      - id
-      - message
-      properties:
-        id:
-          type: string
-          enum:
-          - not_found
-        message:
-          type: string
     Membership:
       properties:
         admin:
@@ -191,27 +180,6 @@ components:
       - member_username
       - member_token
       - activated_at
-    Link:
-      required:
-      - href
-      properties:
-        href:
-          type: string
-        templated:
-          type: boolean
-          default: false
-    BadRequest:
-      required:
-      - id
-      - message
-      properties:
-        id:
-          type: string
-          enum:
-          - bad_request
-        message:
-          type: string
-    MembershipEmbeds: {}
     Unauthorized:
       required:
       - id
@@ -223,6 +191,7 @@ components:
           - unauthorized
         message:
           type: string
+    MembershipEmbeds: {}
     MembershipLinks:
       properties:
         self:
@@ -248,6 +217,37 @@ components:
       - web_self
       - organization
       - groups
+    Link:
+      required:
+      - href
+      properties:
+        href:
+          type: string
+        templated:
+          type: boolean
+          default: false
+    BadRequest:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - bad_request
+        message:
+          type: string
+    NotFound:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - not_found
+        message:
+          type: string
   securitySchemes:
     accessTokenAuth:
       type: http

@@ -141,17 +141,6 @@ paths:
       - Audit Logs
 components:
   schemas:
-    BadRequest:
-      required:
-      - id
-      - message
-      properties:
-        id:
-          type: string
-          enum:
-          - bad_request
-        message:
-          type: string
     AuditLog:
       type: object
       description: Represents a single audit log event.
@@ -212,7 +201,7 @@ components:
         workspace_username:
           type: string
           example: sampleworkspaceusername
-    Unauthorized:
+    BadRequest:
       required:
       - id
       - message
@@ -220,7 +209,7 @@ components:
         id:
           type: string
           enum:
-          - unauthorized
+          - bad_request
         message:
           type: string
     Forbidden:
@@ -232,6 +221,17 @@ components:
           type: string
           enum:
           - forbidden
+        message:
+          type: string
+    Unauthorized:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - unauthorized
         message:
           type: string
   securitySchemes:

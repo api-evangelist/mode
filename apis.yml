@@ -158,9 +158,11 @@ apis:
   humanURL: https://mode.com/developer/api-reference/introduction/
   baseURL: https://app.mode.com/api
   tags:
+  - Spaces
   - Space
   tags_raw:
   - Spaces
+  - Space
   properties:
   - type: OpenAPI
     url: openapi/mode-spaces-api-openapi.yml

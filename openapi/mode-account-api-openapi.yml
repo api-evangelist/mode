@@ -62,18 +62,21 @@ paths:
       - Account
 components:
   schemas:
-    DataSources:
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        data_index_auth_token:
-          type: string
-        _links:
-          $ref: '#/components/schemas/DataSourcesLinks'
-        _embedded:
-          $ref: '#/components/schemas/DataSourcesEmbeds'
+    Pagination:
       required:
-      - _links
+      - first_page
+      - last_page
+      - total_pages
+      - total_count
+      properties:
+        first_page:
+          type: string
+        last_page:
+          type: string
+        total_pages:
+          type: integer
+        total_count:
+          type: integer
     AccountLinks:
       properties:
         self:
@@ -263,16 +266,18 @@ components:
       - by_ids_base_reports
       - viewed_base_reports
       - all_color_palettes
-    SpacesEmbeds: {}
-    Link:
-      required:
-      - href
+    DataSources:
       properties:
-        href:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        data_index_auth_token:
           type: string
-        templated:
-          type: boolean
-          default: false
+        _links:
+          $ref: '#/components/schemas/DataSourcesLinks'
+        _embedded:
+          $ref: '#/components/schemas/DataSourcesEmbeds'
+      required:
+      - _links
     SpacesLinks:
       properties:
         next_page:
@@ -294,6 +299,32 @@ components:
           - unauthorized
         message:
           type: string
+    Avatar:
+      required:
+      - type
+      properties:
+        type:
+          type: string
+    DataSourcesEmbeds: {}
+    Spaces:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        _links:
+          $ref: '#/components/schemas/SpacesLinks'
+        _embedded:
+          $ref: '#/components/schemas/SpacesEmbeds'
+      required:
+      - _links
+    Link:
+      required:
+      - href
+      properties:
+        href:
+          type: string
+        templated:
+          type: boolean
+          default: false
     Account:
       properties:
         username:
@@ -386,6 +417,15 @@ components:
       - avatar
       - user
       - created_at
+    SpacesEmbeds: {}
+    AccountEmbeds:
+      properties:
+        data_sources:
+          $ref: '#/components/schemas/DataSources'
+        spaces:
+          $ref: '#/components/schemas/Spaces'
+        all_spaces:
+          $ref: '#/components/schemas/Spaces'
     DataSourcesLinks:
       properties:
         next_page:
@@ -396,46 +436,6 @@ components:
           $ref: '#/components/schemas/Link'
       required:
       - self
-    Pagination:
-      required:
-      - first_page
-      - last_page
-      - total_pages
-      - total_count
-      properties:
-        first_page:
-          type: string
-        last_page:
-          type: string
-        total_pages:
-          type: integer
-        total_count:
-          type: integer
-    Avatar:
-      required:
-      - type
-      properties:
-        type:
-          type: string
-    AccountEmbeds:
-      properties:
-        data_sources:
-          $ref: '#/components/schemas/DataSources'
-        spaces:
-          $ref: '#/components/schemas/Spaces'
-        all_spaces:
-          $ref: '#/components/schemas/Spaces'
-    Spaces:
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        _links:
-          $ref: '#/components/schemas/SpacesLinks'
-        _embedded:
-          $ref: '#/components/schemas/SpacesEmbeds'
-      required:
-      - _links
-    DataSourcesEmbeds: {}
   securitySchemes:
     accessTokenAuth:
       type: http

@@ -371,6 +371,21 @@ paths:
       - Data Sources
 components:
   schemas:
+    Pagination:
+      required:
+      - first_page
+      - last_page
+      - total_pages
+      - total_count
+      properties:
+        first_page:
+          type: string
+        last_page:
+          type: string
+        total_pages:
+          type: integer
+        total_count:
+          type: integer
     DataSources:
       properties:
         pagination:
@@ -383,67 +398,6 @@ components:
           $ref: '#/components/schemas/DataSourcesEmbeds'
       required:
       - _links
-    DataSourceCustomAttributes:
-      properties:
-        standard_sql:
-          type: boolean
-    ReportsLinks:
-      properties:
-        next_page:
-          $ref: '#/components/schemas/Link'
-        prev_page:
-          $ref: '#/components/schemas/Link'
-        self:
-          $ref: '#/components/schemas/Link'
-      required:
-      - self
-    DataSourceEmbeds: {}
-    DataSourcesLinks:
-      properties:
-        next_page:
-          $ref: '#/components/schemas/Link'
-        prev_page:
-          $ref: '#/components/schemas/Link'
-        self:
-          $ref: '#/components/schemas/Link'
-      required:
-      - self
-    UpdateDataSourceRequestBody:
-      required:
-      - data_source
-      type: object
-      properties:
-        data_source:
-          type: object
-          description: The parameters of the data source to update
-          properties:
-            name:
-              type: string
-              description: Name of the `data source`
-              example: Redshift Database
-            description:
-              type: string
-              description: Description of the `data source`
-              example: Marketing data
-            password:
-              type: string
-              description: Password for the `data source`
-              example: redshift_db_pw
-            custom_attributes:
-              type: object
-              description: For Oracle Autonomous Database connected via bridge, pass the connection string as a custom attribute
-              properties:
-                connection_string:
-                  type: string
-            certificate:
-              type: string
-              format: binary
-            key:
-              type: string
-              format: binary
-            wallet:
-              type: string
-              format: binary
     DataSourceLinks:
       properties:
         self:
@@ -464,27 +418,6 @@ components:
       - account
       - web
       - web_home
-    NotFound:
-      required:
-      - id
-      - message
-      properties:
-        id:
-          type: string
-          enum:
-          - not_found
-        message:
-          type: string
-    DataSourceSchemaUpdateEmbeds: {}
-    Link:
-      required:
-      - href
-      properties:
-        href:
-          type: string
-        templated:
-          type: boolean
-          default: false
     Unauthorized:
       required:
       - id
@@ -496,29 +429,14 @@ components:
           - unauthorized
         message:
           type: string
-    Pagination:
-      required:
-      - first_page
-      - last_page
-      - total_pages
-      - total_count
-      properties:
-        first_page:
-          type: string
-        last_page:
-          type: string
-        total_pages:
-          type: integer
-        total_count:
-          type: integer
-    ReportsEmbeds: {}
     DataSourceSchemaUpdateLinks:
       properties:
         self:
           $ref: '#/components/schemas/Link'
       required:
       - self
-    BadRequest:
+    DataSourcesEmbeds: {}
+    NotFound:
       required:
       - id
       - message
@@ -526,39 +444,40 @@ components:
         id:
           type: string
           enum:
-          - bad_request
+          - not_found
         message:
           type: string
-    DataSourceSchemaUpdate:
+    DataSourcesLinks:
       properties:
-        id:
-          type: string
-        token:
-          type: string
-        state:
-          type: string
-        content_length:
-          type: string
-        number_of_schemas:
-          type: string
-        number_of_tables:
-          type: string
-        last_succesful_refresh_at:
-          type: string
-        webapp_uri:
-          type: string
-        _links:
-          $ref: '#/components/schemas/DataSourceSchemaUpdateLinks'
-        _embedded:
-          $ref: '#/components/schemas/DataSourceSchemaUpdateEmbeds'
+        next_page:
+          $ref: '#/components/schemas/Link'
+        prev_page:
+          $ref: '#/components/schemas/Link'
+        self:
+          $ref: '#/components/schemas/Link'
       required:
-      - _links
-      - id
-      - token
-      - state
-      - content_length
-      - number_of_schemas
-      - number_of_tables
+      - self
+    DataSourceSchemaUpdateEmbeds: {}
+    ReportsLinks:
+      properties:
+        next_page:
+          $ref: '#/components/schemas/Link'
+        prev_page:
+          $ref: '#/components/schemas/Link'
+        self:
+          $ref: '#/components/schemas/Link'
+      required:
+      - self
+    ReportsEmbeds: {}
+    Link:
+      required:
+      - href
+      properties:
+        href:
+          type: string
+        templated:
+          type: boolean
+          default: false
     DataSource:
       properties:
         id:
@@ -681,6 +600,88 @@ components:
       - bridged
       - adapter_version
       - custom_attributes
+    DataSourceEmbeds: {}
+    DataSourceCustomAttributes:
+      properties:
+        standard_sql:
+          type: boolean
+    DataSourceSchemaUpdate:
+      properties:
+        id:
+          type: string
+        token:
+          type: string
+        state:
+          type: string
+        content_length:
+          type: string
+        number_of_schemas:
+          type: string
+        number_of_tables:
+          type: string
+        last_succesful_refresh_at:
+          type: string
+        webapp_uri:
+          type: string
+        _links:
+          $ref: '#/components/schemas/DataSourceSchemaUpdateLinks'
+        _embedded:
+          $ref: '#/components/schemas/DataSourceSchemaUpdateEmbeds'
+      required:
+      - _links
+      - id
+      - token
+      - state
+      - content_length
+      - number_of_schemas
+      - number_of_tables
+    BadRequest:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - bad_request
+        message:
+          type: string
+    UpdateDataSourceRequestBody:
+      required:
+      - data_source
+      type: object
+      properties:
+        data_source:
+          type: object
+          description: The parameters of the data source to update
+          properties:
+            name:
+              type: string
+              description: Name of the `data source`
+              example: Redshift Database
+            description:
+              type: string
+              description: Description of the `data source`
+              example: Marketing data
+            password:
+              type: string
+              description: Password for the `data source`
+              example: redshift_db_pw
+            custom_attributes:
+              type: object
+              description: For Oracle Autonomous Database connected via bridge, pass the connection string as a custom attribute
+              properties:
+                connection_string:
+                  type: string
+            certificate:
+              type: string
+              format: binary
+            key:
+              type: string
+              format: binary
+            wallet:
+              type: string
+              format: binary
     Reports:
       properties:
         pagination:
@@ -691,7 +692,6 @@ components:
           $ref: '#/components/schemas/ReportsEmbeds'
       required:
       - _links
-    DataSourcesEmbeds: {}
   securitySchemes:
     accessTokenAuth:
       type: http
