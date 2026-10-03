@@ -251,38 +251,37 @@ paths:
       - Definitions
 components:
   schemas:
-    Pagination:
+    Link:
       required:
-      - first_page
-      - last_page
-      - total_pages
-      - total_count
+      - href
       properties:
-        first_page:
+        href:
           type: string
-        last_page:
-          type: string
-        total_pages:
-          type: integer
-        total_count:
-          type: integer
-    DefinitionLinks:
+        templated:
+          type: boolean
+          default: false
+    DefinitionsLinks:
       properties:
+        next_page:
+          $ref: '#/components/schemas/Link'
+        prev_page:
+          $ref: '#/components/schemas/Link'
         self:
-          $ref: '#/components/schemas/Link'
-        last_run:
-          $ref: '#/components/schemas/Link'
-        last_successful_github_sync:
-          $ref: '#/components/schemas/Link'
-        web_edit:
-          $ref: '#/components/schemas/Link'
-        creator:
           $ref: '#/components/schemas/Link'
       required:
       - self
-      - last_run
-      - last_successful_github_sync
-      - web_edit
+    NotFound:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - not_found
+        message:
+          type: string
+    DefinitionsEmbeds: {}
     Unauthorized:
       required:
       - id
@@ -294,27 +293,6 @@ components:
           - unauthorized
         message:
           type: string
-    DefinitionEmbeds: {}
-    DefinitionsLinks:
-      properties:
-        next_page:
-          $ref: '#/components/schemas/Link'
-        prev_page:
-          $ref: '#/components/schemas/Link'
-        self:
-          $ref: '#/components/schemas/Link'
-      required:
-      - self
-    Link:
-      required:
-      - href
-      properties:
-        href:
-          type: string
-        templated:
-          type: boolean
-          default: false
-    DefinitionsEmbeds: {}
     Definition:
       properties:
         id:
@@ -355,6 +333,34 @@ components:
       - updated_at
       - last_successful_sync_at
       - last_saved_at
+    DefinitionLinks:
+      properties:
+        self:
+          $ref: '#/components/schemas/Link'
+        last_run:
+          $ref: '#/components/schemas/Link'
+        last_successful_github_sync:
+          $ref: '#/components/schemas/Link'
+        web_edit:
+          $ref: '#/components/schemas/Link'
+        creator:
+          $ref: '#/components/schemas/Link'
+      required:
+      - self
+      - last_run
+      - last_successful_github_sync
+      - web_edit
+    Definitions:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        _links:
+          $ref: '#/components/schemas/DefinitionsLinks'
+        _embedded:
+          $ref: '#/components/schemas/DefinitionsEmbeds'
+      required:
+      - _links
+    DefinitionEmbeds: {}
     BadRequest:
       required:
       - id
@@ -366,27 +372,21 @@ components:
           - bad_request
         message:
           type: string
-    NotFound:
+    Pagination:
       required:
-      - id
-      - message
+      - first_page
+      - last_page
+      - total_pages
+      - total_count
       properties:
-        id:
+        first_page:
           type: string
-          enum:
-          - not_found
-        message:
+        last_page:
           type: string
-    Definitions:
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        _links:
-          $ref: '#/components/schemas/DefinitionsLinks'
-        _embedded:
-          $ref: '#/components/schemas/DefinitionsEmbeds'
-      required:
-      - _links
+        total_pages:
+          type: integer
+        total_count:
+          type: integer
   securitySchemes:
     accessTokenAuth:
       type: http

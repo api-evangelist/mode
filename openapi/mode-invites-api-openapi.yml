@@ -92,17 +92,15 @@ paths:
       - Invites
 components:
   schemas:
-    InviteLinks:
-      properties:
-        inviter:
-          $ref: '#/components/schemas/Link'
-        invitee:
-          $ref: '#/components/schemas/Link'
-        web_self_resend:
-          $ref: '#/components/schemas/Link'
+    Link:
       required:
-      - inviter
-      - web_self_resend
+      - href
+      properties:
+        href:
+          type: string
+        templated:
+          type: boolean
+          default: false
     CreateInviteRequestBody:
       required:
       - invite
@@ -125,7 +123,18 @@ components:
             message:
               type: string
               example: You are an analyst, Harry!
-    Forbidden:
+    InviteLinks:
+      properties:
+        inviter:
+          $ref: '#/components/schemas/Link'
+        invitee:
+          $ref: '#/components/schemas/Link'
+        web_self_resend:
+          $ref: '#/components/schemas/Link'
+      required:
+      - inviter
+      - web_self_resend
+    NotFound:
       required:
       - id
       - message
@@ -133,7 +142,7 @@ components:
         id:
           type: string
           enum:
-          - forbidden
+          - not_found
         message:
           type: string
     Unauthorized:
@@ -147,38 +156,18 @@ components:
           - unauthorized
         message:
           type: string
+    Forbidden:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - forbidden
+        message:
+          type: string
     InviteEmbeds: {}
-    Link:
-      required:
-      - href
-      properties:
-        href:
-          type: string
-        templated:
-          type: boolean
-          default: false
-    BadRequest:
-      required:
-      - id
-      - message
-      properties:
-        id:
-          type: string
-          enum:
-          - bad_request
-        message:
-          type: string
-    NotFound:
-      required:
-      - id
-      - message
-      properties:
-        id:
-          type: string
-          enum:
-          - not_found
-        message:
-          type: string
     Invite:
       properties:
         email:
@@ -219,6 +208,17 @@ components:
       - limited
       - expires_at
       - created_at
+    BadRequest:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - bad_request
+        message:
+          type: string
   securitySchemes:
     accessTokenAuth:
       type: http

@@ -153,6 +153,74 @@ paths:
       - Memberships
 components:
   schemas:
+    Link:
+      required:
+      - href
+      properties:
+        href:
+          type: string
+        templated:
+          type: boolean
+          default: false
+    NotFound:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - not_found
+        message:
+          type: string
+    Unauthorized:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - unauthorized
+        message:
+          type: string
+    MembershipLinks:
+      properties:
+        self:
+          $ref: '#/components/schemas/Link'
+        web_self:
+          $ref: '#/components/schemas/Link'
+        web_self_unban:
+          $ref: '#/components/schemas/Link'
+        web_self_approve:
+          $ref: '#/components/schemas/Link'
+        organization:
+          $ref: '#/components/schemas/Link'
+        user:
+          $ref: '#/components/schemas/Link'
+        web_self_download_profile:
+          $ref: '#/components/schemas/Link'
+        web_self_confirm_destroy:
+          $ref: '#/components/schemas/Link'
+        groups:
+          $ref: '#/components/schemas/Link'
+      required:
+      - self
+      - web_self
+      - organization
+      - groups
+    MembershipEmbeds: {}
+    BadRequest:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - bad_request
+        message:
+          type: string
     Membership:
       properties:
         admin:
@@ -180,74 +248,6 @@ components:
       - member_username
       - member_token
       - activated_at
-    Unauthorized:
-      required:
-      - id
-      - message
-      properties:
-        id:
-          type: string
-          enum:
-          - unauthorized
-        message:
-          type: string
-    MembershipEmbeds: {}
-    MembershipLinks:
-      properties:
-        self:
-          $ref: '#/components/schemas/Link'
-        web_self:
-          $ref: '#/components/schemas/Link'
-        web_self_unban:
-          $ref: '#/components/schemas/Link'
-        web_self_approve:
-          $ref: '#/components/schemas/Link'
-        organization:
-          $ref: '#/components/schemas/Link'
-        user:
-          $ref: '#/components/schemas/Link'
-        web_self_download_profile:
-          $ref: '#/components/schemas/Link'
-        web_self_confirm_destroy:
-          $ref: '#/components/schemas/Link'
-        groups:
-          $ref: '#/components/schemas/Link'
-      required:
-      - self
-      - web_self
-      - organization
-      - groups
-    Link:
-      required:
-      - href
-      properties:
-        href:
-          type: string
-        templated:
-          type: boolean
-          default: false
-    BadRequest:
-      required:
-      - id
-      - message
-      properties:
-        id:
-          type: string
-          enum:
-          - bad_request
-        message:
-          type: string
-    NotFound:
-      required:
-      - id
-      - message
-      properties:
-        id:
-          type: string
-          enum:
-          - not_found
-        message:
-          type: string
   securitySchemes:
     accessTokenAuth:
       type: http

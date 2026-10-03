@@ -62,21 +62,156 @@ paths:
       - Account
 components:
   schemas:
-    Pagination:
+    Link:
       required:
-      - first_page
-      - last_page
-      - total_pages
-      - total_count
+      - href
       properties:
-        first_page:
+        href:
           type: string
-        last_page:
+        templated:
+          type: boolean
+          default: false
+    Spaces:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        _links:
+          $ref: '#/components/schemas/SpacesLinks'
+        _embedded:
+          $ref: '#/components/schemas/SpacesEmbeds'
+      required:
+      - _links
+    Avatar:
+      required:
+      - type
+      properties:
+        type:
           type: string
-        total_pages:
+    SpacesEmbeds: {}
+    Unauthorized:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - unauthorized
+        message:
+          type: string
+    Account:
+      properties:
+        username:
+          type: string
+        name:
+          type: string
+        id:
           type: integer
-        total_count:
+        token:
+          type: string
+        email:
+          type: string
+        dataset_size_limit_mb:
+          type: string
+        query_run_size_limit_mb:
+          type: string
+        email_verified:
+          type: boolean
+        avatar:
+          $ref: '#/components/schemas/Avatar'
+        user:
+          type: boolean
+        thoughtspot_integrated:
+          type: boolean
+        space_count:
           type: integer
+        data_source_count:
+          type: integer
+        default_data_source_token:
+          type: string
+        organizations_count:
+          type: string
+        trial_state:
+          enum:
+          - pending
+          - active
+          - expired
+          type: string
+        organization_restricted:
+          type: string
+        membership_type:
+          enum:
+          - admin
+          - full
+          type: string
+        payment_method_confirmed:
+          type: boolean
+        private_definition_count:
+          type: integer
+        private_definition_limit:
+          type: integer
+        authorized_domains:
+          type: array
+          items:
+            type: string
+        plan_code:
+          enum:
+          - standard
+          - plus
+          - free
+          type: string
+        seat_limit_reached:
+          type: boolean
+        org_seat_limit_reached:
+          type: boolean
+        python_performance_first_tier:
+          type: boolean
+        admin_data_source_connections_only:
+          type: boolean
+        admin_collection_creation_only:
+          type: boolean
+        scim_enabled:
+          type: string
+        created_at:
+          type: string
+        settings:
+          type: string
+        _links:
+          $ref: '#/components/schemas/AccountLinks'
+        _embedded:
+          $ref: '#/components/schemas/AccountEmbeds'
+      required:
+      - _links
+      - username
+      - name
+      - id
+      - token
+      - dataset_size_limit_mb
+      - query_run_size_limit_mb
+      - avatar
+      - user
+      - created_at
+    DataSources:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        data_index_auth_token:
+          type: string
+        _links:
+          $ref: '#/components/schemas/DataSourcesLinks'
+        _embedded:
+          $ref: '#/components/schemas/DataSourcesEmbeds'
+      required:
+      - _links
+    DataSourcesEmbeds: {}
+    AccountEmbeds:
+      properties:
+        data_sources:
+          $ref: '#/components/schemas/DataSources'
+        spaces:
+          $ref: '#/components/schemas/Spaces'
+        all_spaces:
+          $ref: '#/components/schemas/Spaces'
     AccountLinks:
       properties:
         self:
@@ -266,18 +401,6 @@ components:
       - by_ids_base_reports
       - viewed_base_reports
       - all_color_palettes
-    DataSources:
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        data_index_auth_token:
-          type: string
-        _links:
-          $ref: '#/components/schemas/DataSourcesLinks'
-        _embedded:
-          $ref: '#/components/schemas/DataSourcesEmbeds'
-      required:
-      - _links
     SpacesLinks:
       properties:
         next_page:
@@ -288,144 +411,6 @@ components:
           $ref: '#/components/schemas/Link'
       required:
       - self
-    Unauthorized:
-      required:
-      - id
-      - message
-      properties:
-        id:
-          type: string
-          enum:
-          - unauthorized
-        message:
-          type: string
-    Avatar:
-      required:
-      - type
-      properties:
-        type:
-          type: string
-    DataSourcesEmbeds: {}
-    Spaces:
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        _links:
-          $ref: '#/components/schemas/SpacesLinks'
-        _embedded:
-          $ref: '#/components/schemas/SpacesEmbeds'
-      required:
-      - _links
-    Link:
-      required:
-      - href
-      properties:
-        href:
-          type: string
-        templated:
-          type: boolean
-          default: false
-    Account:
-      properties:
-        username:
-          type: string
-        name:
-          type: string
-        id:
-          type: integer
-        token:
-          type: string
-        email:
-          type: string
-        dataset_size_limit_mb:
-          type: string
-        query_run_size_limit_mb:
-          type: string
-        email_verified:
-          type: boolean
-        avatar:
-          $ref: '#/components/schemas/Avatar'
-        user:
-          type: boolean
-        thoughtspot_integrated:
-          type: boolean
-        space_count:
-          type: integer
-        data_source_count:
-          type: integer
-        default_data_source_token:
-          type: string
-        organizations_count:
-          type: string
-        trial_state:
-          enum:
-          - pending
-          - active
-          - expired
-          type: string
-        organization_restricted:
-          type: string
-        membership_type:
-          enum:
-          - admin
-          - full
-          type: string
-        payment_method_confirmed:
-          type: boolean
-        private_definition_count:
-          type: integer
-        private_definition_limit:
-          type: integer
-        authorized_domains:
-          type: array
-          items:
-            type: string
-        plan_code:
-          enum:
-          - standard
-          - plus
-          - free
-          type: string
-        seat_limit_reached:
-          type: boolean
-        org_seat_limit_reached:
-          type: boolean
-        python_performance_first_tier:
-          type: boolean
-        admin_data_source_connections_only:
-          type: boolean
-        admin_collection_creation_only:
-          type: boolean
-        scim_enabled:
-          type: string
-        created_at:
-          type: string
-        settings:
-          type: string
-        _links:
-          $ref: '#/components/schemas/AccountLinks'
-        _embedded:
-          $ref: '#/components/schemas/AccountEmbeds'
-      required:
-      - _links
-      - username
-      - name
-      - id
-      - token
-      - dataset_size_limit_mb
-      - query_run_size_limit_mb
-      - avatar
-      - user
-      - created_at
-    SpacesEmbeds: {}
-    AccountEmbeds:
-      properties:
-        data_sources:
-          $ref: '#/components/schemas/DataSources'
-        spaces:
-          $ref: '#/components/schemas/Spaces'
-        all_spaces:
-          $ref: '#/components/schemas/Spaces'
     DataSourcesLinks:
       properties:
         next_page:
@@ -436,6 +421,21 @@ components:
           $ref: '#/components/schemas/Link'
       required:
       - self
+    Pagination:
+      required:
+      - first_page
+      - last_page
+      - total_pages
+      - total_count
+      properties:
+        first_page:
+          type: string
+        last_page:
+          type: string
+        total_pages:
+          type: integer
+        total_count:
+          type: integer
   securitySchemes:
     accessTokenAuth:
       type: http

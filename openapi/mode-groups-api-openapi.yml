@@ -484,21 +484,15 @@ paths:
       - Groups
 components:
   schemas:
-    Pagination:
+    Link:
       required:
-      - first_page
-      - last_page
-      - total_pages
-      - total_count
+      - href
       properties:
-        first_page:
+        href:
           type: string
-        last_page:
-          type: string
-        total_pages:
-          type: integer
-        total_count:
-          type: integer
+        templated:
+          type: boolean
+          default: false
     UserGroup:
       properties:
         token:
@@ -534,7 +528,108 @@ components:
       - spaces_count
       - data_sources_count
       - managed
-    UserGroupMembershipsLinks:
+    UserGroupMembership:
+      properties:
+        token:
+          type: string
+        member_token:
+          type: string
+        _links:
+          $ref: '#/components/schemas/UserGroupMembershipLinks'
+        _embedded:
+          $ref: '#/components/schemas/UserGroupMembershipEmbeds'
+      required:
+      - _links
+      - token
+      - member_token
+    Unauthorized:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - unauthorized
+        message:
+          type: string
+    CreateUserGroupRequestBody:
+      required:
+      - user_group
+      type: object
+      properties:
+        user_group:
+          description: The parameters for the created user group
+          type: object
+          properties:
+            name:
+              description: The name for the new user group
+              type: string
+    UserGroupMembershipsEmbeds: {}
+    UserGroupsEmbeds: {}
+    UserGroupMembershipEmbeds: {}
+    UserGroupMembershipLinks:
+      properties:
+        self:
+          $ref: '#/components/schemas/Link'
+        creator:
+          $ref: '#/components/schemas/Link'
+        member:
+          $ref: '#/components/schemas/Link'
+        user_group:
+          $ref: '#/components/schemas/Link'
+      required:
+      - self
+      - member
+      - user_group
+    CreateUserGroupMembershipRequestBody:
+      required:
+      - membership
+      type: object
+      properties:
+        membership:
+          description: The parameters for the new membership
+          type: object
+          required:
+          - member_token
+          properties:
+            member_token:
+              description: The token of the user to become a member
+              type: string
+    UserGroupMemberships:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        _links:
+          $ref: '#/components/schemas/UserGroupMembershipsLinks'
+        _embedded:
+          $ref: '#/components/schemas/UserGroupMembershipsEmbeds'
+      required:
+      - _links
+    Forbidden:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - forbidden
+        message:
+          type: string
+    UpdateUserGroupRequestBody:
+      required:
+      - user_group
+      type: object
+      properties:
+        user_group:
+          description: The parameters for the updated user group
+          type: object
+          properties:
+            name:
+              description: The new name for the user group
+              type: string
+    UserGroupsLinks:
       properties:
         next_page:
           $ref: '#/components/schemas/Link'
@@ -544,6 +639,22 @@ components:
           $ref: '#/components/schemas/Link'
       required:
       - self
+    UserGroupEmbeds: {}
+    Pagination:
+      required:
+      - first_page
+      - last_page
+      - total_pages
+      - total_count
+      properties:
+        first_page:
+          type: string
+        last_page:
+          type: string
+        total_pages:
+          type: integer
+        total_count:
+          type: integer
     UserGroupLinks:
       properties:
         self:
@@ -564,77 +675,6 @@ components:
       - group_memberships
       - membership_by_id
       - memberships_preview
-    UserGroups:
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        _links:
-          $ref: '#/components/schemas/UserGroupsLinks'
-        _embedded:
-          $ref: '#/components/schemas/UserGroupsEmbeds'
-      required:
-      - _links
-    UserGroupMemberships:
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        _links:
-          $ref: '#/components/schemas/UserGroupMembershipsLinks'
-        _embedded:
-          $ref: '#/components/schemas/UserGroupMembershipsEmbeds'
-      required:
-      - _links
-    Unauthorized:
-      required:
-      - id
-      - message
-      properties:
-        id:
-          type: string
-          enum:
-          - unauthorized
-        message:
-          type: string
-    UserGroupsEmbeds: {}
-    UpdateUserGroupRequestBody:
-      required:
-      - user_group
-      type: object
-      properties:
-        user_group:
-          description: The parameters for the updated user group
-          type: object
-          properties:
-            name:
-              description: The new name for the user group
-              type: string
-    UserGroupMembershipLinks:
-      properties:
-        self:
-          $ref: '#/components/schemas/Link'
-        creator:
-          $ref: '#/components/schemas/Link'
-        member:
-          $ref: '#/components/schemas/Link'
-        user_group:
-          $ref: '#/components/schemas/Link'
-      required:
-      - self
-      - member
-      - user_group
-    UserGroupMembershipsEmbeds: {}
-    CreateUserGroupRequestBody:
-      required:
-      - user_group
-      type: object
-      properties:
-        user_group:
-          description: The parameters for the created user group
-          type: object
-          properties:
-            name:
-              description: The name for the new user group
-              type: string
     NotFound:
       required:
       - id
@@ -646,7 +686,7 @@ components:
           - not_found
         message:
           type: string
-    UserGroupsLinks:
+    UserGroupMembershipsLinks:
       properties:
         next_page:
           $ref: '#/components/schemas/Link'
@@ -656,41 +696,6 @@ components:
           $ref: '#/components/schemas/Link'
       required:
       - self
-    UserGroupMembership:
-      properties:
-        token:
-          type: string
-        member_token:
-          type: string
-        _links:
-          $ref: '#/components/schemas/UserGroupMembershipLinks'
-        _embedded:
-          $ref: '#/components/schemas/UserGroupMembershipEmbeds'
-      required:
-      - _links
-      - token
-      - member_token
-    Link:
-      required:
-      - href
-      properties:
-        href:
-          type: string
-        templated:
-          type: boolean
-          default: false
-    Forbidden:
-      required:
-      - id
-      - message
-      properties:
-        id:
-          type: string
-          enum:
-          - forbidden
-        message:
-          type: string
-    UserGroupMembershipEmbeds: {}
     BadRequest:
       required:
       - id
@@ -702,21 +707,16 @@ components:
           - bad_request
         message:
           type: string
-    CreateUserGroupMembershipRequestBody:
-      required:
-      - membership
-      type: object
+    UserGroups:
       properties:
-        membership:
-          description: The parameters for the new membership
-          type: object
-          required:
-          - member_token
-          properties:
-            member_token:
-              description: The token of the user to become a member
-              type: string
-    UserGroupEmbeds: {}
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        _links:
+          $ref: '#/components/schemas/UserGroupsLinks'
+        _embedded:
+          $ref: '#/components/schemas/UserGroupsEmbeds'
+      required:
+      - _links
   securitySchemes:
     accessTokenAuth:
       type: http

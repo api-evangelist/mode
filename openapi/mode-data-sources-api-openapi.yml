@@ -371,104 +371,6 @@ paths:
       - Data Sources
 components:
   schemas:
-    Pagination:
-      required:
-      - first_page
-      - last_page
-      - total_pages
-      - total_count
-      properties:
-        first_page:
-          type: string
-        last_page:
-          type: string
-        total_pages:
-          type: integer
-        total_count:
-          type: integer
-    DataSources:
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        data_index_auth_token:
-          type: string
-        _links:
-          $ref: '#/components/schemas/DataSourcesLinks'
-        _embedded:
-          $ref: '#/components/schemas/DataSourcesEmbeds'
-      required:
-      - _links
-    DataSourceLinks:
-      properties:
-        self:
-          $ref: '#/components/schemas/Link'
-        creator:
-          $ref: '#/components/schemas/Link'
-        account:
-          $ref: '#/components/schemas/Link'
-        permissions:
-          $ref: '#/components/schemas/Link'
-        web:
-          $ref: '#/components/schemas/Link'
-        web_home:
-          $ref: '#/components/schemas/Link'
-      required:
-      - self
-      - creator
-      - account
-      - web
-      - web_home
-    Unauthorized:
-      required:
-      - id
-      - message
-      properties:
-        id:
-          type: string
-          enum:
-          - unauthorized
-        message:
-          type: string
-    DataSourceSchemaUpdateLinks:
-      properties:
-        self:
-          $ref: '#/components/schemas/Link'
-      required:
-      - self
-    DataSourcesEmbeds: {}
-    NotFound:
-      required:
-      - id
-      - message
-      properties:
-        id:
-          type: string
-          enum:
-          - not_found
-        message:
-          type: string
-    DataSourcesLinks:
-      properties:
-        next_page:
-          $ref: '#/components/schemas/Link'
-        prev_page:
-          $ref: '#/components/schemas/Link'
-        self:
-          $ref: '#/components/schemas/Link'
-      required:
-      - self
-    DataSourceSchemaUpdateEmbeds: {}
-    ReportsLinks:
-      properties:
-        next_page:
-          $ref: '#/components/schemas/Link'
-        prev_page:
-          $ref: '#/components/schemas/Link'
-        self:
-          $ref: '#/components/schemas/Link'
-      required:
-      - self
-    ReportsEmbeds: {}
     Link:
       required:
       - href
@@ -600,42 +502,7 @@ components:
       - bridged
       - adapter_version
       - custom_attributes
-    DataSourceEmbeds: {}
-    DataSourceCustomAttributes:
-      properties:
-        standard_sql:
-          type: boolean
-    DataSourceSchemaUpdate:
-      properties:
-        id:
-          type: string
-        token:
-          type: string
-        state:
-          type: string
-        content_length:
-          type: string
-        number_of_schemas:
-          type: string
-        number_of_tables:
-          type: string
-        last_succesful_refresh_at:
-          type: string
-        webapp_uri:
-          type: string
-        _links:
-          $ref: '#/components/schemas/DataSourceSchemaUpdateLinks'
-        _embedded:
-          $ref: '#/components/schemas/DataSourceSchemaUpdateEmbeds'
-      required:
-      - _links
-      - id
-      - token
-      - state
-      - content_length
-      - number_of_schemas
-      - number_of_tables
-    BadRequest:
+    Unauthorized:
       required:
       - id
       - message
@@ -643,9 +510,29 @@ components:
         id:
           type: string
           enum:
-          - bad_request
+          - unauthorized
         message:
           type: string
+    DataSourceCustomAttributes:
+      properties:
+        standard_sql:
+          type: boolean
+    DataSourceSchemaUpdateLinks:
+      properties:
+        self:
+          $ref: '#/components/schemas/Link'
+      required:
+      - self
+    ReportsLinks:
+      properties:
+        next_page:
+          $ref: '#/components/schemas/Link'
+        prev_page:
+          $ref: '#/components/schemas/Link'
+        self:
+          $ref: '#/components/schemas/Link'
+      required:
+      - self
     UpdateDataSourceRequestBody:
       required:
       - data_source
@@ -692,6 +579,119 @@ components:
           $ref: '#/components/schemas/ReportsEmbeds'
       required:
       - _links
+    DataSources:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        data_index_auth_token:
+          type: string
+        _links:
+          $ref: '#/components/schemas/DataSourcesLinks'
+        _embedded:
+          $ref: '#/components/schemas/DataSourcesEmbeds'
+      required:
+      - _links
+    DataSourcesEmbeds: {}
+    DataSourceSchemaUpdateEmbeds: {}
+    ReportsEmbeds: {}
+    Pagination:
+      required:
+      - first_page
+      - last_page
+      - total_pages
+      - total_count
+      properties:
+        first_page:
+          type: string
+        last_page:
+          type: string
+        total_pages:
+          type: integer
+        total_count:
+          type: integer
+    DataSourceSchemaUpdate:
+      properties:
+        id:
+          type: string
+        token:
+          type: string
+        state:
+          type: string
+        content_length:
+          type: string
+        number_of_schemas:
+          type: string
+        number_of_tables:
+          type: string
+        last_succesful_refresh_at:
+          type: string
+        webapp_uri:
+          type: string
+        _links:
+          $ref: '#/components/schemas/DataSourceSchemaUpdateLinks'
+        _embedded:
+          $ref: '#/components/schemas/DataSourceSchemaUpdateEmbeds'
+      required:
+      - _links
+      - id
+      - token
+      - state
+      - content_length
+      - number_of_schemas
+      - number_of_tables
+    DataSourceEmbeds: {}
+    DataSourcesLinks:
+      properties:
+        next_page:
+          $ref: '#/components/schemas/Link'
+        prev_page:
+          $ref: '#/components/schemas/Link'
+        self:
+          $ref: '#/components/schemas/Link'
+      required:
+      - self
+    NotFound:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - not_found
+        message:
+          type: string
+    BadRequest:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - bad_request
+        message:
+          type: string
+    DataSourceLinks:
+      properties:
+        self:
+          $ref: '#/components/schemas/Link'
+        creator:
+          $ref: '#/components/schemas/Link'
+        account:
+          $ref: '#/components/schemas/Link'
+        permissions:
+          $ref: '#/components/schemas/Link'
+        web:
+          $ref: '#/components/schemas/Link'
+        web_home:
+          $ref: '#/components/schemas/Link'
+      required:
+      - self
+      - creator
+      - account
+      - web
+      - web_home
   securitySchemes:
     accessTokenAuth:
       type: http
