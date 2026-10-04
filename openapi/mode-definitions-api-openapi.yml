@@ -260,6 +260,21 @@ components:
         templated:
           type: boolean
           default: false
+    Pagination:
+      required:
+      - first_page
+      - last_page
+      - total_pages
+      - total_count
+      properties:
+        first_page:
+          type: string
+        last_page:
+          type: string
+        total_pages:
+          type: integer
+        total_count:
+          type: integer
     DefinitionsLinks:
       properties:
         next_page:
@@ -270,7 +285,24 @@ components:
           $ref: '#/components/schemas/Link'
       required:
       - self
-    NotFound:
+    DefinitionLinks:
+      properties:
+        self:
+          $ref: '#/components/schemas/Link'
+        last_run:
+          $ref: '#/components/schemas/Link'
+        last_successful_github_sync:
+          $ref: '#/components/schemas/Link'
+        web_edit:
+          $ref: '#/components/schemas/Link'
+        creator:
+          $ref: '#/components/schemas/Link'
+      required:
+      - self
+      - last_run
+      - last_successful_github_sync
+      - web_edit
+    BadRequest:
       required:
       - id
       - message
@@ -278,21 +310,10 @@ components:
         id:
           type: string
           enum:
-          - not_found
+          - bad_request
         message:
           type: string
-    DefinitionsEmbeds: {}
-    Unauthorized:
-      required:
-      - id
-      - message
-      properties:
-        id:
-          type: string
-          enum:
-          - unauthorized
-        message:
-          type: string
+    DefinitionEmbeds: {}
     Definition:
       properties:
         id:
@@ -333,23 +354,17 @@ components:
       - updated_at
       - last_successful_sync_at
       - last_saved_at
-    DefinitionLinks:
-      properties:
-        self:
-          $ref: '#/components/schemas/Link'
-        last_run:
-          $ref: '#/components/schemas/Link'
-        last_successful_github_sync:
-          $ref: '#/components/schemas/Link'
-        web_edit:
-          $ref: '#/components/schemas/Link'
-        creator:
-          $ref: '#/components/schemas/Link'
+    Unauthorized:
       required:
-      - self
-      - last_run
-      - last_successful_github_sync
-      - web_edit
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - unauthorized
+        message:
+          type: string
     Definitions:
       properties:
         pagination:
@@ -360,8 +375,7 @@ components:
           $ref: '#/components/schemas/DefinitionsEmbeds'
       required:
       - _links
-    DefinitionEmbeds: {}
-    BadRequest:
+    NotFound:
       required:
       - id
       - message
@@ -369,24 +383,10 @@ components:
         id:
           type: string
           enum:
-          - bad_request
+          - not_found
         message:
           type: string
-    Pagination:
-      required:
-      - first_page
-      - last_page
-      - total_pages
-      - total_count
-      properties:
-        first_page:
-          type: string
-        last_page:
-          type: string
-        total_pages:
-          type: integer
-        total_count:
-          type: integer
+    DefinitionsEmbeds: {}
   securitySchemes:
     accessTokenAuth:
       type: http

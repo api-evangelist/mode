@@ -92,15 +92,6 @@ paths:
       - Invites
 components:
   schemas:
-    Link:
-      required:
-      - href
-      properties:
-        href:
-          type: string
-        templated:
-          type: boolean
-          default: false
     CreateInviteRequestBody:
       required:
       - invite
@@ -123,39 +114,15 @@ components:
             message:
               type: string
               example: You are an analyst, Harry!
-    InviteLinks:
-      properties:
-        inviter:
-          $ref: '#/components/schemas/Link'
-        invitee:
-          $ref: '#/components/schemas/Link'
-        web_self_resend:
-          $ref: '#/components/schemas/Link'
+    Link:
       required:
-      - inviter
-      - web_self_resend
-    NotFound:
-      required:
-      - id
-      - message
+      - href
       properties:
-        id:
+        href:
           type: string
-          enum:
-          - not_found
-        message:
-          type: string
-    Unauthorized:
-      required:
-      - id
-      - message
-      properties:
-        id:
-          type: string
-          enum:
-          - unauthorized
-        message:
-          type: string
+        templated:
+          type: boolean
+          default: false
     Forbidden:
       required:
       - id
@@ -168,6 +135,39 @@ components:
         message:
           type: string
     InviteEmbeds: {}
+    BadRequest:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - bad_request
+        message:
+          type: string
+    InviteLinks:
+      properties:
+        inviter:
+          $ref: '#/components/schemas/Link'
+        invitee:
+          $ref: '#/components/schemas/Link'
+        web_self_resend:
+          $ref: '#/components/schemas/Link'
+      required:
+      - inviter
+      - web_self_resend
+    Unauthorized:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - unauthorized
+        message:
+          type: string
     Invite:
       properties:
         email:
@@ -208,7 +208,7 @@ components:
       - limited
       - expires_at
       - created_at
-    BadRequest:
+    NotFound:
       required:
       - id
       - message
@@ -216,7 +216,7 @@ components:
         id:
           type: string
           enum:
-          - bad_request
+          - not_found
         message:
           type: string
   securitySchemes:

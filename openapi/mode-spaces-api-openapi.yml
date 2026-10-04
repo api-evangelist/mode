@@ -576,6 +576,130 @@ paths:
       - Spaces
 components:
   schemas:
+    Pagination:
+      required:
+      - first_page
+      - last_page
+      - total_pages
+      - total_count
+      properties:
+        first_page:
+          type: string
+        last_page:
+          type: string
+        total_pages:
+          type: integer
+        total_count:
+          type: integer
+    SpaceMemberships:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        _links:
+          $ref: '#/components/schemas/SpaceMembershipsLinks'
+        _embedded:
+          $ref: '#/components/schemas/SpaceMembershipsEmbeds'
+      required:
+      - _links
+    SpaceMembershipsEmbeds: {}
+    ReportsEmbeds: {}
+    Reports:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        _links:
+          $ref: '#/components/schemas/ReportsLinks'
+        _embedded:
+          $ref: '#/components/schemas/ReportsEmbeds'
+      required:
+      - _links
+    SpaceMembershipLinks:
+      properties:
+        self:
+          $ref: '#/components/schemas/Link'
+        member:
+          $ref: '#/components/schemas/Link'
+        creator:
+          $ref: '#/components/schemas/Link'
+      required:
+      - self
+      - member
+    SpaceLinks:
+      properties:
+        self:
+          $ref: '#/components/schemas/Link'
+        detail:
+          $ref: '#/components/schemas/Link'
+        space_report_pins:
+          $ref: '#/components/schemas/Link'
+        web:
+          $ref: '#/components/schemas/Link'
+        reports:
+          $ref: '#/components/schemas/Link'
+        creator:
+          $ref: '#/components/schemas/Link'
+        user_space_membership:
+          $ref: '#/components/schemas/Link'
+        space_memberships:
+          $ref: '#/components/schemas/Link'
+        preview_space_memberships:
+          $ref: '#/components/schemas/Link'
+        search_space_permissions:
+          $ref: '#/components/schemas/Link'
+        viewed:
+          $ref: '#/components/schemas/Link'
+      required:
+      - self
+      - detail
+      - reports
+      - search_space_permissions
+    SpaceMembershipsLinks:
+      properties:
+        next_page:
+          $ref: '#/components/schemas/Link'
+        prev_page:
+          $ref: '#/components/schemas/Link'
+        self:
+          $ref: '#/components/schemas/Link'
+      required:
+      - self
+    Link:
+      required:
+      - href
+      properties:
+        href:
+          type: string
+        templated:
+          type: boolean
+          default: false
+    BadRequest:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - bad_request
+        message:
+          type: string
+    CreateOrUpdateSpaceRequestBody:
+      required:
+      - space
+      type: object
+      properties:
+        space:
+          required:
+          - name
+          type: object
+          description: The parameters of the new or updated space
+          properties:
+            description:
+              type: string
+              description: Description of the `space`
+            name:
+              type: string
+              description: Name of the `space`
     CreateSpaceMembershipRequestBody:
       required:
       - membership
@@ -596,76 +720,7 @@ components:
               type: string
               description: The token of the member being added
               example: 2bd8236f8ae4
-    Link:
-      required:
-      - href
-      properties:
-        href:
-          type: string
-        templated:
-          type: boolean
-          default: false
-    CreateOrUpdateSpaceRequestBody:
-      required:
-      - space
-      type: object
-      properties:
-        space:
-          required:
-          - name
-          type: object
-          description: The parameters of the new or updated space
-          properties:
-            description:
-              type: string
-              description: Description of the `space`
-            name:
-              type: string
-              description: Name of the `space`
-    Unauthorized:
-      required:
-      - id
-      - message
-      properties:
-        id:
-          type: string
-          enum:
-          - unauthorized
-        message:
-          type: string
-    SpaceEmbeds: {}
-    ReportsLinks:
-      properties:
-        next_page:
-          $ref: '#/components/schemas/Link'
-        prev_page:
-          $ref: '#/components/schemas/Link'
-        self:
-          $ref: '#/components/schemas/Link'
-      required:
-      - self
-    Reports:
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        _links:
-          $ref: '#/components/schemas/ReportsLinks'
-        _embedded:
-          $ref: '#/components/schemas/ReportsEmbeds'
-      required:
-      - _links
-    Forbidden:
-      required:
-      - id
-      - message
-      properties:
-        id:
-          type: string
-          enum:
-          - forbidden
-        message:
-          type: string
-    SpaceMembershipsEmbeds: {}
+    SpacesEmbeds: {}
     Space:
       properties:
         token:
@@ -705,7 +760,27 @@ components:
       - restricted
       - free_default
       - viewable?
-    ReportsEmbeds: {}
+    SpaceMembershipEmbeds: {}
+    Spaces:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        _links:
+          $ref: '#/components/schemas/SpacesLinks'
+        _embedded:
+          $ref: '#/components/schemas/SpacesEmbeds'
+      required:
+      - _links
+    ReportsLinks:
+      properties:
+        next_page:
+          $ref: '#/components/schemas/Link'
+        prev_page:
+          $ref: '#/components/schemas/Link'
+        self:
+          $ref: '#/components/schemas/Link'
+      required:
+      - self
     SpaceMembership:
       properties:
         token:
@@ -728,83 +803,7 @@ components:
       - member_token
       - member_type
       - member_id
-    Pagination:
-      required:
-      - first_page
-      - last_page
-      - total_pages
-      - total_count
-      properties:
-        first_page:
-          type: string
-        last_page:
-          type: string
-        total_pages:
-          type: integer
-        total_count:
-          type: integer
-    Spaces:
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        _links:
-          $ref: '#/components/schemas/SpacesLinks'
-        _embedded:
-          $ref: '#/components/schemas/SpacesEmbeds'
-      required:
-      - _links
-    SpacesEmbeds: {}
-    SpaceMembershipEmbeds: {}
-    SpaceMembershipsLinks:
-      properties:
-        next_page:
-          $ref: '#/components/schemas/Link'
-        prev_page:
-          $ref: '#/components/schemas/Link'
-        self:
-          $ref: '#/components/schemas/Link'
-      required:
-      - self
-    SpaceMemberships:
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        _links:
-          $ref: '#/components/schemas/SpaceMembershipsLinks'
-        _embedded:
-          $ref: '#/components/schemas/SpaceMembershipsEmbeds'
-      required:
-      - _links
-    SpaceLinks:
-      properties:
-        self:
-          $ref: '#/components/schemas/Link'
-        detail:
-          $ref: '#/components/schemas/Link'
-        space_report_pins:
-          $ref: '#/components/schemas/Link'
-        web:
-          $ref: '#/components/schemas/Link'
-        reports:
-          $ref: '#/components/schemas/Link'
-        creator:
-          $ref: '#/components/schemas/Link'
-        user_space_membership:
-          $ref: '#/components/schemas/Link'
-        space_memberships:
-          $ref: '#/components/schemas/Link'
-        preview_space_memberships:
-          $ref: '#/components/schemas/Link'
-        search_space_permissions:
-          $ref: '#/components/schemas/Link'
-        viewed:
-          $ref: '#/components/schemas/Link'
-      required:
-      - self
-      - detail
-      - reports
-      - search_space_permissions
-    NotFound:
+    Forbidden:
       required:
       - id
       - message
@@ -812,7 +811,7 @@ components:
         id:
           type: string
           enum:
-          - not_found
+          - forbidden
         message:
           type: string
     SpacesLinks:
@@ -825,18 +824,7 @@ components:
           $ref: '#/components/schemas/Link'
       required:
       - self
-    SpaceMembershipLinks:
-      properties:
-        self:
-          $ref: '#/components/schemas/Link'
-        member:
-          $ref: '#/components/schemas/Link'
-        creator:
-          $ref: '#/components/schemas/Link'
-      required:
-      - self
-      - member
-    BadRequest:
+    Unauthorized:
       required:
       - id
       - message
@@ -844,9 +832,21 @@ components:
         id:
           type: string
           enum:
-          - bad_request
+          - unauthorized
         message:
           type: string
+    NotFound:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - not_found
+        message:
+          type: string
+    SpaceEmbeds: {}
   securitySchemes:
     accessTokenAuth:
       type: http

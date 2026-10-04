@@ -632,15 +632,6 @@ paths:
       - Datasets
 components:
   schemas:
-    Link:
-      required:
-      - href
-      properties:
-        href:
-          type: string
-        templated:
-          type: boolean
-          default: false
     ReportRunsLinks:
       properties:
         next_page:
@@ -651,6 +642,65 @@ components:
           $ref: '#/components/schemas/Link'
       required:
       - self
+    Pagination:
+      required:
+      - first_page
+      - last_page
+      - total_pages
+      - total_count
+      properties:
+        first_page:
+          type: string
+        last_page:
+          type: string
+        total_pages:
+          type: integer
+        total_count:
+          type: integer
+    ReportRunsEmbeds: {}
+    Reports:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        _links:
+          $ref: '#/components/schemas/ReportsLinks'
+        _embedded:
+          $ref: '#/components/schemas/ReportsEmbeds'
+      required:
+      - _links
+    ReportsEmbeds: {}
+    ReportRuns:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        _links:
+          $ref: '#/components/schemas/ReportRunsLinks'
+        _embedded:
+          $ref: '#/components/schemas/ReportRunsEmbeds'
+      required:
+      - _links
+    DatasetRunEmbeds: {}
+    Link:
+      required:
+      - href
+      properties:
+        href:
+          type: string
+        templated:
+          type: boolean
+          default: false
+    BadRequest:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - bad_request
+        message:
+          type: string
+    ReportEmbeds: {}
     Report:
       properties:
         token:
@@ -772,38 +822,6 @@ components:
       - query_preview
       - view_count
       - thoughtspot_published_at
-    Unauthorized:
-      required:
-      - id
-      - message
-      properties:
-        id:
-          type: string
-          enum:
-          - unauthorized
-        message:
-          type: string
-    ReportsLinks:
-      properties:
-        next_page:
-          $ref: '#/components/schemas/Link'
-        prev_page:
-          $ref: '#/components/schemas/Link'
-        self:
-          $ref: '#/components/schemas/Link'
-      required:
-      - self
-    ReportRunParameters: {}
-    ReportRuns:
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        _links:
-          $ref: '#/components/schemas/ReportRunsLinks'
-        _embedded:
-          $ref: '#/components/schemas/ReportRunsEmbeds'
-      required:
-      - _links
     ReportRunLinks:
       properties:
         latest_successful_report_run_api_url:
@@ -845,53 +863,27 @@ components:
       - account
       - report
       - query_runs
-    DatasetRun:
+    DatasetRunLinks:
       properties:
-        created_at:
-          type: string
-        completed_at:
-          type: string
-        is_latest_dataset_run:
-          type: string
-        is_latest_successful_dataset_run:
-          type: string
-        purge_completed_at:
-          type: string
-        purge_started_at:
-          type: string
-        dataset_has_failures_since_last_success:
-          type: string
-        state:
-          enum:
-          - pending
-          - enqueued
-          - cancelled
-          - failed
-          - succeeded
-          - completed
-          type: string
-        token:
-          type: string
-        updated_at:
-          type: string
-        pusher_channel_name:
-          type: string
-        _links:
-          $ref: '#/components/schemas/DatasetRunLinks'
-        _embedded:
-          $ref: '#/components/schemas/DatasetRunEmbeds'
+        self:
+          $ref: '#/components/schemas/Link'
+        account:
+          $ref: '#/components/schemas/Link'
+        executed_by:
+          $ref: '#/components/schemas/Link'
+        latest_successful_dataset_run_api_url:
+          $ref: '#/components/schemas/Link'
+        dataset:
+          $ref: '#/components/schemas/Link'
+        query_runs:
+          $ref: '#/components/schemas/Link'
+        share:
+          $ref: '#/components/schemas/Link'
       required:
-      - _links
-      - created_at
-      - completed_at
-      - is_latest_dataset_run
-      - is_latest_successful_dataset_run
-      - purge_completed_at
-      - purge_started_at
-      - dataset_has_failures_since_last_success
-      - state
-      - token
-      - updated_at
+      - self
+      - account
+      - dataset
+      - query_runs
     ReportRun:
       properties:
         token:
@@ -952,75 +944,17 @@ components:
       - is_latest_report_run
       - is_latest_successful_report_run
       - report_has_failures_since_last_success
-    Reports:
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        _links:
-          $ref: '#/components/schemas/ReportsLinks'
-        _embedded:
-          $ref: '#/components/schemas/ReportsEmbeds'
-      required:
-      - _links
-    ReportEmbeds: {}
-    UpdateReportRequestBody:
-      required:
-      - report
-      type: object
-      properties:
-        report:
-          type: object
-          properties:
-            name:
-              type: string
-              description: The name of the report
-              example: Kanto Region Diaspora
-            description:
-              type: string
-              description: A description of the report in question
-              example: An analysis of all the creatures living in the region. Please contribute any missing data. Pocket version coming soon.
-            space_token:
-              type: string
-              description: The token of the space this report will be moved to
-              example: 5a4177a2902c
-    ReportsEmbeds: {}
-    Pagination:
-      required:
-      - first_page
-      - last_page
-      - total_pages
-      - total_count
-      properties:
-        first_page:
-          type: string
-        last_page:
-          type: string
-        total_pages:
-          type: integer
-        total_count:
-          type: integer
     ReportRunEmbeds: {}
-    DatasetRunLinks:
+    ReportsLinks:
       properties:
+        next_page:
+          $ref: '#/components/schemas/Link'
+        prev_page:
+          $ref: '#/components/schemas/Link'
         self:
-          $ref: '#/components/schemas/Link'
-        account:
-          $ref: '#/components/schemas/Link'
-        executed_by:
-          $ref: '#/components/schemas/Link'
-        latest_successful_dataset_run_api_url:
-          $ref: '#/components/schemas/Link'
-        dataset:
-          $ref: '#/components/schemas/Link'
-        query_runs:
-          $ref: '#/components/schemas/Link'
-        share:
           $ref: '#/components/schemas/Link'
       required:
       - self
-      - account
-      - dataset
-      - query_runs
     CreateDatasetFieldDescriptionBody:
       required:
       - field_description
@@ -1036,8 +970,54 @@ components:
             name:
               description: The name of the field
               type: string
-    DatasetRunEmbeds: {}
-    NotFound:
+    DatasetRun:
+      properties:
+        created_at:
+          type: string
+        completed_at:
+          type: string
+        is_latest_dataset_run:
+          type: string
+        is_latest_successful_dataset_run:
+          type: string
+        purge_completed_at:
+          type: string
+        purge_started_at:
+          type: string
+        dataset_has_failures_since_last_success:
+          type: string
+        state:
+          enum:
+          - pending
+          - enqueued
+          - cancelled
+          - failed
+          - succeeded
+          - completed
+          type: string
+        token:
+          type: string
+        updated_at:
+          type: string
+        pusher_channel_name:
+          type: string
+        _links:
+          $ref: '#/components/schemas/DatasetRunLinks'
+        _embedded:
+          $ref: '#/components/schemas/DatasetRunEmbeds'
+      required:
+      - _links
+      - created_at
+      - completed_at
+      - is_latest_dataset_run
+      - is_latest_successful_dataset_run
+      - purge_completed_at
+      - purge_started_at
+      - dataset_has_failures_since_last_success
+      - state
+      - token
+      - updated_at
+    Unauthorized:
       required:
       - id
       - message
@@ -1045,9 +1025,22 @@ components:
         id:
           type: string
           enum:
-          - not_found
+          - unauthorized
         message:
           type: string
+    UpdateDatasetFieldDescriptionBody:
+      required:
+      - field_description
+      type: object
+      properties:
+        field_description:
+          type: object
+          description: The parameters for updating the field description
+          properties:
+            desc:
+              description: The description of the field
+              type: string
+    ReportRunParameters: {}
     ReportLinks:
       properties:
         self:
@@ -1125,7 +1118,27 @@ components:
       - last_successful_run
       - perspective_email_subscription_memberships
       - last_successful_github_sync
-    BadRequest:
+    UpdateReportRequestBody:
+      required:
+      - report
+      type: object
+      properties:
+        report:
+          type: object
+          properties:
+            name:
+              type: string
+              description: The name of the report
+              example: Kanto Region Diaspora
+            description:
+              type: string
+              description: A description of the report in question
+              example: An analysis of all the creatures living in the region. Please contribute any missing data. Pocket version coming soon.
+            space_token:
+              type: string
+              description: The token of the space this report will be moved to
+              example: 5a4177a2902c
+    NotFound:
       required:
       - id
       - message
@@ -1133,22 +1146,9 @@ components:
         id:
           type: string
           enum:
-          - bad_request
+          - not_found
         message:
           type: string
-    ReportRunsEmbeds: {}
-    UpdateDatasetFieldDescriptionBody:
-      required:
-      - field_description
-      type: object
-      properties:
-        field_description:
-          type: object
-          description: The parameters for updating the field description
-          properties:
-            desc:
-              description: The description of the field
-              type: string
   securitySchemes:
     accessTokenAuth:
       type: http

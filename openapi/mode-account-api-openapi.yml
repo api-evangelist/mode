@@ -71,6 +71,21 @@ components:
         templated:
           type: boolean
           default: false
+    Pagination:
+      required:
+      - first_page
+      - last_page
+      - total_pages
+      - total_count
+      properties:
+        first_page:
+          type: string
+        last_page:
+          type: string
+        total_pages:
+          type: integer
+        total_count:
+          type: integer
     Spaces:
       properties:
         pagination:
@@ -81,137 +96,13 @@ components:
           $ref: '#/components/schemas/SpacesEmbeds'
       required:
       - _links
+    DataSourcesEmbeds: {}
     Avatar:
       required:
       - type
       properties:
         type:
           type: string
-    SpacesEmbeds: {}
-    Unauthorized:
-      required:
-      - id
-      - message
-      properties:
-        id:
-          type: string
-          enum:
-          - unauthorized
-        message:
-          type: string
-    Account:
-      properties:
-        username:
-          type: string
-        name:
-          type: string
-        id:
-          type: integer
-        token:
-          type: string
-        email:
-          type: string
-        dataset_size_limit_mb:
-          type: string
-        query_run_size_limit_mb:
-          type: string
-        email_verified:
-          type: boolean
-        avatar:
-          $ref: '#/components/schemas/Avatar'
-        user:
-          type: boolean
-        thoughtspot_integrated:
-          type: boolean
-        space_count:
-          type: integer
-        data_source_count:
-          type: integer
-        default_data_source_token:
-          type: string
-        organizations_count:
-          type: string
-        trial_state:
-          enum:
-          - pending
-          - active
-          - expired
-          type: string
-        organization_restricted:
-          type: string
-        membership_type:
-          enum:
-          - admin
-          - full
-          type: string
-        payment_method_confirmed:
-          type: boolean
-        private_definition_count:
-          type: integer
-        private_definition_limit:
-          type: integer
-        authorized_domains:
-          type: array
-          items:
-            type: string
-        plan_code:
-          enum:
-          - standard
-          - plus
-          - free
-          type: string
-        seat_limit_reached:
-          type: boolean
-        org_seat_limit_reached:
-          type: boolean
-        python_performance_first_tier:
-          type: boolean
-        admin_data_source_connections_only:
-          type: boolean
-        admin_collection_creation_only:
-          type: boolean
-        scim_enabled:
-          type: string
-        created_at:
-          type: string
-        settings:
-          type: string
-        _links:
-          $ref: '#/components/schemas/AccountLinks'
-        _embedded:
-          $ref: '#/components/schemas/AccountEmbeds'
-      required:
-      - _links
-      - username
-      - name
-      - id
-      - token
-      - dataset_size_limit_mb
-      - query_run_size_limit_mb
-      - avatar
-      - user
-      - created_at
-    DataSources:
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        data_index_auth_token:
-          type: string
-        _links:
-          $ref: '#/components/schemas/DataSourcesLinks'
-        _embedded:
-          $ref: '#/components/schemas/DataSourcesEmbeds'
-      required:
-      - _links
-    DataSourcesEmbeds: {}
-    AccountEmbeds:
-      properties:
-        data_sources:
-          $ref: '#/components/schemas/DataSources'
-        spaces:
-          $ref: '#/components/schemas/Spaces'
-        all_spaces:
-          $ref: '#/components/schemas/Spaces'
     AccountLinks:
       properties:
         self:
@@ -401,6 +292,7 @@ components:
       - by_ids_base_reports
       - viewed_base_reports
       - all_color_palettes
+    SpacesEmbeds: {}
     SpacesLinks:
       properties:
         next_page:
@@ -421,21 +313,129 @@ components:
           $ref: '#/components/schemas/Link'
       required:
       - self
-    Pagination:
+    Unauthorized:
       required:
-      - first_page
-      - last_page
-      - total_pages
-      - total_count
+      - id
+      - message
       properties:
-        first_page:
+        id:
           type: string
-        last_page:
+          enum:
+          - unauthorized
+        message:
           type: string
-        total_pages:
+    DataSources:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        data_index_auth_token:
+          type: string
+        _links:
+          $ref: '#/components/schemas/DataSourcesLinks'
+        _embedded:
+          $ref: '#/components/schemas/DataSourcesEmbeds'
+      required:
+      - _links
+    AccountEmbeds:
+      properties:
+        data_sources:
+          $ref: '#/components/schemas/DataSources'
+        spaces:
+          $ref: '#/components/schemas/Spaces'
+        all_spaces:
+          $ref: '#/components/schemas/Spaces'
+    Account:
+      properties:
+        username:
+          type: string
+        name:
+          type: string
+        id:
           type: integer
-        total_count:
+        token:
+          type: string
+        email:
+          type: string
+        dataset_size_limit_mb:
+          type: string
+        query_run_size_limit_mb:
+          type: string
+        email_verified:
+          type: boolean
+        avatar:
+          $ref: '#/components/schemas/Avatar'
+        user:
+          type: boolean
+        thoughtspot_integrated:
+          type: boolean
+        space_count:
           type: integer
+        data_source_count:
+          type: integer
+        default_data_source_token:
+          type: string
+        organizations_count:
+          type: string
+        trial_state:
+          enum:
+          - pending
+          - active
+          - expired
+          type: string
+        organization_restricted:
+          type: string
+        membership_type:
+          enum:
+          - admin
+          - full
+          type: string
+        payment_method_confirmed:
+          type: boolean
+        private_definition_count:
+          type: integer
+        private_definition_limit:
+          type: integer
+        authorized_domains:
+          type: array
+          items:
+            type: string
+        plan_code:
+          enum:
+          - standard
+          - plus
+          - free
+          type: string
+        seat_limit_reached:
+          type: boolean
+        org_seat_limit_reached:
+          type: boolean
+        python_performance_first_tier:
+          type: boolean
+        admin_data_source_connections_only:
+          type: boolean
+        admin_collection_creation_only:
+          type: boolean
+        scim_enabled:
+          type: string
+        created_at:
+          type: string
+        settings:
+          type: string
+        _links:
+          $ref: '#/components/schemas/AccountLinks'
+        _embedded:
+          $ref: '#/components/schemas/AccountEmbeds'
+      required:
+      - _links
+      - username
+      - name
+      - id
+      - token
+      - dataset_size_limit_mb
+      - query_run_size_limit_mb
+      - avatar
+      - user
+      - created_at
   securitySchemes:
     accessTokenAuth:
       type: http

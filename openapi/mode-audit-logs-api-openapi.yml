@@ -212,17 +212,6 @@ components:
           - forbidden
         message:
           type: string
-    BadRequest:
-      required:
-      - id
-      - message
-      properties:
-        id:
-          type: string
-          enum:
-          - bad_request
-        message:
-          type: string
     Unauthorized:
       required:
       - id
@@ -232,6 +221,17 @@ components:
           type: string
           enum:
           - unauthorized
+        message:
+          type: string
+    BadRequest:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - bad_request
         message:
           type: string
   securitySchemes:
