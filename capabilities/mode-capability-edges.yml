@@ -1,0 +1,58 @@
+slug: mode
+provider: Mode
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 4
+edges:
+- tag: Reports
+  spec_file: mode-reports-api-openapi.yml
+  capability_id: BC-610.50
+  capability_id_l1: BC-610
+  capability_name: Analytics & BI Management
+  confidence: 0.9
+  evidence: 'GET /{account}/reports/{report}/queries/{query}/charts  List Charts for a Query; GET .../results/content(.csv,
+    .json)  Get query results; schemas: ReportSchedule, ReportSubscriptionsEmbeds'
+  reason: 'Core BI delivery surface: reports, queries, charts, runs, filters, schedules and subscriptions
+    — reporting and business intelligence delivery.'
+- tag: Datasets
+  spec_file: mode-datasets-api-openapi.yml
+  capability_id: BC-610.50
+  capability_id_l1: BC-610
+  capability_name: Analytics & BI Management
+  confidence: 0.75
+  evidence: GET /{account}/datasets/{dataset}/fields  Get fields for a Dataset; POST /{account}/datasets/{dataset}/runs  Create
+    a Dataset run; GET /{account}/datasets/{dataset}/reports  List Reports using a Dataset
+  reason: Mode is a BI platform; this tag manages analytical datasets, their fields/descriptions, scheduled
+    runs and the reports built on them — delivery of reporting/analytics assets rather than any industry-specific
+    capability.
+- tag: Data Sources
+  spec_file: mode-data-sources-api-openapi.yml
+  capability_id: BC-610.50
+  capability_id_l1: BC-610
+  capability_name: Analytics & BI Management
+  confidence: 0.7
+  evidence: GET /{workspace}/data_sources listDataSources; POST /{account}/data_sources/{data_source}/schema_updates
+    Update data source schema; GET /{account}/data_sources/{data_source}/reports List reports using a
+    data source
+  reason: Manages connected warehouse data sources, their schemas, and the datasets/reports built on them
+    within a business intelligence platform — delivery of analytics and BI. Some ambiguity versus data
+    architecture management.
+- tag: Groups
+  spec_file: mode-groups-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: 'POST /{workspace}/groups/{group_token}/memberships  Create a group membership; schemas: UserGroup,
+    UserGroupMembership'
+  reason: User group and membership administration for workspace access control — an identity and access
+    management surface, not a business-domain capability.

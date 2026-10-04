@@ -187,6 +187,9 @@ x-enrichment:
   artifacts_added: 16
   pass: local-v1
 common:
+- type: CapabilityMap
+  url: capabilities/mode-capability-edges.yml
+  name: Mode Business Capability Map
 - type: ParentCompany
   url: https://apis.io/providers/thoughtspot/
   name: ThoughtSpot
