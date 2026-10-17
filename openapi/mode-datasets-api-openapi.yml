@@ -632,7 +632,18 @@ paths:
       - Datasets
 components:
   schemas:
-    ReportRunsLinks:
+    NotFound:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - not_found
+        message:
+          type: string
+    ReportsLinks:
       properties:
         next_page:
           $ref: '#/components/schemas/Link'
@@ -642,22 +653,7 @@ components:
           $ref: '#/components/schemas/Link'
       required:
       - self
-    Pagination:
-      required:
-      - first_page
-      - last_page
-      - total_pages
-      - total_count
-      properties:
-        first_page:
-          type: string
-        last_page:
-          type: string
-        total_pages:
-          type: integer
-        total_count:
-          type: integer
-    ReportRunsEmbeds: {}
+    ReportRunEmbeds: {}
     Reports:
       properties:
         pagination:
@@ -669,26 +665,77 @@ components:
       required:
       - _links
     ReportsEmbeds: {}
-    ReportRuns:
+    ReportRun:
       properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
+        token:
+          type: string
+        state:
+          enum:
+          - pending
+          - enqueued
+          - cancelled
+          - failed
+          - succeeded
+          - completed
+          - running_notebook
+          type: string
+        parameters:
+          $ref: '#/components/schemas/ReportRunParameters'
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        completed_at:
+          type: string
+        purge_started_at:
+          type: string
+        purge_completed_at:
+          type: string
+        python_state:
+          enum:
+          - none
+          - pending
+          - failed
+          - submitted
+          - succeeded
+          type: string
+        form_fields:
+          type: array
+        is_latest_report_run:
+          type: string
+        is_latest_successful_report_run:
+          type: string
+        report_has_failures_since_last_success:
+          type: string
+        pusher_channel_name:
+          type: string
         _links:
-          $ref: '#/components/schemas/ReportRunsLinks'
+          $ref: '#/components/schemas/ReportRunLinks'
         _embedded:
-          $ref: '#/components/schemas/ReportRunsEmbeds'
+          $ref: '#/components/schemas/ReportRunEmbeds'
       required:
       - _links
-    DatasetRunEmbeds: {}
-    Link:
-      required:
-      - href
+      - token
+      - state
+      - created_at
+      - updated_at
+      - completed_at
+      - purge_started_at
+      - purge_completed_at
+      - is_latest_report_run
+      - is_latest_successful_report_run
+      - report_has_failures_since_last_success
+    ReportEmbeds: {}
+    ReportRunsLinks:
       properties:
-        href:
-          type: string
-        templated:
-          type: boolean
-          default: false
+        next_page:
+          $ref: '#/components/schemas/Link'
+        prev_page:
+          $ref: '#/components/schemas/Link'
+        self:
+          $ref: '#/components/schemas/Link'
+      required:
+      - self
     BadRequest:
       required:
       - id
@@ -700,7 +747,116 @@ components:
           - bad_request
         message:
           type: string
-    ReportEmbeds: {}
+    UpdateReportRequestBody:
+      required:
+      - report
+      type: object
+      properties:
+        report:
+          type: object
+          properties:
+            name:
+              type: string
+              description: The name of the report
+              example: Kanto Region Diaspora
+            description:
+              type: string
+              description: A description of the report in question
+              example: An analysis of all the creatures living in the region. Please contribute any missing data. Pocket version coming soon.
+            space_token:
+              type: string
+              description: The token of the space this report will be moved to
+              example: 5a4177a2902c
+    DatasetRunEmbeds: {}
+    UpdateDatasetFieldDescriptionBody:
+      required:
+      - field_description
+      type: object
+      properties:
+        field_description:
+          type: object
+          description: The parameters for updating the field description
+          properties:
+            desc:
+              description: The description of the field
+              type: string
+    ReportLinks:
+      properties:
+        self:
+          $ref: '#/components/schemas/Link'
+        web:
+          $ref: '#/components/schemas/Link'
+        web_edit:
+          $ref: '#/components/schemas/Link'
+        web_external_url:
+          $ref: '#/components/schemas/Link'
+        csv_export:
+          $ref: '#/components/schemas/Link'
+        share:
+          $ref: '#/components/schemas/Link'
+        web_report_runs:
+          $ref: '#/components/schemas/Link'
+        account:
+          $ref: '#/components/schemas/Link'
+        report_run:
+          $ref: '#/components/schemas/Link'
+        star:
+          $ref: '#/components/schemas/Link'
+        space:
+          $ref: '#/components/schemas/Link'
+        space_links:
+          $ref: '#/components/schemas/Link'
+        queries:
+          $ref: '#/components/schemas/Link'
+        report_runs:
+          $ref: '#/components/schemas/Link'
+        report_pins:
+          $ref: '#/components/schemas/Link'
+        report_filters:
+          $ref: '#/components/schemas/Link'
+        report_schedules:
+          $ref: '#/components/schemas/Link'
+        report_subscriptions:
+          $ref: '#/components/schemas/Link'
+        dataset_dependencies:
+          $ref: '#/components/schemas/Link'
+        python_visualizations:
+          $ref: '#/components/schemas/Link'
+        embed_key:
+          $ref: '#/components/schemas/Link'
+        last_run:
+          $ref: '#/components/schemas/Link'
+        last_successful_run:
+          $ref: '#/components/schemas/Link'
+        python_notebook:
+          $ref: '#/components/schemas/Link'
+        perspective_email_subscription_memberships:
+          $ref: '#/components/schemas/Link'
+        validate_email_subscriber:
+          $ref: '#/components/schemas/Link'
+        creator:
+          $ref: '#/components/schemas/Link'
+        report_theme:
+          $ref: '#/components/schemas/Link'
+        last_successful_github_sync:
+          $ref: '#/components/schemas/Link'
+        report_index_web:
+          $ref: '#/components/schemas/Link'
+        dbt_metadata:
+          $ref: '#/components/schemas/Link'
+      required:
+      - self
+      - web
+      - account
+      - report_run
+      - queries
+      - report_runs
+      - report_pins
+      - report_schedules
+      - last_run
+      - last_successful_run
+      - perspective_email_subscription_memberships
+      - last_successful_github_sync
     Report:
       properties:
         token:
@@ -822,139 +978,6 @@ components:
       - query_preview
       - view_count
       - thoughtspot_published_at
-    ReportRunLinks:
-      properties:
-        latest_successful_report_run_api_url:
-          $ref: '#/components/schemas/Link'
-        self:
-          $ref: '#/components/schemas/Link'
-        content:
-          $ref: '#/components/schemas/Link'
-        preview:
-          $ref: '#/components/schemas/Link'
-        account:
-          $ref: '#/components/schemas/Link'
-        report_schedule:
-          $ref: '#/components/schemas/Link'
-        executed_by:
-          $ref: '#/components/schemas/Link'
-        share:
-          $ref: '#/components/schemas/Link'
-        embed:
-          $ref: '#/components/schemas/Link'
-        report:
-          $ref: '#/components/schemas/Link'
-        clone:
-          $ref: '#/components/schemas/Link'
-        query_runs:
-          $ref: '#/components/schemas/Link'
-        python_cell_runs:
-          $ref: '#/components/schemas/Link'
-        pdf_export:
-          $ref: '#/components/schemas/Link'
-        web_edit_dataset:
-          $ref: '#/components/schemas/Link'
-        web_clone:
-          $ref: '#/components/schemas/Link'
-        web_external_url:
-          $ref: '#/components/schemas/Link'
-      required:
-      - self
-      - account
-      - report
-      - query_runs
-    DatasetRunLinks:
-      properties:
-        self:
-          $ref: '#/components/schemas/Link'
-        account:
-          $ref: '#/components/schemas/Link'
-        executed_by:
-          $ref: '#/components/schemas/Link'
-        latest_successful_dataset_run_api_url:
-          $ref: '#/components/schemas/Link'
-        dataset:
-          $ref: '#/components/schemas/Link'
-        query_runs:
-          $ref: '#/components/schemas/Link'
-        share:
-          $ref: '#/components/schemas/Link'
-      required:
-      - self
-      - account
-      - dataset
-      - query_runs
-    ReportRun:
-      properties:
-        token:
-          type: string
-        state:
-          enum:
-          - pending
-          - enqueued
-          - cancelled
-          - failed
-          - succeeded
-          - completed
-          - running_notebook
-          type: string
-        parameters:
-          $ref: '#/components/schemas/ReportRunParameters'
-        created_at:
-          type: string
-        updated_at:
-          type: string
-        completed_at:
-          type: string
-        purge_started_at:
-          type: string
-        purge_completed_at:
-          type: string
-        python_state:
-          enum:
-          - none
-          - pending
-          - failed
-          - submitted
-          - succeeded
-          type: string
-        form_fields:
-          type: array
-        is_latest_report_run:
-          type: string
-        is_latest_successful_report_run:
-          type: string
-        report_has_failures_since_last_success:
-          type: string
-        pusher_channel_name:
-          type: string
-        _links:
-          $ref: '#/components/schemas/ReportRunLinks'
-        _embedded:
-          $ref: '#/components/schemas/ReportRunEmbeds'
-      required:
-      - _links
-      - token
-      - state
-      - created_at
-      - updated_at
-      - completed_at
-      - purge_started_at
-      - purge_completed_at
-      - is_latest_report_run
-      - is_latest_successful_report_run
-      - report_has_failures_since_last_success
-    ReportRunEmbeds: {}
-    ReportsLinks:
-      properties:
-        next_page:
-          $ref: '#/components/schemas/Link'
-        prev_page:
-          $ref: '#/components/schemas/Link'
-        self:
-          $ref: '#/components/schemas/Link'
-      required:
-      - self
     CreateDatasetFieldDescriptionBody:
       required:
       - field_description
@@ -970,6 +993,7 @@ components:
             name:
               description: The name of the field
               type: string
+    ReportRunParameters: {}
     DatasetRun:
       properties:
         created_at:
@@ -1017,6 +1041,21 @@ components:
       - state
       - token
       - updated_at
+    Pagination:
+      required:
+      - first_page
+      - last_page
+      - total_pages
+      - total_count
+      properties:
+        first_page:
+          type: string
+        last_page:
+          type: string
+        total_pages:
+          type: integer
+        total_count:
+          type: integer
     Unauthorized:
       required:
       - id
@@ -1028,127 +1067,88 @@ components:
           - unauthorized
         message:
           type: string
-    UpdateDatasetFieldDescriptionBody:
-      required:
-      - field_description
-      type: object
+    ReportRunLinks:
       properties:
-        field_description:
-          type: object
-          description: The parameters for updating the field description
-          properties:
-            desc:
-              description: The description of the field
-              type: string
-    ReportRunParameters: {}
-    ReportLinks:
-      properties:
+        latest_successful_report_run_api_url:
+          $ref: '#/components/schemas/Link'
         self:
           $ref: '#/components/schemas/Link'
-        web:
+        content:
           $ref: '#/components/schemas/Link'
-        web_edit:
-          $ref: '#/components/schemas/Link'
-        web_external_url:
-          $ref: '#/components/schemas/Link'
-        csv_export:
-          $ref: '#/components/schemas/Link'
-        share:
-          $ref: '#/components/schemas/Link'
-        web_report_runs:
+        preview:
           $ref: '#/components/schemas/Link'
         account:
           $ref: '#/components/schemas/Link'
-        report_run:
+        report_schedule:
           $ref: '#/components/schemas/Link'
-        star:
+        executed_by:
           $ref: '#/components/schemas/Link'
-        space:
+        share:
           $ref: '#/components/schemas/Link'
-        space_links:
+        embed:
           $ref: '#/components/schemas/Link'
-        queries:
+        report:
           $ref: '#/components/schemas/Link'
-        report_runs:
+        clone:
           $ref: '#/components/schemas/Link'
-        report_pins:
+        query_runs:
           $ref: '#/components/schemas/Link'
-        report_filters:
+        python_cell_runs:
           $ref: '#/components/schemas/Link'
-        report_schedules:
+        pdf_export:
           $ref: '#/components/schemas/Link'
-        report_subscriptions:
+        web_edit_dataset:
           $ref: '#/components/schemas/Link'
-        dataset_dependencies:
+        web_clone:
           $ref: '#/components/schemas/Link'
-        python_visualizations:
-          $ref: '#/components/schemas/Link'
-        embed_key:
-          $ref: '#/components/schemas/Link'
-        last_run:
-          $ref: '#/components/schemas/Link'
-        last_successful_run:
-          $ref: '#/components/schemas/Link'
-        python_notebook:
-          $ref: '#/components/schemas/Link'
-        perspective_email_subscription_memberships:
-          $ref: '#/components/schemas/Link'
-        validate_email_subscriber:
-          $ref: '#/components/schemas/Link'
-        creator:
-          $ref: '#/components/schemas/Link'
-        report_theme:
-          $ref: '#/components/schemas/Link'
-        last_successful_github_sync:
-          $ref: '#/components/schemas/Link'
-        report_index_web:
-          $ref: '#/components/schemas/Link'
-        dbt_metadata:
+        web_external_url:
           $ref: '#/components/schemas/Link'
       required:
       - self
-      - web
       - account
-      - report_run
-      - queries
-      - report_runs
-      - report_pins
-      - report_schedules
-      - last_run
-      - last_successful_run
-      - perspective_email_subscription_memberships
-      - last_successful_github_sync
-    UpdateReportRequestBody:
-      required:
       - report
-      type: object
+      - query_runs
+    ReportRuns:
       properties:
-        report:
-          type: object
-          properties:
-            name:
-              type: string
-              description: The name of the report
-              example: Kanto Region Diaspora
-            description:
-              type: string
-              description: A description of the report in question
-              example: An analysis of all the creatures living in the region. Please contribute any missing data. Pocket version coming soon.
-            space_token:
-              type: string
-              description: The token of the space this report will be moved to
-              example: 5a4177a2902c
-    NotFound:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        _links:
+          $ref: '#/components/schemas/ReportRunsLinks'
+        _embedded:
+          $ref: '#/components/schemas/ReportRunsEmbeds'
       required:
-      - id
-      - message
+      - _links
+    ReportRunsEmbeds: {}
+    Link:
+      required:
+      - href
       properties:
-        id:
+        href:
           type: string
-          enum:
-          - not_found
-        message:
-          type: string
+        templated:
+          type: boolean
+          default: false
+    DatasetRunLinks:
+      properties:
+        self:
+          $ref: '#/components/schemas/Link'
+        account:
+          $ref: '#/components/schemas/Link'
+        executed_by:
+          $ref: '#/components/schemas/Link'
+        latest_successful_dataset_run_api_url:
+          $ref: '#/components/schemas/Link'
+        dataset:
+          $ref: '#/components/schemas/Link'
+        query_runs:
+          $ref: '#/components/schemas/Link'
+        share:
+          $ref: '#/components/schemas/Link'
+      required:
+      - self
+      - account
+      - dataset
+      - query_runs
   securitySchemes:
     accessTokenAuth:
       type: http

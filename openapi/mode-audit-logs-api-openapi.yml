@@ -201,6 +201,17 @@ components:
         workspace_username:
           type: string
           example: sampleworkspaceusername
+    BadRequest:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - bad_request
+        message:
+          type: string
     Forbidden:
       required:
       - id
@@ -221,17 +232,6 @@ components:
           type: string
           enum:
           - unauthorized
-        message:
-          type: string
-    BadRequest:
-      required:
-      - id
-      - message
-      properties:
-        id:
-          type: string
-          enum:
-          - bad_request
         message:
           type: string
   securitySchemes:

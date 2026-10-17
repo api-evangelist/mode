@@ -251,40 +251,7 @@ paths:
       - Definitions
 components:
   schemas:
-    Link:
-      required:
-      - href
-      properties:
-        href:
-          type: string
-        templated:
-          type: boolean
-          default: false
-    Pagination:
-      required:
-      - first_page
-      - last_page
-      - total_pages
-      - total_count
-      properties:
-        first_page:
-          type: string
-        last_page:
-          type: string
-        total_pages:
-          type: integer
-        total_count:
-          type: integer
-    DefinitionsLinks:
-      properties:
-        next_page:
-          $ref: '#/components/schemas/Link'
-        prev_page:
-          $ref: '#/components/schemas/Link'
-        self:
-          $ref: '#/components/schemas/Link'
-      required:
-      - self
+    DefinitionEmbeds: {}
     DefinitionLinks:
       properties:
         self:
@@ -302,7 +269,7 @@ components:
       - last_run
       - last_successful_github_sync
       - web_edit
-    BadRequest:
+    NotFound:
       required:
       - id
       - message
@@ -310,10 +277,9 @@ components:
         id:
           type: string
           enum:
-          - bad_request
+          - not_found
         message:
           type: string
-    DefinitionEmbeds: {}
     Definition:
       properties:
         id:
@@ -354,7 +320,26 @@ components:
       - updated_at
       - last_successful_sync_at
       - last_saved_at
-    Unauthorized:
+    DefinitionsLinks:
+      properties:
+        next_page:
+          $ref: '#/components/schemas/Link'
+        prev_page:
+          $ref: '#/components/schemas/Link'
+        self:
+          $ref: '#/components/schemas/Link'
+      required:
+      - self
+    Link:
+      required:
+      - href
+      properties:
+        href:
+          type: string
+        templated:
+          type: boolean
+          default: false
+    BadRequest:
       required:
       - id
       - message
@@ -362,7 +347,7 @@ components:
         id:
           type: string
           enum:
-          - unauthorized
+          - bad_request
         message:
           type: string
     Definitions:
@@ -375,7 +360,23 @@ components:
           $ref: '#/components/schemas/DefinitionsEmbeds'
       required:
       - _links
-    NotFound:
+    DefinitionsEmbeds: {}
+    Pagination:
+      required:
+      - first_page
+      - last_page
+      - total_pages
+      - total_count
+      properties:
+        first_page:
+          type: string
+        last_page:
+          type: string
+        total_pages:
+          type: integer
+        total_count:
+          type: integer
+    Unauthorized:
       required:
       - id
       - message
@@ -383,10 +384,9 @@ components:
         id:
           type: string
           enum:
-          - not_found
+          - unauthorized
         message:
           type: string
-    DefinitionsEmbeds: {}
   securitySchemes:
     accessTokenAuth:
       type: http

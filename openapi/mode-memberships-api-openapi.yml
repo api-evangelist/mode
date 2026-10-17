@@ -153,6 +153,17 @@ paths:
       - Memberships
 components:
   schemas:
+    NotFound:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - not_found
+        message:
+          type: string
     Link:
       required:
       - href
@@ -225,6 +236,7 @@ components:
       - member_username
       - member_token
       - activated_at
+    MembershipEmbeds: {}
     Unauthorized:
       required:
       - id
@@ -234,18 +246,6 @@ components:
           type: string
           enum:
           - unauthorized
-        message:
-          type: string
-    MembershipEmbeds: {}
-    NotFound:
-      required:
-      - id
-      - message
-      properties:
-        id:
-          type: string
-          enum:
-          - not_found
         message:
           type: string
   securitySchemes:

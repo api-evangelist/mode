@@ -114,60 +114,6 @@ components:
             message:
               type: string
               example: You are an analyst, Harry!
-    Link:
-      required:
-      - href
-      properties:
-        href:
-          type: string
-        templated:
-          type: boolean
-          default: false
-    Forbidden:
-      required:
-      - id
-      - message
-      properties:
-        id:
-          type: string
-          enum:
-          - forbidden
-        message:
-          type: string
-    InviteEmbeds: {}
-    BadRequest:
-      required:
-      - id
-      - message
-      properties:
-        id:
-          type: string
-          enum:
-          - bad_request
-        message:
-          type: string
-    InviteLinks:
-      properties:
-        inviter:
-          $ref: '#/components/schemas/Link'
-        invitee:
-          $ref: '#/components/schemas/Link'
-        web_self_resend:
-          $ref: '#/components/schemas/Link'
-      required:
-      - inviter
-      - web_self_resend
-    Unauthorized:
-      required:
-      - id
-      - message
-      properties:
-        id:
-          type: string
-          enum:
-          - unauthorized
-        message:
-          type: string
     Invite:
       properties:
         email:
@@ -208,6 +154,7 @@ components:
       - limited
       - expires_at
       - created_at
+    InviteEmbeds: {}
     NotFound:
       required:
       - id
@@ -217,6 +164,59 @@ components:
           type: string
           enum:
           - not_found
+        message:
+          type: string
+    BadRequest:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - bad_request
+        message:
+          type: string
+    Link:
+      required:
+      - href
+      properties:
+        href:
+          type: string
+        templated:
+          type: boolean
+          default: false
+    InviteLinks:
+      properties:
+        inviter:
+          $ref: '#/components/schemas/Link'
+        invitee:
+          $ref: '#/components/schemas/Link'
+        web_self_resend:
+          $ref: '#/components/schemas/Link'
+      required:
+      - inviter
+      - web_self_resend
+    Forbidden:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - forbidden
+        message:
+          type: string
+    Unauthorized:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - unauthorized
         message:
           type: string
   securitySchemes:

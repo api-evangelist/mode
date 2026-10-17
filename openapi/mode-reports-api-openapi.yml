@@ -2023,59 +2023,333 @@ paths:
       - Reports
 components:
   schemas:
-    ReportScheduleEmbeds: {}
-    ReportScheduleLinks:
+    ReportScheduleRequestBodyTimeoutProperty:
+      type: integer
+      description: "How long, in seconds, the system should wait before it decides the schedule should run\n                          again even if the last run has not completed"
+      example: 3600
+    QueryRunEmbeds: {}
+    ChartLinks:
       properties:
-        account:
+        self:
+          $ref: '#/components/schemas/Link'
+        color_palette:
+          $ref: '#/components/schemas/Link'
+        report_viz_web:
+          $ref: '#/components/schemas/Link'
+        preview:
+          $ref: '#/components/schemas/Link'
+        report_run_viz_web:
           $ref: '#/components/schemas/Link'
         creator:
           $ref: '#/components/schemas/Link'
+      required:
+      - self
+      - report_viz_web
+      - preview
+      - report_run_viz_web
+    CreateOrUpdateReportFilterAttributes:
+      required:
+      - name
+      - formula
+      - data_type
+      - formula_type
+      - variable_type
+      - filter_type
+      - control_type
+      - options
+      properties:
+        name:
+          type: string
+          description: '`ReportFilter` name'
+        formula:
+          type: string
+          description: '`ReportFilter` formula'
+        data_type:
+          type: string
+          description: '`ReportFilter` data type'
+        formula_type:
+          type: string
+          description: '`ReportFilter` formula type'
+        filter_type:
+          enum:
+          - SINGLE
+          - MULTI
+          - RANGE
+          description: '`ReportFilter` type'
+        control_type:
+          enum:
+          - LIST
+          - DROPDOWN
+          - RANGE
+          description: '`ReportFilter` control type'
+        variable_type:
+          enum:
+          - CONTINUOUS
+          - DISCRETE
+          description: '`ReportFilter` variable type'
+        options:
+          $ref: '#/components/schemas/ReportFilterOptions'
+        next_filter_token:
+          type: string
+          description: Token of the `ReportFilter` that should come after this one, if manual ordering is desired. To move a ReportFilter to the bottom of the list use an empty string, `""`
+    NotFound:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - not_found
+        message:
+          type: string
+    QueryRuns:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        _links:
+          $ref: '#/components/schemas/QueryRunsLinks'
+        _embedded:
+          $ref: '#/components/schemas/QueryRunsEmbeds'
+      required:
+      - _links
+    ReportSubscriptionLinks:
+      properties:
+        self:
+          $ref: '#/components/schemas/Link'
+        report_schedule:
+          $ref: '#/components/schemas/Link'
+        email_subscription_memberships:
+          $ref: '#/components/schemas/Link'
+        slack_subscription_memberships:
+          $ref: '#/components/schemas/Link'
+      required:
+      - self
+      - report_schedule
+      - email_subscription_memberships
+      - slack_subscription_memberships
+    CreateReportScheduleRequestBody:
+      required:
+      - cron
+      properties:
+        cron:
+          $ref: '#/components/schemas/ReportScheduleRequestBodyCronProperty'
+        name:
+          $ref: '#/components/schemas/ReportScheduleRequestBodyNameProperty'
+        timeout:
+          $ref: '#/components/schemas/ReportScheduleRequestBodyTimeoutProperty'
+        params:
+          $ref: '#/components/schemas/ReportScheduleRequestBodyParamsProperty'
+    ReportSubscriptionsEmbeds: {}
+    ReportSchedule:
+      properties:
+        name:
+          type: string
+        token:
+          type: string
+        parameters:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        retry_state:
+          type: string
+        retry_count:
+          type: string
+        retry_delay:
+          type: string
+        timeout:
+          type: string
+        last_run_at:
+          type: string
+        last_succeeded_at:
+          type: string
+        last_scheduled_run:
+          type: string
+        next_scheduled_run:
+          type: string
+        report_name:
+          type: string
+        delivery:
+          type: string
+        report_token:
+          type: string
+        report_type:
+          type: string
+        subscribed:
+          type: string
+        subscriber_count:
+          type: string
+        _links:
+          $ref: '#/components/schemas/ReportScheduleLinks'
+        _embedded:
+          $ref: '#/components/schemas/ReportScheduleEmbeds'
+      required:
+      - _links
+      - name
+      - token
+      - parameters
+      - created_at
+      - updated_at
+      - retry_state
+      - retry_count
+      - retry_delay
+      - timeout
+      - last_run_at
+      - last_succeeded_at
+      - last_scheduled_run
+      - next_scheduled_run
+      - report_name
+      - delivery
+      - report_token
+      - report_type
+      - subscribed
+      - subscriber_count
+    CreateQueryRequestBody:
+      required:
+      - query
+      type: object
+      properties:
+        query:
+          required:
+          - raw_query
+          - data_source_id
+          type: object
+          description: The parameters for the new `query`
+          properties:
+            data_source_id:
+              type: integer
+              minimum: 1
+              description: The id of the data source to use
+            raw_query:
+              type: string
+              example: SELECT * from the_way_down
+              description: The raw query to be executed
+            name:
+              type: string
+              example: Turtles
+              description: The name of the new `query`
+    FormFieldEmbeds: {}
+    QueryRunLinks:
+      properties:
+        self:
+          $ref: '#/components/schemas/Link'
+        query:
+          $ref: '#/components/schemas/Link'
+        view:
+          $ref: '#/components/schemas/Link'
+        result:
+          $ref: '#/components/schemas/Link'
+        result_web:
+          $ref: '#/components/schemas/Link'
+        query_web:
+          $ref: '#/components/schemas/Link'
+        report_run:
+          $ref: '#/components/schemas/Link'
+        report_run_web:
+          $ref: '#/components/schemas/Link'
+        executed_by:
+          $ref: '#/components/schemas/Link'
+      required:
+      - self
+      - query
+      - result
+      - result_web
+      - query_web
+      - report_run
+      - report_run_web
+    ReportQueries:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        _links:
+          $ref: '#/components/schemas/ReportQueriesLinks'
+        _embedded:
+          $ref: '#/components/schemas/ReportQueriesEmbeds'
+      required:
+      - _links
+    ReportRunEmbeds: {}
+    ReportFilterLinks:
+      properties:
         self:
           $ref: '#/components/schemas/Link'
         report:
           $ref: '#/components/schemas/Link'
-        report_web:
-          $ref: '#/components/schemas/Link'
-        report_runs:
-          $ref: '#/components/schemas/Link'
-        report_subscriptions:
-          $ref: '#/components/schemas/Link'
       required:
-      - account
       - self
       - report
-      - report_web
-      - report_runs
-      - report_subscriptions
-    ReportRunsLinks:
+    ReportRun:
       properties:
-        next_page:
-          $ref: '#/components/schemas/Link'
-        prev_page:
-          $ref: '#/components/schemas/Link'
-        self:
-          $ref: '#/components/schemas/Link'
+        token:
+          type: string
+        state:
+          enum:
+          - pending
+          - enqueued
+          - cancelled
+          - failed
+          - succeeded
+          - completed
+          - running_notebook
+          type: string
+        parameters:
+          $ref: '#/components/schemas/ReportRunParameters'
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        completed_at:
+          type: string
+        purge_started_at:
+          type: string
+        purge_completed_at:
+          type: string
+        python_state:
+          enum:
+          - none
+          - pending
+          - failed
+          - submitted
+          - succeeded
+          type: string
+        form_fields:
+          type: array
+        is_latest_report_run:
+          type: string
+        is_latest_successful_report_run:
+          type: string
+        report_has_failures_since_last_success:
+          type: string
+        pusher_channel_name:
+          type: string
+        _links:
+          $ref: '#/components/schemas/ReportRunLinks'
+        _embedded:
+          $ref: '#/components/schemas/ReportRunEmbeds'
       required:
-      - self
-    Pagination:
-      required:
-      - first_page
-      - last_page
-      - total_pages
-      - total_count
+      - _links
+      - token
+      - state
+      - created_at
+      - updated_at
+      - completed_at
+      - purge_started_at
+      - purge_completed_at
+      - is_latest_report_run
+      - is_latest_successful_report_run
+      - report_has_failures_since_last_success
+    ReportFilters:
       properties:
-        first_page:
-          type: string
-        last_page:
-          type: string
-        total_pages:
-          type: integer
-        total_count:
-          type: integer
-    ReportScheduleRequestBodyNameProperty:
-      type: string
-      description: The name of the schedule
-      example: Qui Officia
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        _links:
+          $ref: '#/components/schemas/ReportFiltersLinks'
+        _embedded:
+          $ref: '#/components/schemas/ReportFiltersEmbeds'
+      required:
+      - _links
+    QueryEmbeds: {}
     ReportScheduleRequestBodyCronProperty:
       type: object
       description: 'CronLine attributes to determine your scheduled runtime. '
@@ -2383,122 +2657,49 @@ components:
           - Samoa
           description: The name of the time zone in which to evaluate the scheduled time to run
           example: Pacific Time (US & Canada)
-    CreateQueryRequestBody:
-      required:
-      - query
-      type: object
-      properties:
-        query:
-          required:
-          - raw_query
-          - data_source_id
-          type: object
-          description: The parameters for the new `query`
-          properties:
-            data_source_id:
-              type: integer
-              minimum: 1
-              description: The id of the data source to use
-            raw_query:
-              type: string
-              example: SELECT * from the_way_down
-              description: The raw query to be executed
-            name:
-              type: string
-              example: Turtles
-              description: The name of the new `query`
-    QueryEmbeds: {}
-    ReportSubscriptionsLinks:
-      properties:
-        next_page:
-          $ref: '#/components/schemas/Link'
-        prev_page:
-          $ref: '#/components/schemas/Link'
-        self:
-          $ref: '#/components/schemas/Link'
-      required:
-      - self
-    ReportFilters:
+    ReportSchedules:
       properties:
         pagination:
           $ref: '#/components/schemas/Pagination'
         _links:
-          $ref: '#/components/schemas/ReportFiltersLinks'
+          $ref: '#/components/schemas/ReportSchedulesLinks'
         _embedded:
-          $ref: '#/components/schemas/ReportFiltersEmbeds'
+          $ref: '#/components/schemas/ReportSchedulesEmbeds'
       required:
       - _links
-    UpdateQueryRequestBody:
-      required:
-      - query
-      type: object
+    ReportFiltersEmbeds: {}
+    ReportEmbeds: {}
+    Chart:
       properties:
-        query:
-          type: object
-          description: The updated parameters for the `query`
-          properties:
-            data_source_id:
-              type: integer
-              minimum: 1
-              description: The id of the data source to use
-            raw_query:
-              type: string
-              example: SELECT * FROM small_table;
-              description: The raw query to be executed
-            name:
-              type: string
-              example: All the small things
-              description: The name of the new `query`
-    ReportSubscriptionsEmbeds: {}
-    ReportRunsEmbeds: {}
-    ReportQueries:
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        _links:
-          $ref: '#/components/schemas/ReportQueriesLinks'
-        _embedded:
-          $ref: '#/components/schemas/ReportQueriesEmbeds'
-      required:
-      - _links
-    CreateOrUpdateReportFilterRequestBody:
-      required:
-      - report_filter
-      properties:
-        report_filter:
-          $ref: '#/components/schemas/CreateOrUpdateReportFilterAttributes'
-    FormFieldLinks: {}
-    ReportSubscriptionEmbeds: {}
-    ReportRuns:
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        _links:
-          $ref: '#/components/schemas/ReportRunsLinks'
-        _embedded:
-          $ref: '#/components/schemas/ReportRunsEmbeds'
-      required:
-      - _links
-    ReportSubscriptions:
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        _links:
-          $ref: '#/components/schemas/ReportSubscriptionsLinks'
-        _embedded:
-          $ref: '#/components/schemas/ReportSubscriptionsEmbeds'
-      required:
-      - _links
-    Link:
-      required:
-      - href
-      properties:
-        href:
+        view:
+          $ref: '#/components/schemas/VizView'
+        view_version:
+          type: integer
+        view_vegas:
+          $ref: '#/components/schemas/VizViewVegas'
+        token:
           type: string
-        templated:
-          type: boolean
-          default: false
-    ReportSchedulesLinks:
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        color_palette_token:
+          type: string
+        switch_view_token:
+          type: string
+        _links:
+          $ref: '#/components/schemas/ChartLinks'
+        _embedded:
+          $ref: '#/components/schemas/ChartEmbeds'
+      required:
+      - _links
+      - view
+      - view_version
+      - view_vegas
+      - token
+      - created_at
+      - updated_at
+    QueryRunsLinks:
       properties:
         next_page:
           $ref: '#/components/schemas/Link'
@@ -2508,9 +2709,7 @@ components:
           $ref: '#/components/schemas/Link'
       required:
       - self
-    CreateReportScheduleRequestBody:
-      required:
-      - cron
+    UpdateReportScheduleRequestBody:
       properties:
         cron:
           $ref: '#/components/schemas/ReportScheduleRequestBodyCronProperty'
@@ -2520,7 +2719,79 @@ components:
           $ref: '#/components/schemas/ReportScheduleRequestBodyTimeoutProperty'
         params:
           $ref: '#/components/schemas/ReportScheduleRequestBodyParamsProperty'
-    ReportFiltersLinks:
+    ReportScheduleRequestBodyParamsProperty:
+      type: object
+      description: "A set of key/value pairs that match report parameter names and values, if the report for this\n                        schedule has any and you would like to schedule it with specific values"
+      example:
+        foo: bar
+    ReportRunsLinks:
+      properties:
+        next_page:
+          $ref: '#/components/schemas/Link'
+        prev_page:
+          $ref: '#/components/schemas/Link'
+        self:
+          $ref: '#/components/schemas/Link'
+      required:
+      - self
+    BadRequest:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - bad_request
+        message:
+          type: string
+    UpdateReportRequestBody:
+      required:
+      - report
+      type: object
+      properties:
+        report:
+          type: object
+          properties:
+            name:
+              type: string
+              description: The name of the report
+              example: Kanto Region Diaspora
+            description:
+              type: string
+              description: A description of the report in question
+              example: An analysis of all the creatures living in the region. Please contribute any missing data. Pocket version coming soon.
+            space_token:
+              type: string
+              description: The token of the space this report will be moved to
+              example: 5a4177a2902c
+    VizViewVegas:
+      required:
+      - format
+      - encoding
+      - chartType
+      properties:
+        title:
+          type: string
+        format:
+          type: object
+        encoding:
+          type: object
+        chartType:
+          type: string
+          example: bigValue
+    QueryChartsLinks:
+      properties:
+        next_page:
+          $ref: '#/components/schemas/Link'
+        prev_page:
+          $ref: '#/components/schemas/Link'
+        self:
+          $ref: '#/components/schemas/Link'
+      required:
+      - self
+    ReportSchedulesEmbeds: {}
+    ReportSchedulesLinks:
       properties:
         next_page:
           $ref: '#/components/schemas/Link'
@@ -2553,175 +2824,151 @@ components:
           type: boolean
           description: Whether or not to include Report Links for subscribers to the scheduled run
           example: true
-    QueryCharts:
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        _links:
-          $ref: '#/components/schemas/QueryChartsLinks'
-        _embedded:
-          $ref: '#/components/schemas/QueryChartsEmbeds'
-      required:
-      - _links
-    BadRequest:
-      required:
-      - id
-      - message
+    Query:
       properties:
         id:
           type: string
-          enum:
-          - bad_request
-        message:
-          type: string
-    ReportQueriesLinks:
-      properties:
-        next_page:
-          $ref: '#/components/schemas/Link'
-        prev_page:
-          $ref: '#/components/schemas/Link'
-        self:
-          $ref: '#/components/schemas/Link'
-      required:
-      - self
-    ReportSubscription:
-      properties:
-        data_previews_enabled:
-          type: boolean
-        data_tables_enabled:
-          type: boolean
-        csv_attachments_enabled:
-          type: boolean
-        pdf_attachments_enabled:
-          type: boolean
-        report_links_enabled:
-          type: boolean
-        email_subscriber_count:
-          type: integer
-        _links:
-          $ref: '#/components/schemas/ReportSubscriptionLinks'
-        _embedded:
-          $ref: '#/components/schemas/ReportSubscriptionEmbeds'
-      required:
-      - _links
-      - data_previews_enabled
-      - data_tables_enabled
-      - csv_attachments_enabled
-      - pdf_attachments_enabled
-      - report_links_enabled
-      - email_subscriber_count
-    ChartLinks:
-      properties:
-        self:
-          $ref: '#/components/schemas/Link'
-        color_palette:
-          $ref: '#/components/schemas/Link'
-        report_viz_web:
-          $ref: '#/components/schemas/Link'
-        preview:
-          $ref: '#/components/schemas/Link'
-        report_run_viz_web:
-          $ref: '#/components/schemas/Link'
-        creator:
-          $ref: '#/components/schemas/Link'
-      required:
-      - self
-      - report_viz_web
-      - preview
-      - report_run_viz_web
-    ReportSchedule:
-      properties:
-        name:
-          type: string
         token:
           type: string
-        parameters:
+        raw_query:
           type: string
         created_at:
           type: string
         updated_at:
           type: string
-        retry_state:
+        name:
           type: string
-        retry_count:
+        last_run_id:
           type: string
-        retry_delay:
+        data_source_id:
           type: string
-        timeout:
+        explorations_count:
           type: string
-        last_run_at:
+        report_imports_count:
           type: string
-        last_succeeded_at:
+        dbt_metric_id:
           type: string
-        last_scheduled_run:
+        dbt_metric_token:
           type: string
-        next_scheduled_run:
-          type: string
-        report_name:
-          type: string
-        delivery:
-          type: string
-        report_token:
-          type: string
-        report_type:
-          type: string
-        subscribed:
-          type: string
-        subscriber_count:
+        mapping_id:
           type: string
         _links:
-          $ref: '#/components/schemas/ReportScheduleLinks'
+          $ref: '#/components/schemas/QueryLinks'
         _embedded:
-          $ref: '#/components/schemas/ReportScheduleEmbeds'
+          $ref: '#/components/schemas/QueryEmbeds'
       required:
       - _links
-      - name
+      - id
       - token
-      - parameters
       - created_at
       - updated_at
-      - retry_state
-      - retry_count
-      - retry_delay
-      - timeout
-      - last_run_at
-      - last_succeeded_at
-      - last_scheduled_run
-      - next_scheduled_run
-      - report_name
-      - delivery
-      - report_token
-      - report_type
-      - subscribed
-      - subscriber_count
-    QueryChartsEmbeds: {}
-    QueryRuns:
+      - name
+      - last_run_id
+      - data_source_id
+      - explorations_count
+      - report_imports_count
+      - dbt_metric_id
+    ReportScheduleEmbeds: {}
+    ChartEmbeds: {}
+    ReportLinks:
       properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        _links:
-          $ref: '#/components/schemas/QueryRunsLinks'
-        _embedded:
-          $ref: '#/components/schemas/QueryRunsEmbeds'
+        self:
+          $ref: '#/components/schemas/Link'
+        web:
+          $ref: '#/components/schemas/Link'
+        web_edit:
+          $ref: '#/components/schemas/Link'
+        web_external_url:
+          $ref: '#/components/schemas/Link'
+        csv_export:
+          $ref: '#/components/schemas/Link'
+        share:
+          $ref: '#/components/schemas/Link'
+        web_report_runs:
+          $ref: '#/components/schemas/Link'
+        account:
+          $ref: '#/components/schemas/Link'
+        report_run:
+          $ref: '#/components/schemas/Link'
+        star:
+          $ref: '#/components/schemas/Link'
+        space:
+          $ref: '#/components/schemas/Link'
+        space_links:
+          $ref: '#/components/schemas/Link'
+        queries:
+          $ref: '#/components/schemas/Link'
+        report_runs:
+          $ref: '#/components/schemas/Link'
+        report_pins:
+          $ref: '#/components/schemas/Link'
+        report_filters:
+          $ref: '#/components/schemas/Link'
+        report_schedules:
+          $ref: '#/components/schemas/Link'
+        report_subscriptions:
+          $ref: '#/components/schemas/Link'
+        dataset_dependencies:
+          $ref: '#/components/schemas/Link'
+        python_visualizations:
+          $ref: '#/components/schemas/Link'
+        embed_key:
+          $ref: '#/components/schemas/Link'
+        last_run:
+          $ref: '#/components/schemas/Link'
+        last_successful_run:
+          $ref: '#/components/schemas/Link'
+        python_notebook:
+          $ref: '#/components/schemas/Link'
+        perspective_email_subscription_memberships:
+          $ref: '#/components/schemas/Link'
+        validate_email_subscriber:
+          $ref: '#/components/schemas/Link'
+        creator:
+          $ref: '#/components/schemas/Link'
+        report_theme:
+          $ref: '#/components/schemas/Link'
+        last_successful_github_sync:
+          $ref: '#/components/schemas/Link'
+        report_index_web:
+          $ref: '#/components/schemas/Link'
+        dbt_metadata:
+          $ref: '#/components/schemas/Link'
       required:
-      - _links
-    ReportEmbeds: {}
-    ReportQueriesEmbeds: {}
-    VizViewVegas:
+      - self
+      - web
+      - account
+      - report_run
+      - queries
+      - report_runs
+      - report_pins
+      - report_schedules
+      - last_run
+      - last_successful_run
+      - perspective_email_subscription_memberships
+      - last_successful_github_sync
+    UpdateQueryRequestBody:
       required:
-      - format
-      - encoding
-      - chartType
+      - query
+      type: object
       properties:
-        title:
-          type: string
-        format:
+        query:
           type: object
-        encoding:
-          type: object
-        chartType:
-          type: string
-          example: bigValue
+          description: The updated parameters for the `query`
+          properties:
+            data_source_id:
+              type: integer
+              minimum: 1
+              description: The id of the data source to use
+            raw_query:
+              type: string
+              example: SELECT * FROM small_table;
+              description: The raw query to be executed
+            name:
+              type: string
+              example: All the small things
+              description: The name of the new `query`
+    ReportSubscriptionEmbeds: {}
     Report:
       properties:
         token:
@@ -2843,141 +3090,7 @@ components:
       - query_preview
       - view_count
       - thoughtspot_published_at
-    QueryRunsEmbeds: {}
-    FormFieldEmbeds: {}
-    ReportFiltersEmbeds: {}
-    ReportRunLinks:
-      properties:
-        latest_successful_report_run_api_url:
-          $ref: '#/components/schemas/Link'
-        self:
-          $ref: '#/components/schemas/Link'
-        content:
-          $ref: '#/components/schemas/Link'
-        preview:
-          $ref: '#/components/schemas/Link'
-        account:
-          $ref: '#/components/schemas/Link'
-        report_schedule:
-          $ref: '#/components/schemas/Link'
-        executed_by:
-          $ref: '#/components/schemas/Link'
-        share:
-          $ref: '#/components/schemas/Link'
-        embed:
-          $ref: '#/components/schemas/Link'
-        report:
-          $ref: '#/components/schemas/Link'
-        clone:
-          $ref: '#/components/schemas/Link'
-        query_runs:
-          $ref: '#/components/schemas/Link'
-        python_cell_runs:
-          $ref: '#/components/schemas/Link'
-        pdf_export:
-          $ref: '#/components/schemas/Link'
-        web_edit_dataset:
-          $ref: '#/components/schemas/Link'
-        web_clone:
-          $ref: '#/components/schemas/Link'
-        web_external_url:
-          $ref: '#/components/schemas/Link'
-      required:
-      - self
-      - account
-      - report
-      - query_runs
-    ReportSchedulesEmbeds: {}
-    ReportFilterOptions: {}
-    ReportRun:
-      properties:
-        token:
-          type: string
-        state:
-          enum:
-          - pending
-          - enqueued
-          - cancelled
-          - failed
-          - succeeded
-          - completed
-          - running_notebook
-          type: string
-        parameters:
-          $ref: '#/components/schemas/ReportRunParameters'
-        created_at:
-          type: string
-        updated_at:
-          type: string
-        completed_at:
-          type: string
-        purge_started_at:
-          type: string
-        purge_completed_at:
-          type: string
-        python_state:
-          enum:
-          - none
-          - pending
-          - failed
-          - submitted
-          - succeeded
-          type: string
-        form_fields:
-          type: array
-        is_latest_report_run:
-          type: string
-        is_latest_successful_report_run:
-          type: string
-        report_has_failures_since_last_success:
-          type: string
-        pusher_channel_name:
-          type: string
-        _links:
-          $ref: '#/components/schemas/ReportRunLinks'
-        _embedded:
-          $ref: '#/components/schemas/ReportRunEmbeds'
-      required:
-      - _links
-      - token
-      - state
-      - created_at
-      - updated_at
-      - completed_at
-      - purge_started_at
-      - purge_completed_at
-      - is_latest_report_run
-      - is_latest_successful_report_run
-      - report_has_failures_since_last_success
-    QueryRunLinks:
-      properties:
-        self:
-          $ref: '#/components/schemas/Link'
-        query:
-          $ref: '#/components/schemas/Link'
-        view:
-          $ref: '#/components/schemas/Link'
-        result:
-          $ref: '#/components/schemas/Link'
-        result_web:
-          $ref: '#/components/schemas/Link'
-        query_web:
-          $ref: '#/components/schemas/Link'
-        report_run:
-          $ref: '#/components/schemas/Link'
-        report_run_web:
-          $ref: '#/components/schemas/Link'
-        executed_by:
-          $ref: '#/components/schemas/Link'
-      required:
-      - self
-      - query
-      - result
-      - result_web
-      - query_web
-      - report_run
-      - report_run_web
-    QueryChartsLinks:
+    ReportFiltersLinks:
       properties:
         next_page:
           $ref: '#/components/schemas/Link'
@@ -2987,52 +3100,35 @@ components:
           $ref: '#/components/schemas/Link'
       required:
       - self
-    Query:
+    ReportScheduleLinks:
       properties:
-        id:
-          type: string
-        token:
-          type: string
-        raw_query:
-          type: string
-        created_at:
-          type: string
-        updated_at:
-          type: string
-        name:
-          type: string
-        last_run_id:
-          type: string
-        data_source_id:
-          type: string
-        explorations_count:
-          type: string
-        report_imports_count:
-          type: string
-        dbt_metric_id:
-          type: string
-        dbt_metric_token:
-          type: string
-        mapping_id:
-          type: string
-        _links:
-          $ref: '#/components/schemas/QueryLinks'
-        _embedded:
-          $ref: '#/components/schemas/QueryEmbeds'
+        account:
+          $ref: '#/components/schemas/Link'
+        creator:
+          $ref: '#/components/schemas/Link'
+        self:
+          $ref: '#/components/schemas/Link'
+        report:
+          $ref: '#/components/schemas/Link'
+        report_web:
+          $ref: '#/components/schemas/Link'
+        report_runs:
+          $ref: '#/components/schemas/Link'
+        report_subscriptions:
+          $ref: '#/components/schemas/Link'
       required:
-      - _links
-      - id
-      - token
-      - created_at
-      - updated_at
-      - name
-      - last_run_id
-      - data_source_id
-      - explorations_count
-      - report_imports_count
-      - dbt_metric_id
-    QueryRunEmbeds: {}
-    ChartEmbeds: {}
+      - account
+      - self
+      - report
+      - report_web
+      - report_runs
+      - report_subscriptions
+    CreateOrUpdateReportFilterRequestBody:
+      required:
+      - report_filter
+      properties:
+        report_filter:
+          $ref: '#/components/schemas/CreateOrUpdateReportFilterAttributes'
     QueryRun:
       properties:
         id:
@@ -3099,87 +3195,9 @@ components:
       - dbt_metric_id
       - parameters
       - max_result_bytes
-    CreateOrUpdateReportFilterAttributes:
-      required:
-      - name
-      - formula
-      - data_type
-      - formula_type
-      - variable_type
-      - filter_type
-      - control_type
-      - options
-      properties:
-        name:
-          type: string
-          description: '`ReportFilter` name'
-        formula:
-          type: string
-          description: '`ReportFilter` formula'
-        data_type:
-          type: string
-          description: '`ReportFilter` data type'
-        formula_type:
-          type: string
-          description: '`ReportFilter` formula type'
-        filter_type:
-          enum:
-          - SINGLE
-          - MULTI
-          - RANGE
-          description: '`ReportFilter` type'
-        control_type:
-          enum:
-          - LIST
-          - DROPDOWN
-          - RANGE
-          description: '`ReportFilter` control type'
-        variable_type:
-          enum:
-          - CONTINUOUS
-          - DISCRETE
-          description: '`ReportFilter` variable type'
-        options:
-          $ref: '#/components/schemas/ReportFilterOptions'
-        next_filter_token:
-          type: string
-          description: Token of the `ReportFilter` that should come after this one, if manual ordering is desired. To move a ReportFilter to the bottom of the list use an empty string, `""`
-    VizView:
-      required:
-      - selectedChart
-      - bar
-      - bigNumber
-      - line
-      - linePlusBar
-      - scatter
-      - pie
-      - area
-      - pivotTable
-      properties:
-        selectedChart:
-          type: string
-        chartIcon:
-          type: string
-        chartTitle:
-          type: string
-        bar:
-          type: object
-        bigNumber:
-          type: object
-        line:
-          type: object
-        linePlusBar:
-          type: object
-        scatter:
-          type: object
-        pie:
-          type: object
-        area:
-          type: object
-        pivotTable:
-          type: object
-    ReportRunEmbeds: {}
-    QueryRunsLinks:
+    QueryRunsEmbeds: {}
+    ReportRunParameters: {}
+    ReportQueriesLinks:
       properties:
         next_page:
           $ref: '#/components/schemas/Link'
@@ -3189,39 +3207,96 @@ components:
           $ref: '#/components/schemas/Link'
       required:
       - self
-    ReportFilterLinks:
+    ReportSubscriptionsLinks:
       properties:
-        self:
+        next_page:
           $ref: '#/components/schemas/Link'
-        report:
+        prev_page:
+          $ref: '#/components/schemas/Link'
+        self:
           $ref: '#/components/schemas/Link'
       required:
       - self
-      - report
-    ReportScheduleRequestBodyTimeoutProperty:
-      type: integer
-      description: "How long, in seconds, the system should wait before it decides the schedule should run\n                          again even if the last run has not completed"
-      example: 3600
-    FormField:
+    Pagination:
+      required:
+      - first_page
+      - last_page
+      - total_pages
+      - total_count
       properties:
-        name:
+        first_page:
           type: string
-        options:
+        last_page:
           type: string
-        options_error:
-          type: string
-        source_size:
-          type: string
+        total_pages:
+          type: integer
+        total_count:
+          type: integer
+    ReportFilterOptions: {}
+    FormFieldLinks: {}
+    ReportSubscriptions:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
         _links:
-          $ref: '#/components/schemas/FormFieldLinks'
+          $ref: '#/components/schemas/ReportSubscriptionsLinks'
         _embedded:
-          $ref: '#/components/schemas/FormFieldEmbeds'
+          $ref: '#/components/schemas/ReportSubscriptionsEmbeds'
       required:
       - _links
-      - name
-      - options
-      - options_error
-      - source_size
+    Unauthorized:
+      required:
+      - id
+      - message
+      properties:
+        id:
+          type: string
+          enum:
+          - unauthorized
+        message:
+          type: string
+    ReportRunLinks:
+      properties:
+        latest_successful_report_run_api_url:
+          $ref: '#/components/schemas/Link'
+        self:
+          $ref: '#/components/schemas/Link'
+        content:
+          $ref: '#/components/schemas/Link'
+        preview:
+          $ref: '#/components/schemas/Link'
+        account:
+          $ref: '#/components/schemas/Link'
+        report_schedule:
+          $ref: '#/components/schemas/Link'
+        executed_by:
+          $ref: '#/components/schemas/Link'
+        share:
+          $ref: '#/components/schemas/Link'
+        embed:
+          $ref: '#/components/schemas/Link'
+        report:
+          $ref: '#/components/schemas/Link'
+        clone:
+          $ref: '#/components/schemas/Link'
+        query_runs:
+          $ref: '#/components/schemas/Link'
+        python_cell_runs:
+          $ref: '#/components/schemas/Link'
+        pdf_export:
+          $ref: '#/components/schemas/Link'
+        web_edit_dataset:
+          $ref: '#/components/schemas/Link'
+        web_clone:
+          $ref: '#/components/schemas/Link'
+        web_external_url:
+          $ref: '#/components/schemas/Link'
+      required:
+      - self
+      - account
+      - report
+      - query_runs
+    QueryChartsEmbeds: {}
     QueryLinks:
       properties:
         self:
@@ -3250,99 +3325,6 @@ components:
       - report_runs
       - query_runs
     ReportFilterEmbeds: {}
-    Chart:
-      properties:
-        view:
-          $ref: '#/components/schemas/VizView'
-        view_version:
-          type: integer
-        view_vegas:
-          $ref: '#/components/schemas/VizViewVegas'
-        token:
-          type: string
-        created_at:
-          type: string
-        updated_at:
-          type: string
-        color_palette_token:
-          type: string
-        switch_view_token:
-          type: string
-        _links:
-          $ref: '#/components/schemas/ChartLinks'
-        _embedded:
-          $ref: '#/components/schemas/ChartEmbeds'
-      required:
-      - _links
-      - view
-      - view_version
-      - view_vegas
-      - token
-      - created_at
-      - updated_at
-    RefreshImportedDatasetRequestBody:
-      required:
-      - report
-      type: object
-      properties:
-        report:
-          type: object
-          properties:
-            dataset_tokens:
-              type: array
-              description: An array of `Dataset` objects containing only their token
-              example: '[{ token: ''5a4177a2902c'' }]'
-    ReportScheduleRequestBodyParamsProperty:
-      type: object
-      description: "A set of key/value pairs that match report parameter names and values, if the report for this\n                        schedule has any and you would like to schedule it with specific values"
-      example:
-        foo: bar
-    ReportSchedules:
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        _links:
-          $ref: '#/components/schemas/ReportSchedulesLinks'
-        _embedded:
-          $ref: '#/components/schemas/ReportSchedulesEmbeds'
-      required:
-      - _links
-    UpdateReportScheduleRequestBody:
-      properties:
-        cron:
-          $ref: '#/components/schemas/ReportScheduleRequestBodyCronProperty'
-        name:
-          $ref: '#/components/schemas/ReportScheduleRequestBodyNameProperty'
-        timeout:
-          $ref: '#/components/schemas/ReportScheduleRequestBodyTimeoutProperty'
-        params:
-          $ref: '#/components/schemas/ReportScheduleRequestBodyParamsProperty'
-    ReportSubscriptionLinks:
-      properties:
-        self:
-          $ref: '#/components/schemas/Link'
-        report_schedule:
-          $ref: '#/components/schemas/Link'
-        email_subscription_memberships:
-          $ref: '#/components/schemas/Link'
-        slack_subscription_memberships:
-          $ref: '#/components/schemas/Link'
-      required:
-      - self
-      - report_schedule
-      - email_subscription_memberships
-      - slack_subscription_memberships
-    Unauthorized:
-      required:
-      - id
-      - message
-      properties:
-        id:
-          type: string
-          enum:
-          - unauthorized
-        message:
-          type: string
     ReportFilter:
       properties:
         id:
@@ -3410,85 +3392,38 @@ components:
       - options
       - created_at
       - updated_at
-    ReportRunParameters: {}
-    ReportLinks:
+    ReportQueriesEmbeds: {}
+    FormField:
       properties:
-        self:
-          $ref: '#/components/schemas/Link'
-        web:
-          $ref: '#/components/schemas/Link'
-        web_edit:
-          $ref: '#/components/schemas/Link'
-        web_external_url:
-          $ref: '#/components/schemas/Link'
-        csv_export:
-          $ref: '#/components/schemas/Link'
-        share:
-          $ref: '#/components/schemas/Link'
-        web_report_runs:
-          $ref: '#/components/schemas/Link'
-        account:
-          $ref: '#/components/schemas/Link'
-        report_run:
-          $ref: '#/components/schemas/Link'
-        star:
-          $ref: '#/components/schemas/Link'
-        space:
-          $ref: '#/components/schemas/Link'
-        space_links:
-          $ref: '#/components/schemas/Link'
-        queries:
-          $ref: '#/components/schemas/Link'
-        report_runs:
-          $ref: '#/components/schemas/Link'
-        report_pins:
-          $ref: '#/components/schemas/Link'
-        report_filters:
-          $ref: '#/components/schemas/Link'
-        report_schedules:
-          $ref: '#/components/schemas/Link'
-        report_subscriptions:
-          $ref: '#/components/schemas/Link'
-        dataset_dependencies:
-          $ref: '#/components/schemas/Link'
-        python_visualizations:
-          $ref: '#/components/schemas/Link'
-        embed_key:
-          $ref: '#/components/schemas/Link'
-        last_run:
-          $ref: '#/components/schemas/Link'
-        last_successful_run:
-          $ref: '#/components/schemas/Link'
-        python_notebook:
-          $ref: '#/components/schemas/Link'
-        perspective_email_subscription_memberships:
-          $ref: '#/components/schemas/Link'
-        validate_email_subscriber:
-          $ref: '#/components/schemas/Link'
-        creator:
-          $ref: '#/components/schemas/Link'
-        report_theme:
-          $ref: '#/components/schemas/Link'
-        last_successful_github_sync:
-          $ref: '#/components/schemas/Link'
-        report_index_web:
-          $ref: '#/components/schemas/Link'
-        dbt_metadata:
-          $ref: '#/components/schemas/Link'
+        name:
+          type: string
+        options:
+          type: string
+        options_error:
+          type: string
+        source_size:
+          type: string
+        _links:
+          $ref: '#/components/schemas/FormFieldLinks'
+        _embedded:
+          $ref: '#/components/schemas/FormFieldEmbeds'
       required:
-      - self
-      - web
-      - account
-      - report_run
-      - queries
-      - report_runs
-      - report_pins
-      - report_schedules
-      - last_run
-      - last_successful_run
-      - perspective_email_subscription_memberships
-      - last_successful_github_sync
-    UpdateReportRequestBody:
+      - _links
+      - name
+      - options
+      - options_error
+      - source_size
+    ReportRuns:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        _links:
+          $ref: '#/components/schemas/ReportRunsLinks'
+        _embedded:
+          $ref: '#/components/schemas/ReportRunsEmbeds'
+      required:
+      - _links
+    RefreshImportedDatasetRequestBody:
       required:
       - report
       type: object
@@ -3496,29 +3431,94 @@ components:
         report:
           type: object
           properties:
-            name:
-              type: string
-              description: The name of the report
-              example: Kanto Region Diaspora
-            description:
-              type: string
-              description: A description of the report in question
-              example: An analysis of all the creatures living in the region. Please contribute any missing data. Pocket version coming soon.
-            space_token:
-              type: string
-              description: The token of the space this report will be moved to
-              example: 5a4177a2902c
-    NotFound:
+            dataset_tokens:
+              type: array
+              description: An array of `Dataset` objects containing only their token
+              example: '[{ token: ''5a4177a2902c'' }]'
+    VizView:
       required:
-      - id
-      - message
+      - selectedChart
+      - bar
+      - bigNumber
+      - line
+      - linePlusBar
+      - scatter
+      - pie
+      - area
+      - pivotTable
       properties:
-        id:
+        selectedChart:
           type: string
-          enum:
-          - not_found
-        message:
+        chartIcon:
           type: string
+        chartTitle:
+          type: string
+        bar:
+          type: object
+        bigNumber:
+          type: object
+        line:
+          type: object
+        linePlusBar:
+          type: object
+        scatter:
+          type: object
+        pie:
+          type: object
+        area:
+          type: object
+        pivotTable:
+          type: object
+    ReportSubscription:
+      properties:
+        data_previews_enabled:
+          type: boolean
+        data_tables_enabled:
+          type: boolean
+        csv_attachments_enabled:
+          type: boolean
+        pdf_attachments_enabled:
+          type: boolean
+        report_links_enabled:
+          type: boolean
+        email_subscriber_count:
+          type: integer
+        _links:
+          $ref: '#/components/schemas/ReportSubscriptionLinks'
+        _embedded:
+          $ref: '#/components/schemas/ReportSubscriptionEmbeds'
+      required:
+      - _links
+      - data_previews_enabled
+      - data_tables_enabled
+      - csv_attachments_enabled
+      - pdf_attachments_enabled
+      - report_links_enabled
+      - email_subscriber_count
+    ReportRunsEmbeds: {}
+    Link:
+      required:
+      - href
+      properties:
+        href:
+          type: string
+        templated:
+          type: boolean
+          default: false
+    QueryCharts:
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        _links:
+          $ref: '#/components/schemas/QueryChartsLinks'
+        _embedded:
+          $ref: '#/components/schemas/QueryChartsEmbeds'
+      required:
+      - _links
+    ReportScheduleRequestBodyNameProperty:
+      type: string
+      description: The name of the schedule
+      example: Qui Officia
   securitySchemes:
     accessTokenAuth:
       type: http
