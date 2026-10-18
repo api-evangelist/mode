@@ -57,7 +57,7 @@
     - alpha
     in_cloud: true
     builder: unknown (community connector; contributor not in the record)
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: mode-fivetran
   label: Fivetran
@@ -83,7 +83,7 @@
     - connectors/applications/mode
     vendor_link: https://mode.com/
     builder: Fivetran
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: mode-meltano
   label: Meltano
@@ -112,7 +112,7 @@
     quality:
     - unknown
     builder: 'community (Meltano Hub variant maintainers: franloza)'
-  status: pending-partner-spec
+  status: not-a-workflow
   arazzo: null
 - slug: mode-slack-own
   label: Slack (own)
