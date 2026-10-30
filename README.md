@@ -1,4 +1,4 @@
-# Mode *
+# Mode
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,6 +64,140 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Mode * is a company surfaced as a portfolio company of gv and added to the API Evangelist network as a stub for enrichment. Sector: enterprise. This profile is a lead awaiting the enrichment pipeline.
+Mode is a collaborative business intelligence and analytics platform that unites data and business teams around a single analytical workflow. Built by analysts for analysts, Mode combines ad hoc SQL exploration, Python and R notebooks, interactive dashboards, self-serve reporting, and custom data applications on top of connected data warehouses. Mode was acquired by ThoughtSpot in 2023 and positions itself as the intelligence layer for the modern data stack. Mode exposes a REST API (documented at its Developer Hub) for programmatic management of workspaces, users, collections, data sources, reports, queries, charts, datasets, definitions, exports, report schedules, and subscriptions. The API uses HTTP Basic authentication with workspace or personal API tokens and returns HAL+JSON, and is available to workspaces on a paid Mode Business plan.
 
-Backed by: gv
+**Areas:** Company · Enterprise · Business Intelligence · Analytics · Data · Reporting · Dashboards · SQL · Data Stack
+
+## Mode on APIs.io
+
+Everything profiled for Mode is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/mode/](https://apis.io/providers/mode/)** — or go straight to one of the APIs or properties below.
+
+### APIs (11)
+
+- [Mode Account API](https://apis.io/apis/mode/mode-account-api/) — The Account API from Mode — 1 operation(s) for account.
+- [Mode Audit Logs API](https://apis.io/apis/mode/mode-audit-logs-api/) — The Audit Logs API from Mode — 1 operation(s) for audit logs.
+- [Mode Data Sources API](https://apis.io/apis/mode/mode-data-sources-api/) — The Data Sources API from Mode — 6 operation(s) for data sources.
+- [Mode Datasets API](https://apis.io/apis/mode/mode-datasets-api/) — The Datasets API from Mode — 8 operation(s) for datasets.
+- [Mode Definitions API](https://apis.io/apis/mode/mode-definitions-api/) — The Definitions API from Mode — 2 operation(s) for definitions.
+- [Mode Groups API](https://apis.io/apis/mode/mode-groups-api/) — The Groups API from Mode — 4 operation(s) for groups.
+- [Mode Invites API](https://apis.io/apis/mode/mode-invites-api/) — The Invites API from Mode — 1 operation(s) for invites.
+- [Mode Memberships API](https://apis.io/apis/mode/mode-memberships-api/) — The Memberships API from Mode — 2 operation(s) for memberships.
+- [Mode Reports API](https://apis.io/apis/mode/mode-reports-api/) — The Reports API from Mode — 27 operation(s) for reports.
+- [Mode Spaces API](https://apis.io/apis/mode/mode-spaces-api/) — The Spaces API from Mode — 6 operation(s) for spaces.
+- [Mode Verify API](https://apis.io/apis/mode/mode-verify-api/) — The Verify API from Mode — 1 operation(s) for verify.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [mode](https://apis.io/servers/mode/mode/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Mode Agentic Access](https://apis.io/agentic-access/mode/mode-agentic-access/)
+
+#### Collections (11)
+
+Postman and Open Collection request collections.
+
+- [Mode Account API](https://apis.io/collections/mode/open-mode-account-api/)
+- [Mode Account Audit Logs API](https://apis.io/collections/mode/open-mode-audit-logs-api/)
+- [Mode Account Data Sources API](https://apis.io/collections/mode/open-mode-data-sources-api/)
+- [Mode Account Datasets API](https://apis.io/collections/mode/open-mode-datasets-api/)
+- [Mode Account Definitions API](https://apis.io/collections/mode/open-mode-definitions-api/)
+- [Mode Account Groups API](https://apis.io/collections/mode/open-mode-groups-api/)
+- [Mode Account Invites API](https://apis.io/collections/mode/open-mode-invites-api/)
+- [Mode Account Memberships API](https://apis.io/collections/mode/open-mode-memberships-api/)
+- [Mode Account Reports API](https://apis.io/collections/mode/open-mode-reports-api/)
+- [Mode Account Spaces API](https://apis.io/collections/mode/open-mode-spaces-api/)
+- [Mode Account Verify API](https://apis.io/collections/mode/open-mode-verify-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Mode Openapi Overlay](https://apis.io/overlays/mode/mode-openapi-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Mode Authentication](https://apis.io/security/mode/mode-authentication/)
+- [Mode Domain Security](https://apis.io/security/mode/mode-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://mode.com)
+- [Documentation](https://mode.com/developer/api-reference/introduction/)
+- [Getting started](https://mode.com/developer/api-reference/introduction/)
+- [API reference](https://mode.com/developer/api-reference/introduction/)
+- [Pricing](https://mode.com/compare-plans/)
+- [Support](https://mode.com/help/)
+- [Blog](https://mode.com/blog/)
+- [Terms of service](https://mode.com/tos/)
+- [Privacy policy](https://mode.com/legal/privacy/)
+- [GitHub](https://github.com/mode)
+- [Status](https://status.modeanalytics.com/)
+
+## API Evangelist rating
+
+**Kin Score 42.8** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 49.6 |
+| Contract governance | 4.5 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 58.9 |
+| Access clarity | 38.2 |
+
+**Agent readiness 25.5** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 24.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/mode/](https://apis.io/providers/mode/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Mode: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/mode/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
